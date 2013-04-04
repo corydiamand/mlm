@@ -1,3 +1,3 @@
-class Client < ActiveRecord::Base
-  attr_accessible :first_name, :last_name
+class Client < Rfm::Base
+	config :layout => 'Clients'
 end
