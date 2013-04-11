@@ -10,6 +10,8 @@ gem "ginjo-rfm", "~> 2.1.3"
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
   gem 'guard-rspec', '1.2.1'
+  gem 'guard-spork', '1.4.1'
+  gem 'spork', '0.9.2'
 end
 
 group :development do
