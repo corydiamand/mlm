@@ -7,7 +7,15 @@ gem 'rails', '3.2.13'
 
 gem "ginjo-rfm", "~> 2.1.3"
 
+group :development, :test do
+  gem 'rspec-rails', '2.11.0'
+  gem 'guard-rspec', '1.2.1'
+end
 
+group :development do
+  gem 'annotate', '2.5.0'
+  gem 'quiet_assets'
+end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -18,6 +26,15 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :test do
+  gem 'capybara', '1.1.2'
+  gem 'rb-fsevent', '0.9.1', :require => false
+  gem 'growl', '1.0.3'
+  gem 'guard-spork', '1.4.1'
+  gem 'spork', '0.9.2'
+  gem 'factory_girl_rails', '4.1.0'
 end
 
 gem 'jquery-rails'
