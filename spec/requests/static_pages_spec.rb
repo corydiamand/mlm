@@ -7,8 +7,13 @@ describe "Static pages" do
 		before { visit root_path }
 
 		it { should have_selector('title', text: 'MLM Portal') }
-		it { should have_selector('h1', text: 'Missing Link Music Client Portal')}
+		it { should have_selector('h2', text: 'Missing Link Music Client Portal')}
 		it { should have_link('logo', href: root_path, src: '/assets/mlmlogo.png' )}
-		
+	end
+
+	describe "Sign-in form" do
+		before { visit root_path }
+
+		##it { should have_button('Sign in') }
 	end
 end
