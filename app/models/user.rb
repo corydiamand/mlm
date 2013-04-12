@@ -23,7 +23,7 @@ class User < Rfm::Base
 		if user.empty?
 			return nil
 		else
-			return user
+			return user[0]
 		end
 	end
 
