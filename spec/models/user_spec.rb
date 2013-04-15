@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Users' do
 	before do
-		@user = User.new(first_name: "Example", last_name: "User", password: "foobar") 
+		@user = User.new(first_name: "Example", email: "example@email.com", last_name: "User", password: "foobar") 
 	end
 
 	subject { @user }
@@ -10,6 +10,7 @@ describe 'Users' do
 	it { should respond_to(:id) }
 	it { should respond_to(:first_name) }
 	it { should respond_to(:last_name) }
+	it { should respond_to(:email) }
 	it { should respond_to(:encrypted_password) }
 
 	describe "password validation" do
@@ -45,19 +46,29 @@ describe 'Users' do
 		describe "authenticate method" do
 
 			it "should return nil on email/password mismatch" do
-				wrong_password_user = @user.authenticate(@user.id, "wrongpass")
+				wrong_password_user = User.authenticate(@user.email, "wrongpass")
 				wrong_password_user.should be_nil
 			end
 
-			it "should return nil for an id with no user" do
-				nonexistent_user = @user.authenticate(0, @user.password)
+			it "should return nil for an email with no user" do
+				nonexistent_user = User.authenticate("wrong@email.com", @user.password)
 				nonexistent_user.should be_nil
 			end
 
 			it "should return the user on email/password match" do
-				matching_user = @user.authenticate(@user.id, @user.password)
+				matching_user = User.authenticate(@user.email, @user.password)
 				matching_user.should == @user
 			end
+		end
+	end
+
+	describe "find_by_email method" do
+		before { @user.save! }
+		after { @user.destroy }
+
+		it "should return the user" do
+			user = User.find_by_email("example@email.com")
+			user.should == @user
 		end
 	end
 end

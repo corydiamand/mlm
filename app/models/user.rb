@@ -12,14 +12,23 @@ class User < Rfm::Base
 		encrypted_password == encrypt(submitted_password)
 	end
 
-	def authenticate(submitted_id, submitted_password)
-		user = User.find_by_id(submitted_id)
+	def self.authenticate(submitted_email, submitted_password)
+		user = User.find_by_email(submitted_email)
 		return nil if user.nil?
-		return self if self.has_password?(submitted_password)
+		return user if user.has_password?(submitted_password)
 	end
 
 	def self.find_by_id(id)
 		user = find(id: id)
+		if user.empty?
+			return nil
+		else
+			return user[0]
+		end
+	end
+
+	def self.find_by_email(submitted_email)
+		user = find(email: "#{submitted_email}")
 		if user.empty?
 			return nil
 		else
