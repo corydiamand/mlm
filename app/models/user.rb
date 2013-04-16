@@ -2,7 +2,7 @@ require 'digest'
 require 'rfm'
 class User < Rfm::Base
 	config :layout => 'Users'
-	attr_accessor :email, :password
+	attr_accessor :password
 	validates :password, presence: true,
 						 confirmation: true
 	before_create :encrypt_password
@@ -54,4 +54,5 @@ class User < Rfm::Base
     def secure_hash(string)
       Digest::SHA2.hexdigest(string)
     end
+
 end
