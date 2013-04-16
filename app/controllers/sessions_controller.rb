@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
   		flash.now[:error] = "Invalid email/password combination"
   		render 'static_pages/home'
   	else
-  		#Sign in
+  		sign_in user
+      redirect_to user_path(user.id)
   	end
   end
 end
