@@ -18,8 +18,8 @@ class User < Rfm::Base
 		return user if user.has_password?(submitted_password)
 	end
 
-	def self.authenticate_with_salt(id, cookie_salt)
-		user = User.find_by_id(id)
+	def self.authenticate_with_salt(email, cookie_salt)
+		user = User.find_by_email(email)
 		(user && user.salt == cookie_salt) ? user : nil
 	end
 

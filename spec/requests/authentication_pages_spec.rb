@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe "Authentication" do
 	
-	let(:user) { FactoryGirl.create(:user) }
+	before(:all) { @user = FactoryGirl.create(:user) }
+	after(:all) { @user.destroy }
+
 
 	subject { page }
 
@@ -37,19 +39,19 @@ describe "Authentication" do
 
 		describe "should sign in the user" do
 			before { visit root_path }
-			before { sign_in user }
+			before { sign_in @user }
 
 			describe "and redirect to the user show page" do
-				it { should have_selector('h3', text: user.first_name) }
-				it { should have_selector('h3', text: user.last_name) }
+				it { should have_selector('h3', text: @user.first_name) }
+				it { should have_selector('h3', text: @user.last_name) }
 			end
 		end
 
 		describe "should be able to sign out" do
-			before { sign_in user }
+			before { sign_in @user }
 
 			describe "submitting to the destroy action" do
-				before { delete signout_path(user) }
+				before { delete signout_path(@user) }
 				specify { response.should redirect_to(root_path) }
 			end
 		end
