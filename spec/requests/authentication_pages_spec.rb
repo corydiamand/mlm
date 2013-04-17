@@ -3,7 +3,8 @@ require 'spec_helper'
 describe "Authentication" do
 	
 	let(:user) { FactoryGirl.create(:user) }
-	
+	after(:all) { user.destroy }
+
 	subject { page }
 
 	describe 'with invalid information' do
