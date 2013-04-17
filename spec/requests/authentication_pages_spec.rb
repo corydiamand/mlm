@@ -36,16 +36,20 @@ describe "Authentication" do
 
 	describe "with valid information" do
 
-		describe "at the home page" do
+		describe "should sign in the user" do
 			before { visit root_path }
+			before { sign_in user }
 
-			describe "should sign in the user" do
-				before { sign_in user }
+			describe "and redirect to the user show page" do
+				it { should have_selector('h3', text: user.first_name) }
+				it { should have_selector('h3', text: user.last_name) }
+			end
+		end
 
-				describe "and redirect to the user show page" do
-					it { should have_selector('h3', text: user.first_name) }
-					it { should have_selector('h3', text: user.last_name) }
-				end
+		describe "should be able to sign out" do
+			before do
+				sign_in user
+				visit user_path
 			end
 		end
 	end

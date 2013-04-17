@@ -1,10 +1,14 @@
 require 'spec_helper'
 
 describe 'User Pages' do
-	before do
-		@user = User.new(first_name: "Example", last_name: "User", email: "example@email.com", password: "foobar") 
-	end
+	let(:user) { FactoryGirl.create(:user) }
 
 	subject { page }
+
+	describe "User page" do
+		before { sign_in user }
+		
+		it {should have_link('Sign out') }
+	end
 end
 
