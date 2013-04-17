@@ -3,7 +3,6 @@ require 'spec_helper'
 describe "Authentication" do
 	
 	let(:user) { FactoryGirl.create(:user) }
-	after(:all) { user.destroy }
 
 	subject { page }
 
@@ -47,9 +46,11 @@ describe "Authentication" do
 		end
 
 		describe "should be able to sign out" do
-			before do
-				sign_in user
-				visit user_path
+			before { sign_in user }
+
+			describe "submitting to the destroy action" do
+				before { delete signout_path(user) }
+				specify { response.should redirect_to(root_path) }
 			end
 		end
 	end

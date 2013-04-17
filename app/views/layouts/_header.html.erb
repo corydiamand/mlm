@@ -4,6 +4,16 @@
 			<%= link_to root_path do %>
 				<%= image_tag "/assets/mlmlogo.png", id: "logo" %>
 			<% end %>
+			<nav>
+				<ul class="nav pull-right">
+					<% if signed_in? %>
+						<li><%= link_to "Sign out", signout_path, method: "delete" %>
+						</li>
+					<% else %>
+						<li><%= link_to "Sign in", root_path %></li>
+					<% end %>
+				</ul>
+			</nav>
 		</div>
 	</div>
 </header>
