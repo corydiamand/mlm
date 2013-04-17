@@ -5,7 +5,7 @@ class User < Rfm::Base
 	attr_accessor :password
 	validates :password, presence: true,
 						 confirmation: true
-	before_create :encrypt_password
+	before_create :encrypt_password, :create_remember_token
 
 	# Return true if the user's password matches the submitted password.
 	def has_password?(submitted_password)
@@ -18,8 +18,8 @@ class User < Rfm::Base
 		return user if user.has_password?(submitted_password)
 	end
 
-	def self.authenticate_with_salt(email, cookie_salt)
-		user = User.find_by_email(email)
+	def self.authenticate_with_salt(id, cookie_salt)
+		user = User.find_by_id(id)
 		(user && user.salt == cookie_salt) ? user : nil
 	end
 
@@ -34,6 +34,15 @@ class User < Rfm::Base
 
 	def self.find_by_email(submitted_email)
 		user = find(email: "#{submitted_email}")
+		if user.empty?
+			return nil
+		else
+			return user[0]
+		end
+	end
+
+	def self.find_by_remember_token(remember_token)
+		user = find(remember_token: "#{remember_token}")
 		if user.empty?
 			return nil
 		else
@@ -60,4 +69,7 @@ class User < Rfm::Base
       Digest::SHA2.hexdigest(string)
     end
 
+    def create_remember_token
+    	self.remember_token = SecureRandom.urlsafe_base64
+    end
 end
