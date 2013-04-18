@@ -63,6 +63,12 @@ describe "Authentication" do
 				it { should have_selector('h3', text: @user.first_name) }
 				it { should have_selector('h3', text: @user.last_name) }
 			end
+
+			describe "and change the logo path" do
+				before { click_link "logo" }
+				it { should have_selector('h3', text: @user.first_name) }
+				it { should have_selector('h3', text: @user.last_name) }
+			end
 		end
 
 		describe "should be able to sign out" do
