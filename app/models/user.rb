@@ -62,7 +62,7 @@ class User < Rfm::Base
     end
 
     def secure_hash(string)
-      Digest::SHA2.hexdigest(string)
+      Digest::SHA512.hexdigest(string)
     end
 
     def create_remember_token
