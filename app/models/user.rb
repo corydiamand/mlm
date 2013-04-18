@@ -2,7 +2,7 @@ require 'digest'
 require 'rfm'
 class User < Rfm::Base
 	config :layout => 'Users'
-	attr_accessor :password
+	attr_accessor :admin, :password
 	validates :password, presence: true,
 						 confirmation: true
 	before_create :encrypt_password, :create_remember_token
@@ -68,4 +68,5 @@ class User < Rfm::Base
     def create_remember_token
     	self.remember_token = SecureRandom.urlsafe_base64
     end
+
 end

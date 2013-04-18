@@ -75,4 +75,23 @@ describe 'Users' do
 			end
 		end
 	end
+
+	describe "admin attribute" do
+
+		it "should not be an admin by default" do
+			@user.should_not be_admin
+		end
+
+		it "should be convertible to an admin" do
+			@user.admin = 1
+			@user.should be_admin
+		end
+
+		it "should not allow access to admin" do
+     	 	expect do
+        		@user.admin = 1
+        		@user.save
+      		end.to raise_error
+    	end
+	end
 end
