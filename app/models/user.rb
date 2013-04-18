@@ -42,12 +42,8 @@ class User < Rfm::Base
 	end
 
 	def self.find_by_remember_token(remember_token)
-		user = find(remember_token: "#{remember_token}")
-		if user.empty?
-			return nil
-		else
-			return user[0]
-		end
+		user = find(remember_token: "#{remember_token}") unless remember_token.nil?
+		user.blank? ? nil : user[0]
 	end
 
 	private
