@@ -68,8 +68,32 @@ describe "Authentication" do
 		describe "should be able to sign out" do
 			before { sign_in @user }
 
-			describe "submitting to the destroy action" do
+			describe "-submitting to the destroy action" do
 				before { delete signout_path(@user) }
+				specify { response.should redirect_to(root_path) }
+			end
+		end
+
+		describe "should not be able to see another users page" do
+			before(:all) do 
+				@wrong_user = FactoryGirl.create(:user,
+												 email: "wronguser@example.com") 
+				sign_in @user
+			end
+			after(:all) { @wrong_user.destroy }
+
+			describe "visiting the show page" do
+				before { visit user_path(@wrong_user.id) }
+				it { should_not have_selector('h3', text: @wrong_user.first_name) }
+			end
+
+			describe "submitting to the show action" do
+				before { get user_path(@wrong_user.id) }
+				specify { response.should redirect_to(root_path) }
+			end
+
+			describe "submitting to the update action" do
+				before { put user_path(@wrong_user.id) }
 				specify { response.should redirect_to(root_path) }
 			end
 		end
