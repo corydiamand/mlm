@@ -60,14 +60,14 @@ describe "Authentication" do
 			before { sign_in @user }
 
 			describe "and redirect to the user show page" do
-				it { should have_selector('h3', text: @user.first_name) }
-				it { should have_selector('h3', text: @user.last_name) }
+				it { should have_selector('h2', text: @user.first_name) }
+				it { should have_selector('h2', text: @user.last_name) }
 			end
 
 			describe "and change the logo path" do
 				before { click_link "logo" }
-				it { should have_selector('h3', text: @user.first_name) }
-				it { should have_selector('h3', text: @user.last_name) }
+				it { should have_selector('h2', text: @user.first_name) }
+				it { should have_selector('h2', text: @user.last_name) }
 			end
 		end
 
@@ -90,7 +90,7 @@ describe "Authentication" do
 
 			describe "visiting the show page" do
 				before { visit user_path(@wrong_user.id) }
-				it { should_not have_selector('h3', text: @wrong_user.first_name) }
+				it { should_not have_selector('h2', text: @wrong_user.first_name) }
 			end
 
 			describe "submitting to the show action" do
