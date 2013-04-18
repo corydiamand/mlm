@@ -32,6 +32,24 @@ describe "Authentication" do
 					it { should have_selector('div.alert.alert-error', text: 'Invalid') }
 				end
 			end
+
+			describe "should not be able to access a user page" do
+
+				describe "visiting the show page" do
+					before { visit user_path(@user.id) }
+					it { should have_selector('h3', text: "Sign in") }
+				end
+
+				describe "submitting to the show action" do
+					before { get user_path(@user.id) }
+					specify { response.should redirect_to(root_path) }
+				end
+
+				describe "submitting to the update action" do
+					before { put user_path(@user.id) }
+					specify { response.should redirect_to(root_path) }
+				end
+			end
 		end
 	end
 
