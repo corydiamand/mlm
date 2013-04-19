@@ -4,5 +4,9 @@ FactoryGirl.define do
 		last_name			"User"
 		email				"example@email.com"
 		password 			"foobar"
+
+		factory :admin do
+			admin 1
+		end
 	end
 end

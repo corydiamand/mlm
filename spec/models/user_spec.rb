@@ -78,20 +78,20 @@ describe 'Users' do
 
 	describe "admin attribute" do
 
+	before(:all) { @admin = FactoryGirl.create(:admin) }
+	after(:all) { @admin.destroy}
+
 		it "should not be an admin by default" do
 			@user.should_not be_admin
+		end
+
+		it "admin should be admin by default" do
+			@admin.should be_admin
 		end
 
 		it "should be convertible to an admin" do
 			@user.admin = 1
 			@user.should be_admin
 		end
-
-		it "should not allow access to admin" do
-     	 	expect do
-        		@user.admin = 1
-        		@user.save
-      		end.to raise_error
-    	end
 	end
 end

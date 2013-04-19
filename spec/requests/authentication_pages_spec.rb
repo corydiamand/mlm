@@ -104,4 +104,12 @@ describe "Authentication" do
 			end
 		end
 	end
+
+	describe "malicious requests" do
+
+		describe "trying to set a user to an admin" do
+			before { put user_path(@user.id, admin: 1)  }
+			specify { @user.should be_admin }
+		end
+	end
 end

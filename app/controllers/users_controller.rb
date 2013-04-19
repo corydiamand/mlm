@@ -9,6 +9,8 @@ class UsersController < ApplicationController
 	end
 	
 	def update
+		@user = User.find(params[:id])
+		params.delete(:admin) if params.include?(:admin)
 	end
 
 	private

@@ -2,7 +2,7 @@ require 'digest'
 require 'rfm'
 class User < Rfm::Base
 	config :layout => 'Users'
-	attr_accessor :admin, :password
+	attr_accessor :password
 	validates :password, presence: true,
 						 confirmation: true
 	before_create :encrypt_password, :create_remember_token
@@ -44,6 +44,10 @@ class User < Rfm::Base
 	def self.find_by_remember_token(remember_token)
 		user = find(remember_token: "#{remember_token}") unless remember_token.nil?
 		user.blank? ? nil : user[0]
+	end
+
+	def admin?
+		admin
 	end
 
 	private
