@@ -47,7 +47,7 @@ class User < Rfm::Base
 	end
 
 	def admin?
-		admin
+		!self.admin.nil?
 	end
 
 	private

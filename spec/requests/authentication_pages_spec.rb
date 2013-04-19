@@ -106,6 +106,7 @@ describe "Authentication" do
 	end
 
 	describe "malicious requests" do
+		before { sign_in @user}
 
 		describe "trying to set a user to an admin" do
 			before { put user_path(@user.id, admin: 1)  }

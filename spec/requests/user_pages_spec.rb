@@ -17,6 +17,15 @@ describe 'User Pages' do
 			it { should have_link('Sign in') }
 		end
 	end
+
+	describe "as an admin user (index)" do
+		before do
+			before(:all) { @admin = FactoryGirl.create(:admin) }
+			sign_in @admin
+		end
+		after(:all) { @admin.destroy }
+
+	end
 end
 
 
