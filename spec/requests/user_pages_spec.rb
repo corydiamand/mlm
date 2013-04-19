@@ -1,8 +1,20 @@
 require 'spec_helper'
 
 describe 'User Pages' do
-	before(:all) { @user = FactoryGirl.create(:user) }
-	after(:all) { @user.destroy}
+	before(:all) do
+		@user = FactoryGirl.create(:user) 
+		@admin = FactoryGirl.create(:admin)
+		@user2 = FactoryGirl.create(:user)
+		@user3 = FactoryGirl.create(:user)
+		@users = [@user, @user2, @user3]
+	end
+	
+	after(:all) do
+		@admin.destroy
+		@users.each do | user|
+			user.destroy
+		end
+	end
 
 	subject { page }
 
@@ -19,12 +31,19 @@ describe 'User Pages' do
 	end
 
 	describe "as an admin user (index)" do
-		before do
-			before(:all) { @admin = FactoryGirl.create(:admin) }
-			sign_in @admin
-		end
-		after(:all) { @admin.destroy }
+		before { sign_in @admin }
 
+		describe "pagination" do
+			before { visit users_path }
+			it { should have_selector('div.pagination') }
+
+			it "should list each user" do
+			 	@users.each do |user|
+			    	page.should have_selector("li", content: user.first_name)
+			    	page.should have_selector("li", content: user.last_name)  
+			    end
+			end
+		end
 	end
 end
 

@@ -1,8 +1,8 @@
 FactoryGirl.define do
 	factory :user do
-		first_name			"Example"
-		last_name			"User"
-		email				"example@email.com"
+		sequence(:first_name) 	{ |n| "First ${n}" }
+		sequence(:last_name) 	{ |n| "Last ${n}" }
+		sequence(:email)	{ |n| "person_#{n}@example.com" }
 		password 			"foobar"
 
 		factory :admin do
