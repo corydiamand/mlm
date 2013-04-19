@@ -70,7 +70,7 @@ describe 'Users' do
 		describe "find_by_email method" do
 
 			it "should return the user" do
-				user = User.find_by_email("example@email.com")
+				user = User.find_by_email("#{@user.email}")
 				user.should == @user
 			end
 		end

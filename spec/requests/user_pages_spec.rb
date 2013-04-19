@@ -30,19 +30,31 @@ describe 'User Pages' do
 		end
 	end
 
-	describe "as an admin user (index)" do
-		before { sign_in @admin }
+	describe "index pages" do
 
-		describe "pagination" do
-			before { visit users_path }
-			it { should have_selector('div.pagination') }
+		describe "as an admin" do
+			before { sign_in @admin }
 
-			it "should list each user" do
-			 	@users.each do |user|
-			    	page.should have_selector("li", content: user.first_name)
-			    	page.should have_selector("li", content: user.last_name)  
-			    end
+			describe "pagination" do
+				before { visit users_path }
+				it { should have_selector('div.pagination') }
+
+				it "should list each user" do
+				 	@users.each do |user|
+				    	page.should have_selector("li", content: user.first_name)
+				    	page.should have_selector("li", content: user.last_name)  
+				    end
+				end
 			end
+		end
+
+		describe "as a non admin" do
+			before do
+				sign_in @user
+				get users_path
+			end
+
+			specify { response.should redirect_to(root_path) }
 		end
 	end
 end
