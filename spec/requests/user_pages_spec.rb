@@ -30,7 +30,7 @@ describe 'User Pages' do
 		end
 
 		describe "it should link to user's update path" do
-			it { should have_link('My Account', href: edit_user_path(@user)) } 
+			it { should have_link('My Account', href: edit_user_path(@user.id)) } 
 		end
 	end
 
