@@ -1,0 +1,30 @@
+<%= form_for(@user, url: edit_user_path(@user)) do |f| %>
+	<div class="row_form">
+		<div class="span3">
+			<div class="field">
+				<%= f.label :first_name %>
+				<%= f.text_field :first_name %>
+			</div>
+		</div>
+		<div class="span3">
+			<div class="field">
+				<%= f.label :last_name %>
+				<%= f.text_field :last_name %>
+			</div>
+		</div>
+	</div>
+	<div class="row_form">
+		<div class="span3">
+			<div class="field">
+				<%= f.label :email %>
+				<%= f.text_field :email %>
+			</div>
+		</div>
+		<div class="span3">
+			<div class="field">
+				<%= f.label :phone_number %>
+				<%= f.text_field :phone_number %>
+			</div>
+		</div>
+	</div>
+<% end %>

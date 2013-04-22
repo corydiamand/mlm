@@ -93,8 +93,18 @@ describe "Authentication" do
 				it { should_not have_selector('h2', text: @wrong_user.first_name) }
 			end
 
+			describe "visiting the edit page" do
+				before { visit edit_user_path(@wrong_user.id) }
+				it { should_not have_selector('h2', text: @wrong_user.first_name) }
+			end
+
 			describe "submitting to the show action" do
 				before { get user_path(@wrong_user.id) }
+				specify { response.should redirect_to(root_path) }
+			end
+
+			describe "submitting to the edit action" do
+				before { get edit_user_path(@wrong_user.id) }
 				specify { response.should redirect_to(root_path) }
 			end
 

@@ -72,6 +72,15 @@ describe 'User Pages' do
 			specify { response.should redirect_to(root_path) }
 		end
 	end
+
+	describe "edit pages" do
+		before do
+			sign_in @user
+			get edit_user_path(@user.id)
+		end
+
+		it { should have_selector('h2', content: 'Update your account') }
+	end
 end
 
 
