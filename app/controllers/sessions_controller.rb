@@ -11,7 +11,11 @@ class SessionsController < ApplicationController
   		render 'static_pages/home'
   	else
   		sign_in user
-      redirect_to user_path(user.id)
+      if current_user.admin?
+        redirect_to users_path
+      else 
+        redirect_to user_path(user.id)
+      end
   	end
   end
 
@@ -20,3 +24,4 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 end
+

@@ -35,9 +35,12 @@ describe 'User Pages' do
 		describe "as an admin" do
 			before { sign_in @admin }
 
+			it "should redirect to the index page" do
+				page.should have_selector('div.pagination')
+			end
+
 			describe "pagination" do
 				before { visit users_path }
-				it { should have_selector('div.pagination') }
 
 				it "should list each user" do
 				 	@users.each do |user|
