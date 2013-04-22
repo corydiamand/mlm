@@ -28,6 +28,10 @@ describe 'User Pages' do
 
 			it { should have_link('Sign in') }
 		end
+
+		describe "it should link to user's update path" do
+			it { should have_link('My Account', href: edit_user_path(@user)) } 
+		end
 	end
 
 	describe "index pages" do

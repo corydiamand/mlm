@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	before_filter :authenticate, only: [:show, :update]
-	before_filter :correct_user, only: [:show, :update]
+	before_filter :authenticate, only: [:show, :edit, :update]
+	before_filter :correct_user, only: [:show, :edit, :update]
 	before_filter :admin_user, only: [:index]
 
 	def index
@@ -8,6 +8,9 @@ class UsersController < ApplicationController
 	end
 
 	def show
+	end
+
+	def edit
 	end
 	
 	def update

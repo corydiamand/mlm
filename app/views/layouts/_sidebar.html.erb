@@ -4,9 +4,10 @@
 			<h3>My Royalties</h3>
 		</section>
 		<section>
-			<h3>My Contact Information</h3>
-		</section>
-		<section>
-			<h3>My Settings</h3>
+			<%if signed_in? %>
+				<h3><%=link_to "My Account", edit_user_path(current_user) %></h3>
+			<% else %>
+				<h3>"My Account"</h3>
+			<% end %>
 		</section>
 	</aside>
