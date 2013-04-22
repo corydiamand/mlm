@@ -15,16 +15,18 @@ describe 'Users' do
 	it { should respond_to(:remember_token) }
 
 	describe "password validation" do
+		before { @wrong_user = FactoryGirl.create(:user) }
+		after { @wrong_user.destroy }
+
+		subject { @wrong_user }
 
 		describe "with blank password" do
-			before do
-				 @wronguser = FactoryGirl.create(:user) 
-				 @wronguser.password = ' ' 
-			end
-			after { @wronguser.destroy }
+			before { @wrong_user.password = ' ' }
+			it { should_not be_valid }
+		end
 
-			subject { @wronguser }
-
+		describe "with password too short" do
+			before { @wrong_user.password = 'a' * 5 }
 			it { should_not be_valid }
 		end
 	end

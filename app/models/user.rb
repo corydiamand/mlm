@@ -4,7 +4,9 @@ class User < Rfm::Base
 	config :layout => 'Users'
 	attr_accessor :password
 	validates :password, presence: true,
-						 confirmation: true
+						 confirmation: true,
+						 length: { minimum: 6 }
+
 	before_create :encrypt_password, :create_remember_token
 
 	# Return true if the user's password matches the submitted password.
