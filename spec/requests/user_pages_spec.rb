@@ -46,6 +46,14 @@ describe 'User Pages' do
 				    end
 				end
 			end
+
+			describe "should lead to a user's page" do
+				before do
+					visit users_path
+					visit user_path(@user.id)
+				end
+				it { should have_selector('h2', content: @user2.first_name) }
+			end
 		end
 
 		describe "as a non admin" do
