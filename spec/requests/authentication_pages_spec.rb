@@ -49,6 +49,11 @@ describe "Authentication" do
 					before { put user_path(@user.id) }
 					specify { response.should redirect_to(root_path) }
 				end
+
+				describe "submitting to the edit action" do
+					before { get edit_user_path(@user.id) }
+					specify { response.should redirect_to(root_path) }
+				end
 			end
 		end
 	end

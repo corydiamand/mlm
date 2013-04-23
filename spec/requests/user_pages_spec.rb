@@ -80,6 +80,30 @@ describe 'User Pages' do
 		end
 
 		it { should have_selector('h2', content: 'Update your account') }
+
+	    describe "with invalid information" do
+	    	before do 
+	    		visit edit_user_path(@user.id)
+	    		click_button "Save changes"
+	    	end
+
+	      	it { should have_content('error') }
+	    end
+
+	   	describe "with valid information" do
+	    	let(:new_first_name)  { "New Name" }
+	      	let(:new_email) { "new@example.com" }
+	      	before do
+	      		visit edit_user_path(@user.id)
+	        	fill_in :first_name,       with: new_first_name
+	        	fill_in :email,            with: new_email
+	        	click_button "Save changes"
+	      	end
+
+	      	it { should have_selector('div.alert.alert-success') }
+	      	specify { @user.reload.first_name.should == new_first_name }
+      		specify { @user.reload.email.should == new_email }
+		end
 	end
 end
 

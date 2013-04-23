@@ -14,8 +14,14 @@ class UsersController < ApplicationController
 	end
 	
 	def update
-		@user = User.find(params[:id])
 		#params.delete(:admin) if params.include?(:admin)
+		@user = User.find_by_id(params[:id])
+		begin @user.update_attributes!(params[:user])
+			flash[:success] = "Account updated."
+			redirect_to user_path(@user.id)
+		rescue
+			render 'edit'
+		end
 	end
 
 	private
