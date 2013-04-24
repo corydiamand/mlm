@@ -6,7 +6,7 @@ class User < Rfm::Base
 	validates :password, presence: true,
 						 confirmation: true,
 						 length: { minimum: 6 }
-	before_update do 
+	before_create do 
 		generate_token(:remember_token) 
 		encrypt_password
 	end
