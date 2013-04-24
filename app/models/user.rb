@@ -7,7 +7,10 @@ class User < Rfm::Base
 						 confirmation: true,
 						 length: { minimum: 6 }
 
-	before_create :encrypt_password, :create_remember_token
+	before_create do 
+		generate_token(:remember_token) 
+		encrypt_password
+	end
 
 	# Return true if the user's password matches the submitted password.
 	def has_password?(submitted_password)
@@ -71,8 +74,8 @@ class User < Rfm::Base
       Digest::SHA512.hexdigest(string)
     end
 
-    def create_remember_token
-    	self.remember_token = SecureRandom.urlsafe_base64
+    def generate_token(column)
+    	self[column] = SecureRandom.urlsafe_base64
     end
 
 end

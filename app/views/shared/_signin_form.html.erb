@@ -1,15 +1,15 @@
 <h3>Sign in</h3>
 
-<%= form_for(:session, url: sessions_path) do |f| %>
+<%= form_tag sessions_path do %>
 	<div class="field">
-		<%= f.label :email %><br />
-		<%= f.text_field :email %>
+		<%= label_tag :email %><br />
+		<%= text_field_tag :email, params[:email] %>
 	</div>
 	<div class="field">
-		<%= f.label :password %>
-		<%= f.password_field :password %>
+		<%= label_tag :password %>
+		<%= password_field_tag :password %>
 	</div>
 	<div class="actions">
-		<%= f.submit "Sign in" %>
+		<%= submit_tag "Sign in", class: "btn btn-large btn-primary" %>
 	</div>
 <% end %>

@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 	end
 	
 	def update
-		#params.delete(:admin) if params.include?(:admin)
+		params.delete(:admin) if params.include?(:admin)
 		@user = User.find_by_id(params[:id])
 		begin @user.update_attributes!(params[:user])
 			flash[:success] = "Account updated."
