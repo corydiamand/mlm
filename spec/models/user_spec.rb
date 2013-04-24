@@ -13,6 +13,9 @@ describe 'Users' do
 	it { should respond_to(:email) }
 	it { should respond_to(:encrypted_password) }
 	it { should respond_to(:remember_token) }
+	it { should respond_to(:password_reset_token) }
+	it { should respond_to(:password_reset_sent_at) }
+
 
 	describe "password validation" do
 		before { @wrong_user = FactoryGirl.create(:user) }

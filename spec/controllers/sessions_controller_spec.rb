@@ -3,14 +3,6 @@ require 'spec_helper'
 describe SessionsController do
 	render_views
 
-	describe "Get 'new'" do
-
-		it "should be successful" do
-			get :new
-			response.should be_success
-		end
-	end
-
 	describe "invalid signin" do
 		before(:each) do
 			@attr = { email: "email@example.com", password: "invalid" }
