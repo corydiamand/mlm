@@ -13,6 +13,17 @@ describe "User Pages" do
     @admin.destroy
   end
 
+  context "as a guest user" do
+    
+    it "should see the sign in page" do
+      visit root_path
+      page.should have_selector('title', 'MLM Portal') 
+      page.should have_selector('h2', text: 'Missing Link Music Client Portal')
+      page.should have_link('logo', href: root_path )
+      page.should have_link('Forgot Password?', href: new_password_reset_path )
+    end
+  end
+
   context "with invalid information" do
     before do 
       visit root_path
