@@ -1,131 +1,46 @@
 require 'spec_helper'
 
 describe "Authentication" do
-	
-	before(:all) { @user = FactoryGirl.create(:user) }
-	after(:all) { @user.destroy }
+  before(:all) do
+    @user = FactoryGirl.create(:user)
+    @other_user = FactoryGirl.create(:user)
+    @admin = FactoryGirl.create(:admin)
+  end
+  
+  after(:all) do 
+    @user.destroy 
+    @other_user.destroy
+    @admin.destroy
+  end
 
+  context "with invalid information" do
+    before do 
+      visit root_path
+      fill_in "Email",    with: "invalid@email.com"
+      fill_in "Password", with: "invalid"
+      click_button "Sign in"
+    end
 
-	subject { page }
+    it "should not be signed in" do
+      page.should have_selector('h3', text: 'Sign in')
+      page.should have_selector('div.alert.alert-error', text: 'Invalid')
+    end
 
-	describe 'with invalid information' do
+    it "should not be able to access a user page" do
+      visit user_path(@user.id)
+      page.should have_selector('h3', text: 'Sign in')
+    end
+  end
 
-		describe 'at the home page' do
-			before { visit root_path }
+  context "with valid information" do
+    before do
+      visit root_path
+      sign_in @user
+    end
 
-			describe "should render the Signin page" do
-				it { should have_selector('h3', text: "Sign in") }
-			end
-
-			describe "should not sign in the user" do
-				before do
-					fill_in "Email", 	 with: "Incorrect email"
-					fill_in "Password",  with: "Incorrect password"
-					click_button "Sign in"
-				end
-
-				describe "and re-render the page" do
-					it { should have_selector('h3', text: "Sign in") }
-				end
-
-				describe "and render an flash error" do
-					it { should have_selector('div.alert.alert-error', text: 'Invalid') }
-				end
-			end
-
-			describe "should not be able to access a user page" do
-
-				describe "visiting the show page" do
-					before { visit user_path(@user.id) }
-					it { should have_selector('h3', text: "Sign in") }
-				end
-
-				describe "submitting to the show action" do
-					before { get user_path(@user.id) }
-					specify { response.should redirect_to(root_path) }
-				end
-
-				describe "submitting to the update action" do
-					before { put user_path(@user.id) }
-					specify { response.should redirect_to(root_path) }
-				end
-
-				describe "submitting to the edit action" do
-					before { get edit_user_path(@user.id) }
-					specify { response.should redirect_to(root_path) }
-				end
-			end
-		end
-	end
-
-	describe "with valid information" do
-
-		describe "should sign in the user" do
-			before { visit root_path }
-			before { sign_in @user }
-
-			describe "and redirect to the user show page" do
-				it { should have_selector('h2', text: @user.first_name) }
-				it { should have_selector('h2', text: @user.last_name) }
-			end
-
-			describe "and change the logo path" do
-				before { click_link "logo" }
-				it { should have_selector('h2', text: @user.first_name) }
-				it { should have_selector('h2', text: @user.last_name) }
-			end
-		end
-
-		describe "should be able to sign out" do
-			before { sign_in @user }
-
-			describe "-submitting to the destroy action" do
-				before { delete signout_path(@user) }
-				specify { response.should redirect_to(root_path) }
-			end
-		end
-
-		describe "should not be able to see another users page" do
-			before(:all) do 
-				@wrong_user = FactoryGirl.create(:user,
-												 email: "wronguser@example.com") 
-				sign_in @user
-			end
-			after(:all) { @wrong_user.destroy }
-
-			describe "visiting the show page" do
-				before { visit user_path(@wrong_user.id) }
-				it { should_not have_selector('h2', text: @wrong_user.first_name) }
-			end
-
-			describe "visiting the edit page" do
-				before { visit edit_user_path(@wrong_user.id) }
-				it { should_not have_selector('h2', text: @wrong_user.first_name) }
-			end
-
-			describe "submitting to the show action" do
-				before { get user_path(@wrong_user.id) }
-				specify { response.should redirect_to(root_path) }
-			end
-
-			describe "submitting to the edit action" do
-				before { get edit_user_path(@wrong_user.id) }
-				specify { response.should redirect_to(root_path) }
-			end
-
-			describe "submitting to the update action" do
-				before { put user_path(@wrong_user.id) }
-				specify { response.should redirect_to(root_path) }
-			end
-		end
-	end
-
-	describe "malicious requests" do
-		before { sign_in @user}
-
-		describe "trying to set a user to an admin" do
-			before { put user_path(@user.id, admin: 1)  }
-			specify { @user.should be_admin }
-		end
-	end
+    it "should not be able to access another user's page" do
+      visit user_path(@other_user.id)
+      page.should_not have_selector('h2', text: @other_user.first_name)
+    end
+  end
 end
