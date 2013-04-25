@@ -35,7 +35,7 @@ describe "User Pages" do
   context "as a non-admin" do
     before do
       visit root_path
-      sign_in @user
+      sign_in_through_ui @user
     end
 
     it "should be able to sign in" do
@@ -90,7 +90,7 @@ describe "User Pages" do
   context "as an admin" do
     before do
       visit root_path
-      sign_in @admin
+      sign_in_through_ui @admin
     end
 
     it "should be able to sign in" do
@@ -108,6 +108,4 @@ describe "User Pages" do
       page.should have_link 'Sign in'
     end
   end
-
-
 end
