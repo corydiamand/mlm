@@ -102,6 +102,26 @@ describe 'Users' do
         user.should == @user
       end
     end
+
+    context "send_password_reset" do
+
+      it "should generate a unique password_reset_token each time" do
+        @user.send_password_reset
+        last_token = @user.password_reset_token
+        @user.send_password_reset
+        @user.password_reset_token.should_not == last_token
+      end
+
+      it "should save the time the password reset was sent" do
+        @user.send_password_reset
+        @user.reload.password_reset_sent_at.should be_present
+      end
+
+      it "should deliver an email to the user" do
+        @user.send_password_reset
+        last_email.to.should include(@user.email)
+      end
+    end
   end
 
   describe "Attributes" do
