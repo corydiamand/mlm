@@ -11,6 +11,8 @@ class User < Rfm::Base
 		encrypt_password
 	end
 
+  before_update :encrypt_password
+
 	# Return true if the user's password matches the submitted password.
 	def has_password?(submitted_password)
 		encrypted_password == encrypt(submitted_password)

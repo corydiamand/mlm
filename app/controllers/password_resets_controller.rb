@@ -15,7 +15,7 @@ class PasswordResetsController < ApplicationController
 
   def update
   	@user = User.find_by_password_reset_token(params[:id])
-  	time = Time.zone.parse("#{@user.password_reset_sent_at}")
+  	time = Time.zone.parse(@user.password_reset_sent_at)
   	if time < 2.hours.ago
   		redirect_to new_password_reset_path 
   		flash[:alert] = "Password reset has expired"
