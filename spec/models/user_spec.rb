@@ -3,6 +3,7 @@ describe 'Users' do
   before(:all) do 
     @user = FactoryGirl.create(:user)
     @admin = FactoryGirl.create(:admin)
+    remove_portals(@user)
   end
 
   after(:all) do
