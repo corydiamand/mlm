@@ -21,6 +21,7 @@ describe 'Users' do
   it { should respond_to(:remember_token) }
   it { should respond_to(:password_reset_token) }
   it { should respond_to(:password_reset_sent_at) }
+  it { should respond_to(:statements) }
 
   describe "Validations" do
 

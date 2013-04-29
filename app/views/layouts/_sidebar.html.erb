@@ -1,13 +1,18 @@
 <div class="row">
 	<aside class="span4">
-		<section>
-			<h3>My Royalties</h3>
-		</section>
-		<section>
-			<%if signed_in? %>
+		<%if signed_in? %>
+			<section>
+				<h3><%=link_to "My Royalties", user_path(current_user.id) %></h3>
+			</section>
+			<section>
 				<h3><%=link_to "My Account", edit_user_path(current_user.id) %></h3>
-			<% else %>
+			</section>
+		<% else %>
+			<section>
+				<h3>My Royalties</h3>
+			</section>
+			<section>
 				<h3>My Account</h3>
-			<% end %>
-		</section>
+			</section>
+		<% end %>
 	</aside>

@@ -29,34 +29,34 @@ class User < Rfm::Base
 		(user && user.salt == cookie_salt) ? user : nil
 	end
 
-	def self.find_by_id(id)
-		user = find(id: id)
-		if user.empty?
-			return nil
-		else
-			return user[0]
-		end
-	end
+  def self.find_by_id(id)
+    user = find(id: id)
+    if user.empty?
+      return nil
+    else
+      return user[0]
+    end
+  end
 
-	def self.find_by_email(submitted_email)
-		user = find(email: "#{submitted_email}")
-		if user.empty?
-			return nil
-		else
-			return user[0]
-		end
-	end
+  def self.find_by_email(submitted_email)
+    user = find(email: "#{submitted_email}")
+    if user.empty?
+      return nil
+    else
+      return user[0]
+    end
+  end
 
-	def self.find_by_remember_token(remember_token)
-		user = find(remember_token: "#{remember_token}") unless remember_token.nil?
-		user.blank? ? nil : user[0]
-	end
+  def self.find_by_remember_token(remember_token)
+    user = find(remember_token: "#{remember_token}") unless remember_token.nil?
+    user.blank? ? nil : user[0]
+  end
 
-	def self.find_by_password_reset_token(password_reset_token)
-		user = find(password_reset_token: 
-							"#{password_reset_token}") unless password_reset_token.nil?
-		user.blank? ? nil : user[0]
-	end
+  def self.find_by_password_reset_token(password_reset_token)
+    user = find(password_reset_token: 
+              "#{password_reset_token}") unless password_reset_token.nil?
+    user.blank? ? nil : user[0]
+  end
 
 	def admin?
 		!self.admin.nil?
@@ -69,6 +69,10 @@ class User < Rfm::Base
 		save!
 		UserMailer.password_reset(self).deliver
 	end
+
+  def statements
+    return self.portals[:statements]
+  end
 
 	private
 
