@@ -1,4 +1,4 @@
 require 'rfm'
 class Statement < Rfm::Base
-  config :layout => 'Statement'
+  config :layout => 'Statements'
 end

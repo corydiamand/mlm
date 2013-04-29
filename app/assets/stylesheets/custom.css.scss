@@ -2,6 +2,7 @@
 
 $grayMediumLight: #eaeaea;
 $sidebarGray: #999999;
+$cashGreen: #4AA02C;
 
 /* mixins, variables, etc. */
 
@@ -147,3 +148,21 @@ ul.users {
   @extend .control-group;
   @extend .error;
 }
+
+.statements {
+  list-style: none;
+  margin: 10px 0 0 0;
+
+  li {
+    padding: 20px 0;
+    border-top: 1px solid #e8e8e8;
+    font-size: 2em;
+  }
+  .content {
+    padding: 40px;
+    &.amount {
+      color: $cashGreen;
+    }
+  }
+}
+

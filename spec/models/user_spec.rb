@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe 'Users' do
   
   before(:all) do 

@@ -5,12 +5,14 @@ describe "User Pages" do
     @user = FactoryGirl.create(:user)
     @other_user = FactoryGirl.create(:user)
     @admin = FactoryGirl.create(:admin)
+    @statement = FactoryGirl.create(:statement, user_id: @user.id)
   end
   
   after(:all) do 
     @user.destroy 
     @other_user.destroy
     @admin.destroy
+    @statement.destroy
   end
 
   context "as a guest user" do
@@ -59,6 +61,10 @@ describe "User Pages" do
     it "should change the logo path" do
       click_link 'logo'
       page.should have_selector('h2', text: @user.first_name)
+    end
+
+    it "should see his/her statements" do
+      page.should have_selector('li', text: @statement.quarter)
     end
 
     it "should be able to edit his/her information" do

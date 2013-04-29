@@ -1,2 +1,25 @@
 <% provide(:title, "#{@user.first_name} #{@user.last_name}") %>
 <h2><%= @user.last_name %>, <%= @user.first_name %></h2>
+
+<% if @user.statements.any? %>
+  <ol class="statements">
+    <% @user.statements.each do |statement| %>
+      <li id="<%= statement.statement_id %>">
+        <span class="content">
+          <%= statement.year %>
+        </span>
+        <span class="content">
+          <%= statement.quarter %>
+        </span>
+        <span class="content amount">
+          <%= statement.amount %>
+        </span>
+        <span class="content">
+          <%= link_to '#' do %>
+            <%= image_tag "/assets/pdficon.jpeg", id: "download" %>
+          <% end %>
+        </span>
+      </li>
+    <% end %>
+  </ol>
+<% end %>
