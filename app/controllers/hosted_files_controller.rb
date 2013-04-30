@@ -3,11 +3,10 @@ class HostedFilesController < ApplicationController
   before_filter :correct_user, only: :show
 
   def show
+    s3 = AWS::S3.new
     s3_name = params[:id] + '.pdf'
-    connection = AWS::S3::Base.establish_connection!(
-      access_key_id: 'AKIAJXKNFSW3MI23UVZQ',
-      secret_access_key: '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')
-    url = AWS::S3::S3Object.url_for(s3_name, 'mlmclientportal', expires_in: 2.minutes)
-    redirect_to url
+    obj = s3.buckets['mlmclientportal'].objects["#{s3_name}"] #no request made
+    url = obj.url_for(:read)
+    redirect_to url.to_s
   end
 end

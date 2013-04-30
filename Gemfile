@@ -10,8 +10,7 @@ gem 'will_paginate', '3.0.3'
 
 gem "ginjo-rfm", "~> 2.1.3"
 gem "fog"
-#gem 'aws-sdk'
-gem 'aws-s3'
+gem 'aws-sdk'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.12.0'
