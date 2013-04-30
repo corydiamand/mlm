@@ -28,6 +28,11 @@ describe "Authentication Requests" do
       put user_path(@user.id)
       response.should redirect_to(root_url)
     end
+
+    it "should not be able to view a user's statement" do
+      get user_hosted_file_path(@user.id, 1)
+      response.should redirect_to(root_url)
+    end
   end
 
   context "as a non-admin wrong user" do
@@ -56,6 +61,11 @@ describe "Authentication Requests" do
     it "should not be able to update itself to admin status" do
       put user_path(@user.id, admin: 1)
       @user.should_not be_admin
+    end
+
+    it "should not be able to view another user's statement" do
+      get user_hosted_file_path(@user.id, 1)
+      response.should redirect_to(root_url)
     end
   end
 end
