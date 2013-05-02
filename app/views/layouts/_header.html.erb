@@ -2,13 +2,10 @@
 	<div class="navbar-inner">
 		<div class="container">
 			<% if signed_in? %>
-				<%= link_to user_path(current_user.id) do %>
-					<%= image_tag "/assets/mlmlogo.png", id: "logo" %>
-				<% end %>	
+				<%= current_user.admin? ? logo_link(users_path) : 
+																	logo_link(user_path(current_user.id)) %>
 			<% else %>
-				<%= link_to root_path do %>
-					<%= image_tag "/assets/mlmlogo.png", id: "logo" %>
-				<% end %>
+				<%= logo_link root_path %>
 			<% end %>
 			<nav>
 				<ul class="nav pull-right">
