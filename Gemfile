@@ -1,14 +1,13 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
-gem 'bootstrap-sass', '~> 2.3.1.0'
+gem 'bootstrap-sass'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'activemodel'
 gem 'will_paginate', '3.0.3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#gem "ginjo-rfm", "~> 2.1.3"
 gem 'mysql2'
 gem "fog"
 gem 'aws-sdk'

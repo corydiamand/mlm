@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe "PasswordResets" do
   before(:all) { @user = FactoryGirl.create(:user) }
-  after(:all) { @user.destroy }
 
   it "emails user when requesting password" do
     post password_resets_path(email: @user.email)

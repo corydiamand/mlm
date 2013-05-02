@@ -7,13 +7,6 @@ describe "User Pages" do
     @admin = FactoryGirl.create(:admin)
     @statement = FactoryGirl.create(:statement, user_id: @user.id)
   end
-  
-  after(:all) do 
-    @user.destroy 
-    @other_user.destroy
-    @admin.destroy
-    @statement.destroy
-  end
 
   context "as a guest user" do
     
@@ -40,7 +33,7 @@ describe "User Pages" do
     end
 
     it "should not be able to access a user page" do
-      visit user_path(@user.id)
+      visit user_path(@user)
       page.should have_selector('h3', text: 'Sign in')
     end
   end
@@ -54,8 +47,8 @@ describe "User Pages" do
     it "should be able to sign in" do
       page.should have_selector('h2', text: @user.first_name)
       page.should have_link 'Sign out'
-      page.should have_link('My Account', href: edit_user_path(@user.id))
-      page.should have_link('My Royalties', href: user_path(@user.id))
+      page.should have_link('My Account', href: edit_user_path(@user))
+      page.should have_link('My Royalties', href: user_path(@user))
     end
 
     it "should change the logo path" do
@@ -68,7 +61,7 @@ describe "User Pages" do
     end
 
     it "should be able to edit his/her information" do
-      visit edit_user_path(@user.id)
+      visit edit_user_path(@user)
       page.should have_selector('h2', text: 'Update your account')
       fill_in "First name",            with: "New Name"
       fill_in "Email",                 with: "new@example.com"
@@ -81,7 +74,7 @@ describe "User Pages" do
     end
 
     it "should not be able to edit information without credentials" do
-      visit edit_user_path(@user.id)
+      visit edit_user_path(@user)
       fill_in "First name",            with: "Name without password"
       fill_in "Email",                 with: "email@nopassword.com"
       click_button "Save changes"
@@ -94,7 +87,7 @@ describe "User Pages" do
     end
 
     it "should not be able to access another user's page" do
-      visit user_path(@other_user.id)
+      visit user_path(@other_user)
       page.should_not have_selector('h2', text: @other_user.first_name)
     end
 

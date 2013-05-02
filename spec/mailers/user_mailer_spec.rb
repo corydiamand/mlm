@@ -2,7 +2,6 @@ require "spec_helper"
 
 describe UserMailer do
   before(:all) { @user = FactoryGirl.create(:user, password_reset_token: "etc") }
-  after(:all) { @user.destroy }
 
   describe "password_reset" do
     let(:mail) { UserMailer.password_reset(@user) }

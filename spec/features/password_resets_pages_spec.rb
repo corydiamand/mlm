@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe "PasswordResetsPages" do
   before(:all) { @user = FactoryGirl.create(:user) }
-  after(:all) { @user.destroy }
 
   context "before request for email" do
     before do

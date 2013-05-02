@@ -26,6 +26,7 @@
 
 require 'digest'
 class User < ActiveRecord::Base
+  attr_accessor :password
   attr_accessible :first_name, :last_name, :email, :area_code, :phone_number,
                   :apartment_number, :address_number, :street_name, :city,
                   :state, :zip_code

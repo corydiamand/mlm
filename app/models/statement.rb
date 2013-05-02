@@ -1,4 +1,2 @@
-require 'rfm'
-class Statement < Rfm::Base
-  config :layout => 'Statements'
+class Statement < ActiveRecord::Base
 end
