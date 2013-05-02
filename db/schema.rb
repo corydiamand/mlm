@@ -11,13 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130403210522) do
+ActiveRecord::Schema.define(:version => 20130502210523) do
 
-  create_table "clients", :force => true do |t|
+  create_table "users", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.string   "email"
+    t.boolean  "admin"
+    t.string   "encrypted_password"
+    t.string   "salt"
+    t.string   "remember_token"
+    t.string   "area_code"
+    t.string   "phone_number"
+    t.string   "apartment_number"
+    t.string   "address_number"
+    t.string   "street_name"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["first_name"], :name => "index_users_on_first_name"
+  add_index "users", ["last_name"], :name => "index_users_on_last_name"
 
 end

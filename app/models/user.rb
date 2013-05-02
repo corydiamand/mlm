@@ -1,6 +1,33 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  first_name             :string(255)
+#  last_name              :string(255)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  email                  :string(255)
+#  admin                  :boolean
+#  encrypted_password     :string(255)
+#  salt                   :string(255)
+#  remember_token         :string(255)
+#  area_code              :string(255)
+#  phone_number           :string(255)
+#  apartment_number       :string(255)
+#  address_number         :string(255)
+#  street_name            :string(255)
+#  city                   :string(255)
+#  state                  :string(255)
+#  zip_code               :string(255)
+#  password_reset_token   :string(255)
+#  password_reset_sent_at :datetime
+#
+
 require 'digest'
 class User < ActiveRecord::Base
 	config :layout => 'Users'
+  attr_accessible :first_name, :last_name
 	attr_accessor :password
 	validates :password, presence: true,
 						 confirmation: true,
