@@ -3,7 +3,7 @@
 		<div class="container">
 			<% if signed_in? %>
 				<%= current_user.admin? ? logo_link(users_path) : 
-																	logo_link(user_path(current_user.id)) %>
+																	logo_link(user_path(current_user)) %>
 			<% else %>
 				<%= logo_link root_path %>
 			<% end %>

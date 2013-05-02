@@ -26,18 +26,16 @@
 
 require 'digest'
 class User < ActiveRecord::Base
-	config :layout => 'Users'
-  attr_accessible :first_name, :last_name
-	attr_accessor :password
+  attr_accessible :first_name, :last_name, :email, :area_code, :phone_number,
+                  :apartment_number, :address_number, :street_name, :city,
+                  :state, :zip_code
 	validates :password, presence: true,
-						 confirmation: true,
-						 length: { minimum: 6 }
-	before_create do 
+						           confirmation: true,
+						           length: { minimum: 6 }
+	before_save do 
 		generate_token(:remember_token) 
 		encrypt_password
 	end
-
-  before_update :encrypt_password
 
 	# Return true if the user's password matches the submitted password.
 	def has_password?(submitted_password)
@@ -53,39 +51,6 @@ class User < ActiveRecord::Base
 	def self.authenticate_with_salt(id, cookie_salt)
 		user = User.find_by_id(id)
 		(user && user.salt == cookie_salt) ? user : nil
-	end
-
-  def self.find_by_id(id)
-    user = find(id: id)
-    if user.empty?
-      return nil
-    else
-      return user[0]
-    end
-  end
-
-  def self.find_by_email(submitted_email)
-    user = find(email: "#{submitted_email}")
-    if user.empty?
-      return nil
-    else
-      return user[0]
-    end
-  end
-
-  def self.find_by_remember_token(remember_token)
-    user = find(remember_token: "#{remember_token}") unless remember_token.nil?
-    user.blank? ? nil : user[0]
-  end
-
-  def self.find_by_password_reset_token(password_reset_token)
-    user = find(password_reset_token: 
-              "#{password_reset_token}") unless password_reset_token.nil?
-    user.blank? ? nil : user[0]
-  end
-
-	def admin?
-		!self.admin.nil?
 	end
 
 	def send_password_reset

@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       if current_user.admin?
         redirect_to users_path
       else 
-        redirect_to user_path(user.id)
+        redirect_to user_path(user)
       end
   	end
   end
