@@ -11,7 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502210523) do
+ActiveRecord::Schema.define(:version => 20130502211404) do
+
+  create_table "clients", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "statements", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "quarter"
+    t.string   "year"
+    t.decimal  "amount",     :precision => 10, :scale => 0
+    t.string   "filename"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+  end
+
+  add_index "statements", ["user_id"], :name => "index_statements_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

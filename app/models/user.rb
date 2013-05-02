@@ -62,10 +62,6 @@ class User < ActiveRecord::Base
 		UserMailer.password_reset(self).deliver
 	end
 
-  def statements
-    return self.portals[:statements]
-  end
-
 	private
 
     def encrypt_password
