@@ -1,6 +1,5 @@
 require 'digest'
-require 'rfm'
-class User < Rfm::Base
+class User < ActiveRecord::Base
 	config :layout => 'Users'
 	attr_accessor :password
 	validates :password, presence: true,
