@@ -13,5 +13,6 @@
 #
 
 class Statement < ActiveRecord::Base
+  belongs_to :user
   attr_accessible :amount, :filename, :quarter, :user_id, :year
 end

@@ -28,6 +28,7 @@
 require 'digest'
 class User < ActiveRecord::Base
   has_secure_password
+  has_many :statements
   attr_accessible :first_name, :last_name, :email, :area_code, :phone_number,
                   :apartment_number, :address_number, :street_name, :city,
                   :state, :zip_code, :password, :password_confirmation
