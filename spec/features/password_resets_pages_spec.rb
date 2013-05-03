@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "PasswordResetsPages" do
-  before(:all) { @user = FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user) }
 
   context "before request for email" do
     before do
@@ -14,7 +14,7 @@ describe "PasswordResetsPages" do
     end
 
     it "should render notice after reset request" do
-      fill_in 'Email',   with: @user.email
+      fill_in 'Email',   with: user.email
       click_button 'Reset Password'
       page.should have_content('password reset instructions')
       current_path.should == root_path
@@ -23,8 +23,8 @@ describe "PasswordResetsPages" do
 
   context "after request for email" do
     before do
-      request_new_password_ui(@user)
-      visit edit_password_reset_path(@user.password_reset_token)
+      request_new_password_ui(user)
+      visit edit_password_reset_path(user.password_reset_token)
     end
     let(:short_password) { "a" * 5 }
 
@@ -33,7 +33,7 @@ describe "PasswordResetsPages" do
     end
 
     it "should display an error message without confirmation" do
-      fill_in "user_password",  with: @user.password
+      fill_in "user_password",  with: user.password
       click_button "Update Password"
       page.should have_content "Password doesn't match confirmation"
     end
@@ -46,7 +46,7 @@ describe "PasswordResetsPages" do
     end
 
     it "should render the update" do
-      old_password = @user.password
+      old_password = user.password
       fill_in "user_password",  with: "newpassword"
       fill_in "Password confirmation",  with: "newpassword"
       click_button "Update Password"
@@ -54,9 +54,9 @@ describe "PasswordResetsPages" do
     end
 
     it "fails when password token has expired" do
-      @user.update_attributes!(password_reset_sent_at: 5.hours.ago)
-      fill_in "user_password",  with: @user.password
-      fill_in "Password confirmation",  with: @user.password
+      user.update_attributes!(password_reset_sent_at: 5.hours.ago)
+      fill_in "user_password",  with: user.password
+      fill_in "Password confirmation",  with: user.password
       click_button "Update Password"
       page.should have_content "Password reset has expired"
     end

@@ -3,18 +3,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-  	user = User.authenticate(params[:email], params[:password])
-
-  	if user.nil?
-  		flash.now[:error] = "Invalid email/password combination"
-  		render 'static_pages/home'
+  	user = User.find_by_email(params[:email].downcase)
+  	if user && user.authenticate(params[:password])
+      sign_in user
+      current_user.admin? ? redirect_to(users_path) : redirect_to(user)
   	else
-  		sign_in user
-      if current_user.admin?
-        redirect_to users_path
-      else 
-        redirect_to user_path(user)
-      end
+  		flash.now[:error] = "Invalid email/password combination"
+      render 'static_pages/home'
   	end
   end
 

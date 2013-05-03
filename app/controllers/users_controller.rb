@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_filter :authenticate, only: [:show, :edit, :update]
+	before_filter :signed_in_user, only: [:show, :edit, :update]
 	before_filter :correct_user, only: [:show, :edit, :update]
 	before_filter :admin_user, only: [:index]
 
@@ -15,11 +15,12 @@ class UsersController < ApplicationController
 	
 	def update
 		params.delete(:admin) if params.include?(:admin)
-		@user = User.find_by_id(params[:id])
-		begin @user.update_attributes!(params[:user])
+		@user = User.find(params[:id])
+		if @user.update_attributes(params[:user])
 			flash[:success] = "Account updated."
-			redirect_to user_path(@user.id)
-		rescue
+			sign_in @user
+			redirect_to @user
+		else
 			render 'edit'
 		end
 	end

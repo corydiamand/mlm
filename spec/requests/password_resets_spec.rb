@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe "PasswordResets" do
-  before(:all) { @user = FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user) }
 
   it "emails user when requesting password" do
-    post password_resets_path(email: @user.email)
-    last_email.to.should include(@user.email)
+    post password_resets_path(email: user.email)
+    last_email.to.should include(user.email)
   end
 
   it "does not email invalid user" do
