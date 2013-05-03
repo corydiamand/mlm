@@ -72,6 +72,14 @@ describe 'Users' do
         user.email = ' '
         user.should_not be_valid
       end
+      it "should be invalid when format is invalid" do
+        addresses = %w[user@foo,com user_at_foo.org example.user@foo.
+                       foo@bar_baz.com foo@bar+baz.com]
+        addresses.each do |invalid_address|
+          user.email = invalid_address
+          user.should_not be_valid
+        end      
+      end
     end
   end
 

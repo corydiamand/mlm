@@ -61,14 +61,14 @@ describe "User Pages" do
     it "should be able to edit his/her information" do
       visit edit_user_path(user)
       page.should have_selector('h2', text: 'Update your account')
-      fill_in "First name",            with: "New Name"
-      fill_in "Email",                 with: "newexample.com"
+      fill_in "First name",            with: "NEW NAME"
+      fill_in "Email",                 with: "new@example.com"
       fill_in "Password",              with: "foobar"
       fill_in "Confirm password",      with: "foobar"
       click_button "Save changes"
       page.should have_selector('div.alert.alert-success')
-      user.reload.first_name.should == "New Name"
-      user.reload.email.should == "newexample.com"
+      user.reload.first_name.should == "NEW NAME"
+      user.reload.email.should == "new@example.com"
     end
 
     it "should not be able to edit information without credentials" do

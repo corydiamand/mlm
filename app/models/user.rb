@@ -33,8 +33,15 @@ class User < ActiveRecord::Base
                   :state, :zip_code, :password, :password_confirmation
 	validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
-  validates :email, presence: true 
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence:   true,
+                    format:     { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
+
 	before_save { generate_token(:remember_token) }
+  before_save { email.downcase! }
+  before_save { first_name.upcase! }
+  before_save { last_name.upcase! }
 
 	def send_password_reset
 		generate_token(:password_reset_token)
