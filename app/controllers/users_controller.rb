@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@microposts = current_user.statements
+		@statements = current_user.statements
 	end
 
 	def edit
