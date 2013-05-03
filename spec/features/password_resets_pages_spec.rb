@@ -54,7 +54,8 @@ describe "PasswordResetsPages" do
     end
 
     it "fails when password token has expired" do
-      user.update_attributes!(password_reset_sent_at: 5.hours.ago)
+      user.password_reset_sent_at = 5.hours.ago
+      user.save
       fill_in "user_password",  with: user.password
       fill_in "Password confirmation",  with: user.password
       click_button "Update Password"
