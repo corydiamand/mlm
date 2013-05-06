@@ -98,6 +98,26 @@ describe 'Users' do
         user.remember_token.should_not be_blank
       end
     end
+
+    context "formatting" do
+      before do
+        user.update_attributes(first_name: 'lowercase',
+                               last_name:  'lowercase',
+                               email:      'UPPER@CASE.COM')
+      end
+
+      it "should upcase the user's first name" do
+        user.reload.first_name.should == 'LOWERCASE'
+      end
+
+      it "should upcase the user's last name" do
+        user.reload.last_name.should == 'LOWERCASE'
+      end
+
+      it "should downcase the user's email address" do
+        user.reload.email.should == 'upper@case.com'
+      end
+    end
   end
 
   describe "Methods" do

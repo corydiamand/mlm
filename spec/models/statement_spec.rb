@@ -14,6 +14,76 @@
 
 require 'spec_helper'
 
-describe Statement do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe 'Statements' do
+
+  let(:user) { FactoryGirl.create(:user) }
+  let(:statement) { FactoryGirl.create(:statement, user: user) }
+
+  subject { statement }
+
+  it { should respond_to(:user_id) }
+  it { should respond_to(:quarter) }
+  it { should respond_to(:year) }
+  it { should respond_to(:amount) }
+  it { should respond_to(:filename) }
+  its(:user) { should == user }
+
+  it { should be_valid }
+
+  context "accessible attributes" do
+    it "should not allow access to user_id" do
+      expect do
+        Statement.new(user_id: user.id)
+      end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+    end
+  end
+
+  describe "Validations" do
+
+    context "user id" do
+
+      it "should not be valid when user_id is not present" do
+        statement.user_id = nil 
+        statement.should_not be_valid 
+      end
+    end
+
+    context "filename" do
+
+      it "should not be valid when filename is not present" do
+        statement.filename = nil
+        statement.should_not be_valid
+      end
+
+      it "should not be valid when filename is blank" do
+        statement.filename = ' '
+        statement.should_not be_valid
+      end
+    end
+
+    context "quarter" do
+
+      it "should not be valid when quarter is not present" do
+        statement.quarter = nil
+        statement.should_not be_valid
+      end
+    end
+
+    context "year" do
+
+      it "should not be valid when year is not present" do
+        statement.year = nil
+        statement.should_not be_valid
+      end
+    end
+
+    context "amount" do
+
+      it "should not be valid when amount is not present" do
+        statement.amount = nil
+        statement.should_not be_valid
+      end
+    end
+  end
+
 end

@@ -13,8 +13,9 @@ FactoryGirl.define do
 
   factory :statement do
     quarter 'Q2'
-    year 2013
-    amount 1000
-    filename 'Test.xls'
+    year '2013'
+    amount '1000'
+    filename 'Test.pdf'
+    user
   end
 end
