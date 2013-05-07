@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   has_many :statements
   attr_accessible :first_name, :last_name, :email, :area_code, :phone_number,
                   :apartment_number, :address_number, :street_name, :city,
-                  :state, :zip_code, :password, :password_confirmation
+                  :state, :zip_code, :password, :password_confirmation, :search_name
 	validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -50,6 +50,16 @@ class User < ActiveRecord::Base
     save!(validate: false)
 		UserMailer.password_reset(self).deliver
 	end
+
+  def search_name
+    @current_user.try(:search_name)
+  end
+
+  def search_name=(name)
+    self.search_name = "#{User.find_by_first_name(name)} 
+                        #{User.find_by_last_name(name)}" if name.present?
+  end
+
 
 	private
 

@@ -26,6 +26,14 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def search
+		@users = User.order(:last_name, :first_name).where(
+												"last_name like ? OR first_name like ?", "%#{params[:term]}%", "%#{params[:term]}%")
+		render json: @users.map{ |user| {
+			label: "#{user.last_name}, #{user.first_name}",
+			value: "#{user.id}" } }
+	end
+
 	private
 
 		def admin_user

@@ -110,5 +110,11 @@ describe "User Pages" do
       page.should have_selector('h2', text: 'Missing Link Music Client Portal')
       page.should have_link 'Sign in'
     end
+
+    it "should be able to search for a user" do
+      visit users_path
+      fill_in "Search name",       with:  "user.first"
+      page.should have_link(text: "#{user.last_name}, #{user.first_name}", href: user_path(user))
+    end
   end
 end
