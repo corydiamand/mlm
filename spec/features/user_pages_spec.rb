@@ -114,7 +114,12 @@ describe "User Pages" do
     it "should be able to search for a user" do
       visit users_path
       fill_in "Search name",       with:  "user.first"
-      page.should have_link(text: "#{user.last_name}, #{user.first_name}", href: user_path(user))
+      page.should have_content("#{user.last_name}, #{user.first_name}")
+    end
+
+    it "should go to a user's page upon search" do
+      fill_in "Search name",       with: "#{user.last_name}, #{user.first_name}"
+      click_button 'Go to user page'
     end
   end
 end
