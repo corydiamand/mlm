@@ -60,6 +60,14 @@ class User < ActiveRecord::Base
                         #{User.find_by_last_name(name)}" if name.present?
   end
 
+  def search_name_id
+    @current_user.try(:search_name_id)
+  end
+
+  def search_name_id(id)
+    @search_name_id = id
+  end
+
 
 	private
 

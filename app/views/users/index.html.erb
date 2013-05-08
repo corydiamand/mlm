@@ -4,6 +4,7 @@
   <div class="field">
     <%=f.label :search_name %>
     <%=f.text_field :search_name, data: { autocomplete_source: search_users_path } %>
+    <%=f.hidden_field :search_name_id, value: :search_users_path  %>
   </div>
 <% end %>
 
