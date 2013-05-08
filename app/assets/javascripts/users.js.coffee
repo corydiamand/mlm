@@ -5,4 +5,10 @@
 jQuery ->
   $('#user_search_name').autocomplete({
     source: $('#user_search_name').data('autocomplete-source')
+    focus: (event, ui) ->
+      $('#user_search_name').val ui.item.label
+      false
+    select: (event, ui) ->
+      $('#user_search_name').val ui.item.label
+      $('#user_search_name-id').val ui.item.value
   })
