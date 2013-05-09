@@ -31,7 +31,8 @@ class User < ActiveRecord::Base
   has_many :statements
   attr_accessible :first_name, :last_name, :email, :area_code, :phone_number,
                   :apartment_number, :address_number, :street_name, :city,
-                  :state, :zip_code, :password, :password_confirmation, :search_name
+                  :state, :zip_code, :password, :password_confirmation, :search_name,
+                  :search_name_id
 	validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

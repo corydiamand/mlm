@@ -111,15 +111,33 @@ describe "User Pages" do
       page.should have_link 'Sign in'
     end
 
-    it "should be able to search for a user" do
-      visit users_path
-      fill_in "Search name",       with:  "user.first"
-      page.should have_content("#{user.last_name}, #{user.first_name}")
-    end
+    context "search function" do
+      before { visit users_path }
+      let(:user_string) { "#{user.last_name}, #{user.first_name}" }
+      let(:other_user_string) { "#{other_user.last_name}, #{other_user.first_name}" }
 
-    it "should go to a user's page upon search" do
-      fill_in "Search name",       with: "#{user.last_name}, #{user.first_name}"
-      click_button 'Go to user page'
+      it "should be able to search for a user" do
+        fill_in "Search name",       with:  "user.first"
+        page.should have_content(user_string)
+      end
+
+      it "should go to a user's page upon search" do
+        fill_in "Search name",       with: user_string
+        click_button 'Go to user page'
+        page.should have_selector('h2', text: user_string)
+      end
+
+      it "should go to another user's page upon re-search" do
+        fill_in "Search name",       with: other_user_string
+        click_button 'Go to user page'
+        page.should have_selector('h2', text: other_user_string)
+      end
+
+      it "should render a flash if search returns nil" do
+        fill_in "Search name",       with: "invalid, invalid"
+        click_button 'Go to user page'
+        page.should have_content("No users found")
+      end
     end
   end
 end
