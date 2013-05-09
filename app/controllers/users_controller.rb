@@ -32,7 +32,7 @@ class UsersController < ApplicationController
       "CONCAT(last_name, ' ' ,first_name) like ? OR CONCAT(first_name, ' ', last_name) 
         like ?", "%#{params[:term]}%", "%#{params[:term]}%")
     respond_to do |format|
-      format.json { found_users }
+      format.json { render json: found_users }
       format.html { find_user }
     end
   end
@@ -40,10 +40,10 @@ class UsersController < ApplicationController
   private
 
   def found_users
-    render json: @found_users.map{ |user| {
-      label: "#{user.last_name}, #{user.first_name}",
-      id: "#{user.id}"  } 
-    }
+    @found_users.map do |user|
+      user.label { "#{user.last_name}, #{user.first_name}" }
+      user.id { "#{user.id}" }
+    end 
   end
 
   def find_user
