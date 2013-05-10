@@ -13,9 +13,11 @@
 	<%= render 'layouts/sidebar' %>
 		<div class="span7">
 			<% flash.each do |key, value| %>
-          		<%= content_tag(:div, value, class: "alert alert-#{key}") %>
-        	<% end %>	
-		<%= yield %>
-	</div>
+        <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+      <% end %>	
+		  <%= yield %>
+      <%= render 'layouts/footer' %>
+    </div>
+  </div>
 </body>
 </html>

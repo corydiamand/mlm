@@ -58,6 +58,8 @@ describe "User Pages" do
     it "should be able to edit his/her information" do
       visit edit_user_path(user)
       page.should have_selector('h2', text: 'Update your account')
+      page.should have_link("Change my password", 
+                            href: new_password_reset_path)
       fill_in "First name",            with: "NEW NAME"
       fill_in "Email",                 with: "new@example.com"
       fill_in "Password",              with: "foobar"
@@ -90,6 +92,7 @@ describe "User Pages" do
       click_link 'Sign out'
       page.should have_selector('h2', text: 'Missing Link Music Client Portal')
       page.should have_link 'Sign in'
+      page.should_not have_link 'My Royalties'
     end
   end
 

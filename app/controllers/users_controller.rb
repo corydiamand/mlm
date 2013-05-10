@@ -27,10 +27,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    params.delete(:search_user_id) if params.include?(:search_user_id)
-    @found_users = User.order(:last_name, :first_name).where(
-      "CONCAT(last_name, ' ' ,first_name) like ? OR CONCAT(first_name, ' ', last_name) 
-        like ?", "%#{params[:term]}%", "%#{params[:term]}%")
+    params[:user].delete(:search_name_id) if params.include?(:search_name_id)
     respond_to do |format|
       format.json { render json: found_users }
       format.html { find_user }
@@ -40,10 +37,18 @@ class UsersController < ApplicationController
   private
 
   def found_users
+    query_users
     @found_users.map do |user|
-      user.label { "#{user.last_name}, #{user.first_name}" }
-      user.id { "#{user.id}" }
+      {label: "#{user.last_name}, #{user.first_name}",
+       id: "#{user.id}"}
     end 
+  end
+
+  def query_users
+    @found_users = User.order(:last_name, :first_name).where(
+      "CONCAT(last_name, ' ' ,first_name) like ? OR 
+       CONCAT(first_name, ' ', last_name) like ?", 
+       "%#{params[:term]}%", "%#{params[:term]}%")
   end
 
   def find_user

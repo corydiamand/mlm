@@ -2,106 +2,78 @@
 	<%= render 'shared/error_messages', object: f.object %>
 	<section>
 		<div class="row_form">
-			<div class="span3">
-				<div class="field">
-					<%= f.label :first_name %>
-					<%= f.text_field :first_name %>
-				</div>
-			</div>
-			<div class="span3">
-				<div class="field">
-					<%= f.label :last_name %>
-					<%= f.text_field :last_name %>
-				</div>
-			</div>
+			<span class="field">
+				<%= f.label :first_name %>
+				<%= f.text_field :first_name, class: "input-large" %>
+			</span>
+			<span class="field">
+				<%= f.label :last_name %>
+				<%= f.text_field :last_name, class: "input-large" %>
+			</span>
 		</div>
 		<div class="row_form">
-			<div class="span3">
-				<div class="field">
-					<%= f.label :email %>
-					<%= f.text_field :email %>
-				</div>
-			</div>
-			<div class="span-one-half">
-				<div class="field">
-					<%= f.label :area_code %>
-					<%= f.text_field :area_code, class: "input-mini" %>
-				</div>
-			</div>
-			<div class="span2">
-				<div class="field">
-					<%= f.label :phone_number %>
-					<%= f.text_field :phone_number, class: "input-small" %>
-				</div>
-			</div>
+			<span class="field">
+				<%= f.label :email %>
+				<%= f.text_field :email, class: "input-large" %>
+			</span>
+			<span id="change_password" class="field">
+				<%= link_to "Change my password", new_password_reset_path, 
+							class: "btn btn-medium btn-info"%>
+			</span>
 		</div>
 		<div class="row_form">
-			<div class="span-one-half">
-				<div class="field">
-					<%= f.label :apartment_number %>
-					<%= f.text_field :apartment_number, class: "input-mini" %>
-				</div>
-			</div>
-			<div class="span1.5">
-				<div class="field">
-					<%= f.label :address_number %>
-					<%= f.text_field :address_number, class: "input-small" %>
-				</div>
-			</div>
-			<div class="span3">
-				<div class="field">
-					<%= f.label :street_name %>
-					<%= f.text_field :street_name %>
-				</div>
-			</div>
+			<span class="field">
+				<%= f.label :area_code %>
+				<%= f.text_field :area_code, class: "input-mini" %>
+			</span>
+			<span class="field">
+				<%= f.label :phone_number %>
+				<%= f.text_field :phone_number, class: "input-small" %>
+			</span>
 		</div>
 		<div class="row_form">
-			<div class="span1.5">
-				<div class="field">
+			<span class="field">
+				<%= f.label "Apartment #" %>
+				<%= f.text_field :apartment_number, class: "input-mini" %>
+			</span>
+			<span class="field">
+				<%= f.label "Address #" %>
+				<%= f.text_field :address_number, class: "input-mini" %>
+			</span>
+			<span class="field">
+				<%= f.label :street_name %>
+				<%= f.text_field :street_name, class: "input-large" %>
+			</span>
+		</div>
+		<div class="row_form">
+				<span class="field">
 					<%= f.label :city %>
-					<%= f.text_field :city, class: "input-mini" %>
-				</div>
-			</div>
-			<div class="span-one-half">
-				<div class="field">
+					<%= f.text_field :city, class: "input-medium" %>
+				</span>
+				<span class="field">
 					<%= f.label :state %>
 					<%= f.text_field :state, class: "input-mini" %>
-				</div>
-			</div>
-			<div class="span3">
-				<div class="field">
+				</span>
+				<span class="field">
 					<%= f.label :zip_code %>
-					<%= f.text_field :zip_code %>
-				</div>
-			</div>
+					<%= f.text_field :zip_code, class: "input-small"%>
+				</span>
 		</div>
 	</section>
 	<section>
-		Enter your password to submit changes: </br>
+		<div id='password'class="row_form">Enter your password to submit changes:</div>
 		<div class="row_form">
-			<div class="span3">
-				<div class="field">
-					<%= f.label :password %>
-					<%= f.password_field :password, class: "input-medium" %>
-				</div>
+			<div class="field">
+				<%= f.label :password %>
+				<%= f.password_field :password, class: "input-medium" %>
 			</div>
-			<div class="span2.5">
-				<div class="field">
-					<%= f.label :password_confirmation, "Confirm password" %>
-					<%= f.password_field :password_confirmation, 
-										 class: "input-medium" %>
-				</div>
-			</div>
-			<div class="span.5">
-				<div class="field">
-					<%= f.submit "Change", class: "btn btn-small btn-info"%>
-				</div>
-			</div></br>
-		<div class="row_form">
-			<div class="span6 center">
-				<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+			<div class="field">
+				<%= f.label :password_confirmation, "Confirm password" %>
+				<%= f.password_field :password_confirmation, class: "input-medium" %>
 			</div>
 		</div>
+		<div class="row_form">
+			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+		</div>
 	</section>
-	</div>
 <% end %>

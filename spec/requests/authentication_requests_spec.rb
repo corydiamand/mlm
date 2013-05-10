@@ -61,6 +61,12 @@ describe "Authentication Requests" do
       get user_hosted_file_path(user, 1)
       response.should redirect_to(root_url)
     end
+
+    it "should be able to sign out" do
+      sign_out_request user
+      get user_path(user)
+      response.should redirect_to(root_url)
+    end
   end
 end
 
