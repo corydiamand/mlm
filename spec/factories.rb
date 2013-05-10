@@ -14,7 +14,7 @@ FactoryGirl.define do
   factory :statement do
     quarter 'Q2'
     year '2013'
-    amount '1000'
+    sequence(:amount) { |n| "100#{n}" }
     filename 'Test.pdf'
     user
   end

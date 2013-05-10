@@ -55,6 +55,12 @@ describe "User Pages" do
       page.should have_selector('li', text: statement.quarter)
     end
 
+    it "should see message if no statement data is found" do
+      statement.destroy
+      visit user_path user
+      page.should have_content 'No statement data available'
+    end 
+
     it "should be able to edit his/her information" do
       visit edit_user_path(user)
       page.should have_selector('h2', text: 'Update your account')
@@ -103,9 +109,10 @@ describe "User Pages" do
     #   page.should have_selector('div.pagination')
     # end
 
-    it "should be able to visit a users page" do
-      visit user_path(user.id)
+    it "should be able to visit a users page and see his statements" do
+      visit user_path user
       page.should have_selector('h2', user.first_name)
+      page.should have_link(statement.amount)
     end
 
     it "should be able to sign out" do
