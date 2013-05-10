@@ -112,7 +112,7 @@ describe "User Pages" do
     it "should be able to visit a users page and see his statements" do
       visit user_path user
       page.should have_selector('h2', user.first_name)
-      page.should have_link(statement.amount)
+      page.should have_content(statement.amount)
     end
 
     it "should be able to sign out" do
