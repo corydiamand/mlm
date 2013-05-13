@@ -3,7 +3,6 @@
 # Table name: works
 #
 #  id               :integer          not null, primary key
-#  user_id          :integer
 #  audio_product_id :integer
 #  work_title       :string(255)
 #  duration         :string(255)
@@ -15,6 +14,4 @@
 class Work < ActiveRecord::Base
   belongs_to :user
   attr_accessible :work_title, :duration, :copyright_date
-
-  validates :user_id, presence: true
 end

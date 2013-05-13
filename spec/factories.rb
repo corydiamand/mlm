@@ -23,6 +23,11 @@ FactoryGirl.define do
     sequence(:work_title)  { |n| "Work #{n}" }
     duration '03:00'
     copyright_date '09/27/1990'
+  end
+
+  factory :work_claim do
     user
+    work
+    mr_share 25
   end
 end
