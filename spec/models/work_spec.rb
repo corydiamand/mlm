@@ -4,7 +4,7 @@
 #
 #  id               :integer          not null, primary key
 #  audio_product_id :integer
-#  work_title       :string(255)
+#  title            :string(255)
 #  duration         :string(255)
 #  copyright_date   :string(255)
 #  created_at       :datetime         not null
@@ -20,7 +20,7 @@ describe Work do
   subject { work }
 
   it { should respond_to(:audio_product_id) }
-  it { should respond_to(:work_title) }
+  it { should respond_to(:title) }
   it { should respond_to(:duration) }
   it { should respond_to(:copyright_date) }
 
