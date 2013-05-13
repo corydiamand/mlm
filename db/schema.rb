@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130503153707) do
+ActiveRecord::Schema.define(:version => 20130513173304) do
 
   create_table "clients", :force => true do |t|
     t.string   "first_name"
@@ -58,5 +58,18 @@ ActiveRecord::Schema.define(:version => 20130503153707) do
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["first_name"], :name => "index_users_on_first_name"
   add_index "users", ["last_name"], :name => "index_users_on_last_name"
+
+  create_table "works", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "audio_product_id"
+    t.string   "work_title"
+    t.string   "duration"
+    t.string   "copyright_date"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "works", ["audio_product_id"], :name => "index_works_on_audio_product_id"
+  add_index "works", ["user_id"], :name => "index_works_on_user_id"
 
 end

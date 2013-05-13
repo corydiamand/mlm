@@ -18,4 +18,11 @@ FactoryGirl.define do
     filename 'Test.pdf'
     user
   end
+
+  factory :work do
+    sequence(:work_title)  { |n| "Work #{n}" }
+    duration '03:00'
+    copyright_date '09/27/1990'
+    user
+  end
 end
