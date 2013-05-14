@@ -1,9 +1,18 @@
 class WorksController < ApplicationController
   before_filter :signed_in_user, only: :index
   before_filter :correct_user, only: :index
+  before_filter :admin_view_works, only: :index
 
   def index
-    @works = current_user.works
   end
 
 end
+
+def admin_view_works
+  if current_user.admin?
+    @works = User.find(params[:id]).works
+  else  
+    @works = current_user.works
+  end
+end
+

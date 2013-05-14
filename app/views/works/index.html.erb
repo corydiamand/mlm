@@ -1,1 +1,12 @@
-<h2><%= @works.all %></h2>
+<table class="table statements">
+  <tr>
+    <th>Title</th>
+  </tr>
+  <% @works.each do |work| %>
+    <tr id="<%= work.id%>">
+      <td class="content">
+        <%= work.title %>
+      </td>
+    </tr>
+  <% end %>
+</table>

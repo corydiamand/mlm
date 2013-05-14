@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:show, :edit, :update]
   before_filter :correct_user, only: [:show, :edit, :update]
   before_filter :admin_user, only: :index
-  before_filter :admin_view, only: :show
+  before_filter :admin_view_statements, only: :show
 
   def index
     @users = User.order('last_name ASC').paginate(page: params[:page])
@@ -74,7 +74,7 @@ class UsersController < ApplicationController
       redirect_to(root_path) unless current_user.admin?
     end
 
-    def admin_view
+    def admin_view_statements
       if current_user.admin?
         @statements = User.find(params[:id]).statements
       else  
