@@ -27,6 +27,7 @@ describe WorkClaim do
 
   it { should be_valid }
 
+
   context "accessible attributes" do
 
     it "should not allow access to user_id" do
