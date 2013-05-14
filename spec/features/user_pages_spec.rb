@@ -53,7 +53,7 @@ describe "User Pages" do
     end
 
     it "should see his/her statements" do
-      page.should have_selector('li', text: statement.quarter)
+      page.should have_selector('td', text: statement.quarter)
     end
 
     it "should see message if no statement data is found" do

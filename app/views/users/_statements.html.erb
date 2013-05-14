@@ -1,21 +1,27 @@
-<ol class="statements">
+<table class="table statements">
+  <tr>
+    <th>Year</th>
+    <th>Quarter</th>
+    <th>Amount</th>
+    <th>Download</th>
+  </tr>
   <% @statements.each do |statement| %>
-    <li id="<%= statement.id%>">
-      <span class="content">
+    <tr id="<%= statement.id%>">
+      <td class="content">
         <%= statement.year %>
-      </span>
-      <span class="content">
+      </td>
+      <td class="content">
         <%= statement.quarter %>
-      </span>
-      <span class="content amount">
+      </td>
+      <td class="content amount">
         <%= statement.amount %>
-      </span>
-      <span class="content">
+      </td>
+      <td class="content">
         <%= link_to user_hosted_file_path(statement.user_id, 
                                           statement.filename) do %>
           <%= image_tag "/assets/pdficon.jpeg", id: "download" %>
         <% end %>
-      </span>
-    </li>
+      </td>
+    </tr>
   <% end %>
-</ol>
+</table>

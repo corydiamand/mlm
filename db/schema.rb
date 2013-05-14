@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513215553) do
+ActiveRecord::Schema.define(:version => 20130514162226) do
 
   create_table "clients", :force => true do |t|
     t.string   "first_name"
@@ -53,10 +53,12 @@ ActiveRecord::Schema.define(:version => 20130513215553) do
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.string   "password_digest"
+    t.integer  "fmp_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["first_name"], :name => "index_users_on_first_name"
+  add_index "users", ["fmp_id"], :name => "index_users_on_fmp_id"
   add_index "users", ["last_name"], :name => "index_users_on_last_name"
 
   create_table "work_claims", :force => true do |t|

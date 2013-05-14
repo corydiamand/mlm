@@ -23,6 +23,7 @@
 #  password_reset_token   :string(255)
 #  password_reset_sent_at :datetime
 #  password_digest        :string(255)
+#  fmp_id                 :integer
 #
 
 require 'spec_helper'
