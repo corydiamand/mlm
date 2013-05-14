@@ -4,6 +4,7 @@ describe "Authentication Requests" do
 
     let(:user) { FactoryGirl.create(:user) }
     let(:other_user) { FactoryGirl.create(:user) }
+    let!(:statement) { FactoryGirl.create(:statement, user_id: user.id) }
   
 
   context "as a guest user" do
@@ -24,7 +25,7 @@ describe "Authentication Requests" do
     end
 
     it "should not be able to view a user's statement" do
-      get user_hosted_file_path(user, 1)
+      get user_hosted_file_path(user, statement)
       response.should redirect_to(root_url)
     end
   end
@@ -58,7 +59,7 @@ describe "Authentication Requests" do
     end
 
     it "should not be able to view another user's statement" do
-      get user_hosted_file_path(user, 1)
+      get user_hosted_file_path(other_user, statement)
       response.should redirect_to(root_url)
     end
 
