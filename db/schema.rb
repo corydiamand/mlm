@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514185630) do
+ActiveRecord::Schema.define(:version => 20130514200423) do
 
   create_table "clients", :force => true do |t|
     t.string   "first_name"
@@ -53,12 +53,10 @@ ActiveRecord::Schema.define(:version => 20130514185630) do
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.string   "password_digest"
-    t.integer  "fmp_user_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["first_name"], :name => "index_users_on_first_name"
-  add_index "users", ["fmp_user_id"], :name => "index_users_on_fmp_id"
   add_index "users", ["last_name"], :name => "index_users_on_last_name"
 
   create_table "work_claims", :force => true do |t|
@@ -79,10 +77,8 @@ ActiveRecord::Schema.define(:version => 20130514185630) do
     t.string   "copyright_date"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-    t.integer  "fmp_work_id"
   end
 
   add_index "works", ["audio_product_id"], :name => "index_works_on_audio_product_id"
-  add_index "works", ["fmp_work_id"], :name => "index_works_on_fmp_work_id"
 
 end
