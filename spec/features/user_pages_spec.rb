@@ -95,6 +95,11 @@ describe "User Pages" do
       page.should_not have_selector('h2', text: other_user.first_name)
     end
 
+    it "should not be able to access another user's works page" do
+      visit user_works_path(other_user)
+      page.should have_selector('h2', text: 'Missing Link Music Client Portal')
+    end
+
     it "should be able to sign out" do
       click_link 'Sign out'
       page.should have_selector('h2', text: 'Missing Link Music Client Portal')

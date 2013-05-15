@@ -1,12 +1,16 @@
-<table class="table statements">
-  <tr>
-    <th>Title</th>
-  </tr>
+<div class="accordion" id="accordion2">
   <% @works.each do |work| %>
-    <tr id="<%= work.id%>">
-      <td class="content">
-        <%= work.title %>
-      </td>
-    </tr>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
+          data-target="#collapse<%=work.id%>"><%= work.title %>
+        </a>
+      </div>
+      <div id="collapse<%=work.id%>" class="accordion-body collapse">
+        <div class="accordion-inner">
+          Test
+        </div>
+      </div>
+    </div>
   <% end %>
-</table>
+</div>

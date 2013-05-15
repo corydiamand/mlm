@@ -27,22 +27,6 @@ describe WorkClaim do
 
   it { should be_valid }
 
-
-  context "accessible attributes" do
-
-    it "should not allow access to user_id" do
-      expect do
-        WorkClaim.new(user_id: user.id)
-      end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
-    end
-
-    it "should not allow access to work_id" do
-      expect do
-        WorkClaim.new(work_id: work.id)
-      end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
-    end
-  end
-
   describe "Relationships" do
 
     it "should create a relationship" do

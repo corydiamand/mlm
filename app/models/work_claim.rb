@@ -13,7 +13,7 @@
 class WorkClaim < ActiveRecord::Base
   belongs_to :user
   belongs_to :work
-  attr_accessible :mr_share
+  attr_accessible :user_id, :work_id, :mr_share
 
   validates :user_id, presence: true
   validates :work_id, presence: true
