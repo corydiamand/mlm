@@ -30,4 +30,12 @@ FactoryGirl.define do
     work
     mr_share 25
   end
+
+  factory :audio_product do
+    work
+    artist 'Theo and the Test Specs'
+    album 'Greatest Specs'
+    label 'Missing Link Music'
+    sequence(:catalog_number) { |n| "000#{n}" }
+  end
 end

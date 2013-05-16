@@ -14,7 +14,6 @@ def make_users
     user.email = 'temp@email.com'
     user.save!(validate: false)
   end
-
 end
 
 def make_claims
@@ -30,3 +29,9 @@ def make_works
     work.save!(validate: false)
   end
 end
+
+def make_audio_products
+  CSV.foreach('lib/assets/audio_products.csv', :headers => true) do |row|
+    audio_product = AudioProduct.new(row.to_hash)
+    audio_product.save!(validate: false)
+  end

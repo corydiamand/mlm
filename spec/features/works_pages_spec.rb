@@ -6,6 +6,7 @@ describe 'Works Pages' do
   let(:other_work) { FactoryGirl.create(:work) }
   let!(:claim) { FactoryGirl.create(:work_claim, user: user, work: work) }
   let!(:other_claim) { FactoryGirl.create(:work_claim, user: user, work: other_work) }
+  let(:audio_product) { FactoryGirl.create(:audio_product, work: work) }
 
   before do 
     sign_in_through_ui user
@@ -13,8 +14,13 @@ describe 'Works Pages' do
   end 
 
   it "should display the user's works" do
-    page.should have_content(work.title)
-    page.should have_content(other_work.title)
+    page.should have_selector('a', work.title)
+    page.should have_selector('a', other_work.title)
+  end
+
+  it "should display the work's audio product" do
+    found_work = page.find('a', text: work.title)
+    found_work_info = page.find('div', text: audio_product.catalog_number)
   end
 
 end

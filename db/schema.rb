@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514200423) do
+ActiveRecord::Schema.define(:version => 20130516162916) do
+
+  create_table "audio_products", :force => true do |t|
+    t.integer  "work_id"
+    t.string   "artist"
+    t.string   "album"
+    t.string   "label"
+    t.string   "catalog_number"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "audio_products", ["work_id"], :name => "index_audio_products_on_work_id"
 
   create_table "clients", :force => true do |t|
     t.string   "first_name"
