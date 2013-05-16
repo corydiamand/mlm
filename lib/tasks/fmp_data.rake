@@ -6,6 +6,7 @@ namespace :db do
     make_users
     make_claims
     make_works
+    make_audio_products
   end
 end
 

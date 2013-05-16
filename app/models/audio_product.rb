@@ -14,6 +14,7 @@
 
 class AudioProduct < ActiveRecord::Base
   belongs_to :work
+  attr_accessible :work_id, :artist, :album, :label, :catalog_number
 
   validates :work_id, presence: true
 end
