@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130516162916) do
+ActiveRecord::Schema.define(:version => 20130517203857) do
 
   create_table "audio_products", :force => true do |t|
     t.integer  "work_id"
@@ -83,14 +83,11 @@ ActiveRecord::Schema.define(:version => 20130516162916) do
   add_index "work_claims", ["work_id"], :name => "index_work_claims_on_work_id"
 
   create_table "works", :force => true do |t|
-    t.integer  "audio_product_id"
     t.string   "title"
     t.string   "duration"
     t.string   "copyright_date"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
-
-  add_index "works", ["audio_product_id"], :name => "index_works_on_audio_product_id"
 
 end
