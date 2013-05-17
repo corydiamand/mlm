@@ -1,4 +1,7 @@
-<h4>Title</h4>
+<% provide(:title, "#{@user.first_name} #{@user.last_name}") %>
+<div class="catalog-header">
+  Catalog detail for <%="#{@user.last_name}, #{@user.first_name}"%>
+</div>
 <div class="accordion" id="accordion-works">
   <% @works.each do |work| %>
     <div class="accordion-group">
@@ -9,7 +12,7 @@
       </div>
       <div id="collapse<%=work.id%>" class="accordion-body collapse">
         <div class="accordion-inner">
-          <%=work.id%>
+          <%=render 'work_detail', work: work %>
         </div>
       </div>
     </div>

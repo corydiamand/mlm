@@ -35,4 +35,15 @@ describe AudioProduct do
       audio_product.should_not be_valid
     end
   end
+
+  context "Callbacks" do
+
+    it "should upcase the audio product details" do
+      audio_product.update_attributes(artist: 'lowercase', album: 'lowercase', 
+                                      label: 'lowercase')
+      audio_product.label.should == 'LOWERCASE'
+      audio_product.album.should == 'LOWERCASE'
+      audio_product.artist.should == 'LOWERCASE'
+    end
+  end
 end

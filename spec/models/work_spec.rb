@@ -26,4 +26,12 @@ describe Work do
 
   it { should be_valid }
 
+  context "Callbacks" do
+
+    it "should upcase the work title" do
+      work.title = 'lowercase'
+      work.save
+      work.title.should be == 'LOWERCASE'
+    end
+  end
 end

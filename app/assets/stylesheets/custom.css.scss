@@ -212,3 +212,26 @@ ul.users {
   border-bottom: 1px solid $grayMediumLight
 }
 
+.audio-product{
+  margin-bottom: 30px;
+  .title {
+    font-size: 1.30em;
+    font-weight: bold;
+  }
+  &:last-child{
+    margin-bottom: 0px;
+  }
+}
+
+.no-works-found{
+  color: $sidebarGray;
+}
+
+.catalog-header{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $grayMediumLight
+}
+

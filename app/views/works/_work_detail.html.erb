@@ -1,0 +1,12 @@
+<% if work.audio_products.any? %>
+  <% work.audio_products.each do |ap| %>
+    <div class="audio-product">  
+      <div class="title"><%= ap.album %></div>
+      <div><%= ap.artist %></div>
+      <div><%= ap.label %></div>
+      <div><%= ap.catalog_number %></div>
+    </div>
+  <% end%>
+<% else %>
+  <div class="no-works-found">No audio product information available</div>
+<% end %>

@@ -17,4 +17,8 @@ class AudioProduct < ActiveRecord::Base
   attr_accessible :work_id, :artist, :album, :label, :catalog_number
 
   validates :work_id, presence: true
+
+  before_save { artist.upcase! }
+  before_save { album.upcase! }
+  before_save { label.upcase! }
 end

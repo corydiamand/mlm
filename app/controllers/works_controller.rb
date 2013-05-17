@@ -10,9 +10,9 @@ end
 
 def admin_view_works
   if current_user.admin?
-    @works = User.find(params[:id]).works
+    @works = User.find(params[:id]).works.order('title ASC')
   else  
-    @works = current_user.works
+    @works = current_user.works.order('title ASC')
   end
 end
 

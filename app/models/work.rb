@@ -15,4 +15,6 @@ class Work < ActiveRecord::Base
   belongs_to :user
   has_many :audio_products
   attr_accessible :title, :duration, :copyright_date
+
+  before_save { title.upcase! }
 end
