@@ -18,7 +18,6 @@ describe Work do
 
   subject { work }
 
-  it { should respond_to(:audio_product_id) }
   it { should respond_to(:title) }
   it { should respond_to(:duration) }
   it { should respond_to(:copyright_date) }

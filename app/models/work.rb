@@ -11,9 +11,11 @@
 #
 
 class Work < ActiveRecord::Base
-  belongs_to :user
+  has_many :work_claims
+  has_many :users, through: :work_claims
   has_many :audio_products
   attr_accessible :title, :duration, :copyright_date
 
   before_save { title.upcase! }
+
 end

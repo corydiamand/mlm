@@ -1,3 +1,11 @@
+<% if work.work_claims.any? %>
+  <div class="mr-share">Your Share: 
+    <% work.work_claims.each do |wc| %>
+      <%= wc.mr_share if wc.user == current_user %>
+    <% end %>
+  </div>
+<% end %>
+
 <% if work.audio_products.any? %>
   <% work.audio_products.each do |ap| %>
     <div class="audio-product">  

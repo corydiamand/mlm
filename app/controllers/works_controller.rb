@@ -15,4 +15,3 @@ def admin_view_works
     @works = current_user.works.order('title ASC')
   end
 end
-

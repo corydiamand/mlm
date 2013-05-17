@@ -235,3 +235,11 @@ ul.users {
   border-bottom: 1px solid $grayMediumLight
 }
 
+.mr-share{
+  color: $cashGreen;
+  text-align: right;
+  font-weight: bold;
+  &:after{
+    content:"%";
+  }
+}
