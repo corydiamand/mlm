@@ -6,6 +6,9 @@ class WorksController < ApplicationController
   def index
   end
 
+  def new
+  end
+
 end
 
 def admin_view_works

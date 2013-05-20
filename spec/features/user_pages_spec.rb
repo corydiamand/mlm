@@ -44,7 +44,9 @@ describe "User Pages" do
       page.should have_link 'Sign out'
       page.should have_link('My Account', href: edit_user_path(user))
       page.should have_link('My Royalties', href: user_path(user))
-      page.should have_link('My Catalog', href: user_works_path(user))
+      page.should have_selector('section', text: "My Catalog")
+      page.should have_link('View my catalog', href: user_works_path(user))
+      page.should have_link('Submit new work', href: new_user_work_path(user))
     end
 
     it "should change the logo path" do

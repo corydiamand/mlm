@@ -1,13 +1,13 @@
 <aside class="span4">
 	<%if signed_in? %>
 		<section>
-			<h3><%=link_to "My Royalties", user_path(current_user) %></h3>
+			<h3><%=link_to "My Royalties",  user_path(current_user) %></h3>
 		</section>
 		<section>
 			<h3><%=link_to "My Account", edit_user_path(current_user) %></h3>
 		</section>
 		<section>
-			<h3><%=link_to "My Catalog", user_works_path(current_user) %></h3>
+			<%= render 'layouts/catalog_menu' %>
 		</section>
 	<% else %>
 		<section>
@@ -15,6 +15,9 @@
 		</section>
 		<section>
 			<h3>My Account</h3>
+		</section>
+		<section>
+			<h3>My Catalog</h3>
 		</section>
 	<% end %>
 </aside>

@@ -18,13 +18,13 @@ end
               'audio_products.csv' => "\"work_id\",\"artist\",\"album\",\"label\",\"catalog_number\""  }
 
 
-    filenames.each do |file|
-      path_to_file = "lib/assets/#{file[0]}"
+    filenames.each do |path, columns|
+      path_to_file = "lib/assets/#{path}"
       current_file = File.open(path_to_file, 'r')
       text = current_file.read
       current_file.close
       current_file = File.open(path_to_file, 'w')
-      current_file.write("#{file[1]}\r\n#{text}")
+      current_file.write("#{columns}\r\n#{text}")
       current_file.close
     end
   end

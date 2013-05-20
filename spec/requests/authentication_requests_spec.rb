@@ -63,6 +63,11 @@ describe "Authentication Requests" do
       response.should redirect_to(root_url)
     end
 
+    it "should not be able to view another user's catalog" do
+      get user_works_path(other_user)
+      response.should redirect_to(root_url)
+    end
+
     it "should be able to sign out" do
       sign_out_request user
       get user_path(user)

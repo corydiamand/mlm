@@ -18,7 +18,9 @@ body {
 }
 
 section {
-  overflow: auto;
+  overflow: visible;
+  padding: 10px 0;
+  border-top: 1px solid $sidebarGray;
 }
 
 textarea {
@@ -66,11 +68,6 @@ p {
   line-height: 1.7em;
 }
 
-section {
-  padding: 10px 0;
-  border-top: 1px solid $sidebarGray;
-}
-
 /* header */
 nav {
   float: right;
@@ -100,6 +97,7 @@ aside {
   section {
     padding: 10px 0;
     border-top: 1px solid $grayLighter;
+    overflow-y: visible;
     a {
       color: $sidebarGray;
       &:hover {
@@ -107,9 +105,8 @@ aside {
         text-decoration:none;
       }
     }
-    &:first-child {
-      border: 0;
-      padding-top: 50px;
+    ul.dropdown-menu{
+      left: 32%;
     }
     span {
       display: block;
@@ -125,6 +122,10 @@ aside {
     }
     h3 {
       text-align: center;
+    }
+    &:first-child {
+      border: 0;
+      padding-top: 50px;
     }
   }
   border-right: 1px solid $grayMediumLight;
