@@ -28,7 +28,7 @@ FactoryGirl.define do
   factory :work_claim do
     user
     work
-    mr_share 25
+    sequence(:mr_share) { |n| "#{n}.5" }
   end
 
   factory :audio_product do

@@ -1,0 +1,2 @@
+module WorkClaimsHelper
+end
