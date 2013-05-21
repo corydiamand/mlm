@@ -21,7 +21,7 @@ describe Work do
   it { should respond_to(:title) }
   it { should respond_to(:duration) }
   it { should respond_to(:copyright_date) }
-
+  
   it { should be_valid }
 
   context "Callbacks" do

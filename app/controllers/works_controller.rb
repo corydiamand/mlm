@@ -9,6 +9,10 @@ class WorksController < ApplicationController
   def new
   end
 
+  def create
+    @work = Work.new(params[:work])
+  end
+
 end
 
 def admin_view_works
