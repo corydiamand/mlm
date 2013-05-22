@@ -7,12 +7,17 @@ class WorksController < ApplicationController
   end
 
   def new
-    @work = Work.new
-    audio_product = @work.audio_products.build
+    @work = current_user.works.build
   end
 
   def create
-    @work = Work.new(params[:work])
+    @work = current_user.works.create(params[:work])
+    if @work.save
+      flash[:success] = "Successfully submitted work"
+      redirect_to user_works_path current_user
+    else
+      render action: 'new'
+    end
   end
 
 end

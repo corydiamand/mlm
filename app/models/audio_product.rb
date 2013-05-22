@@ -16,7 +16,7 @@ class AudioProduct < ActiveRecord::Base
   belongs_to :work
   attr_accessible :work_id, :artist, :album, :label, :catalog_number
 
-  validates :work_id, presence: true
+  # validates :work_id, presence: true
 
   before_save { artist.upcase! }
   before_save { album.upcase! }

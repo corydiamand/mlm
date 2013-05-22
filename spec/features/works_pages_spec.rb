@@ -42,6 +42,10 @@ describe 'Works Pages' do
       it "should render the forms" do
         page.should have_selector('h2', "Submit new work")
       end
+
+      it "should render the audio product form" do
+        page.should have_link("Add Audio Product")
+      end
     end
 
   end
