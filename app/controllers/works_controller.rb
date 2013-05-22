@@ -7,6 +7,8 @@ class WorksController < ApplicationController
   end
 
   def new
+    @work = Work.new
+    audio_product = @work.audio_products.build
   end
 
   def create
