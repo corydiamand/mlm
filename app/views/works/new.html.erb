@@ -15,6 +15,9 @@
     <%= f.label :copyright_date %>
     <%= f.text_field :copyright_date %>
   </div>
+  <%= f.fields_for :audio_products do |builder| %>
+    <%= render 'audio_product_fields', f: builder %>
+  <% end %>
   <%= link_to_add_fields "Add Audio Product", f, :audio_products %>
   <div class="actions">
     <%= submit_tag "Submit new work", class: "btn btn-large btn-primary" %>

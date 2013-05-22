@@ -13,10 +13,10 @@
 #
 
 class AudioProduct < ActiveRecord::Base
-  belongs_to :work
+  belongs_to :work, inverse_of: :audio_products
   attr_accessible :work_id, :artist, :album, :label, :catalog_number
 
-  # validates :work_id, presence: true
+  validates_presence_of :work
 
   before_save { artist.upcase! }
   before_save { album.upcase! }
