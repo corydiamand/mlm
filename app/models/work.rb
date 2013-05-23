@@ -11,7 +11,7 @@
 #
 
 class Work < ActiveRecord::Base
-  has_many :work_claims
+  has_many :work_claims, inverse_of: :work
   has_many :users, through: :work_claims
   has_many :audio_products, inverse_of: :work
   accepts_nested_attributes_for :work_claims

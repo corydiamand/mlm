@@ -1,7 +1,7 @@
 <% if work.work_claims.any? %>
   <div class="mr-share">Your Share: 
     <% work.work_claims.each do |wc| %>
-      <%= current_claim wc %>
+      <%= show_claim wc %>
     <% end %>
   </div>
 <% end %>

@@ -11,10 +11,9 @@
 #
 
 class WorkClaim < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :work
+  belongs_to :user, inverse_of: :work_claims
+  belongs_to :work, inverse_of: :work_claims
   attr_accessible :user_id, :work_id, :mr_share
 
-  validates :user_id, presence: true
-  validates :work_id, presence: true
+  validates_presence_of :user, :work
 end

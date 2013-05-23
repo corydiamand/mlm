@@ -1,4 +1,5 @@
 class WorksController < ApplicationController
+  include WorksHelper
   before_filter :signed_in_user, only: :index
   before_filter :correct_user, only: :index
   before_filter :admin_view_works, only: :index
@@ -7,11 +8,12 @@ class WorksController < ApplicationController
   end
 
   def new
-    @work = current_user.works.build
+    @work = Work.new
   end
 
   def create
     @work = current_user.works.create(params[:work])
+    binding.pry
     if @work.save
       flash[:success] = "Successfully submitted work"
       redirect_to user_works_path current_user
@@ -19,7 +21,6 @@ class WorksController < ApplicationController
       render action: 'new'
     end
   end
-
 end
 
 def admin_view_works
@@ -29,3 +30,5 @@ def admin_view_works
     @works = current_user.works.order('title ASC')
   end
 end
+
+  

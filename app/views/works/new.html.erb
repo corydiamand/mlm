@@ -15,6 +15,12 @@
     <%= f.label :copyright_date %>
     <%= f.text_field :copyright_date %>
   </div>
+  <%= f.fields_for :work_claims, build_claim(f) do |builder| %>
+    <div class="field">
+      <%= builder.label "Your share" %>
+      <%= builder.text_field :mr_share %>
+    </div>
+  <% end %>
   <%= f.fields_for :audio_products do |builder| %>
     <%= render 'audio_product_fields', f: builder %>
   <% end %>
