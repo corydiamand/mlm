@@ -15,5 +15,6 @@ class WorkClaim < ActiveRecord::Base
   belongs_to :work, inverse_of: :work_claims
   attr_accessible :user_id, :work_id, :mr_share
 
-  validates_presence_of :user, :work
+  validates_presence_of :user, :work, :mr_share
+
 end

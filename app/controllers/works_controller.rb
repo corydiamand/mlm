@@ -3,7 +3,6 @@ class WorksController < ApplicationController
   before_filter :signed_in_user, only: :index
   before_filter :correct_user, only: :index
   before_filter :admin_view_works, only: :index
-  before_filter :remove_user_when_invalid, only: :create
 
   def index
   end
@@ -31,7 +30,6 @@ def admin_view_works
   end
 end
 
-private
 
 
   
