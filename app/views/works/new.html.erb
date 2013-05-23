@@ -19,6 +19,7 @@
     <div class="field">
       <%= builder.label "Your share" %>
       <%= builder.text_field :mr_share %>
+      <%= builder.hidden_field :user_id, value: current_user.id %>
     </div>
   <% end %>
   <%= f.fields_for :audio_products do |builder| %>

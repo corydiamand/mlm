@@ -3,6 +3,7 @@ class WorksController < ApplicationController
   before_filter :signed_in_user, only: :index
   before_filter :correct_user, only: :index
   before_filter :admin_view_works, only: :index
+  before_filter :remove_user_when_invalid, only: :create
 
   def index
   end
@@ -12,8 +13,7 @@ class WorksController < ApplicationController
   end
 
   def create
-    @work = current_user.works.create(params[:work])
-    binding.pry
+    @work = Work.new(params[:work])
     if @work.save
       flash[:success] = "Successfully submitted work"
       redirect_to user_works_path current_user
@@ -30,5 +30,8 @@ def admin_view_works
     @works = current_user.works.order('title ASC')
   end
 end
+
+private
+
 
   
