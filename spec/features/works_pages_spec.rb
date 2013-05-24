@@ -37,14 +37,42 @@ describe 'Works Pages' do
 
     context "new action" do
 
-      before { visit new_user_work_path user }
+      before do 
+        visit new_user_work_path user
+        other_work.destroy  #This is to avoid duplication of a work with no audio product
+      end
+      let(:share_id) { "work_work_claims_attributes_0_mr_share" }
+      let(:no_audio_product) { "No audio product information available" }
 
       it "should render the forms" do
         page.should have_selector('h2', "Submit new work")
       end
 
-      it "should render the audio product form" do
-        page.should have_link("Add Audio Product")
+      it "should create a new work with valid information", js: true do
+        page.fill_in "Title",           with: 'NEW WORK'
+        page.fill_in share_id,      with: '99'
+        page.click_link "Add Audio Product"
+        page.fill_in "Album",           with: 'NEW ALBUM'
+        click_button 'Submit new work'
+        page.should have_content "Successfully submitted work"
+        page.should have_content 'NEW WORK'
+        page.find(:xpath, "//div[@class='mr-share' and contains(., '99.0')]")
+        page.find(:xpath, "//div[@class='audio-product' and contains(., 'NEW ALBUM')]")
+      end
+
+      it "should not create a work without mr-share" do
+        page.fill_in "Title",  with: 'INVALID WORK'
+        click_button 'Submit new work'
+        page.should have_content 'error'
+      end
+
+      it "should not create an audio product if not specified", js: true do
+        page.fill_in "Title",   with: 'No Audio Product'
+        page.fill_in share_id,  with: '99'
+        page.click_link "Add Audio Product"
+        click_button "Submit new work"
+        page.should have_content "Successfully submitted work"
+        page.find(:xpath, "//div[@class='no-works-found']")
       end
     end
 
