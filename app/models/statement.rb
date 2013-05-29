@@ -14,7 +14,7 @@
 
 class Statement < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :amount, :filename, :quarter, :year
+  attr_accessible :user_id, :amount, :filename, :quarter, :year
 
   validates :user_id, presence: true
   validates :filename, presence: true
