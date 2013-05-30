@@ -55,7 +55,7 @@ describe "User Pages" do
     end
 
     it "should see his/her statements" do
-      page.should have_selector('div', class: 'table_header')
+      page.should have_selector('div.table-header')
       page.find(:xpath, "//td[@class='content amount' and contains(., '#{statement.amount}')]")
       page.should have_selector('td', text: statement.quarter)
     end

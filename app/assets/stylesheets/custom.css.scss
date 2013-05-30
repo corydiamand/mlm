@@ -4,6 +4,7 @@ $grayMediumLight: #eaeaea;
 $sidebarGray: #999999;
 $cashGreen: #4AA02C;
 $footerGray: #C0C0C0;
+$missingLink: hsl(246, 79%, 15%);
 
 /* mixins, variables, etc. */
 
@@ -66,6 +67,24 @@ h3 {
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+}
+
+/* bootstrap */
+.btn-custom {
+  background-color: hsl(246, 79%, 15%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#170d72", endColorstr="#0e0844");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#170d72), to(#0e0844));
+  background-image: -moz-linear-gradient(top, #170d72, #0e0844);
+  background-image: -ms-linear-gradient(top, #170d72, #0e0844);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #170d72), color-stop(100%, #0e0844));
+  background-image: -webkit-linear-gradient(top, #170d72, #0e0844);
+  background-image: -o-linear-gradient(top, #170d72, #0e0844);
+  background-image: linear-gradient(#170d72, #0e0844);
+  border-color: #0e0844 #0e0844 hsl(246, 79%, 12.5%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.16);
+  -webkit-font-smoothing: antialiased;
 }
 
 /* header */
@@ -188,21 +207,46 @@ ul.users {
   text-align: center;
 }
 
-.statements {
-  list-style: none;
-  margin: 10px;
-
-  li {
-    border-top: 1px solid #e8e8e8;
-    font-size: 1.5em;
+.statements-body{
+  padding: 40px 10px 30px;
+  border: 1px solid $sidebarGray;
+  .statements{
+    border: 1px solid $footerGray;
   }
-  .content {
-    margin: 40px;
-    &.amount {
-        &:before{
-          content:"$";
-        }
+}
+
+.statement-table-header{
+  background-color: $missingLink;
+  padding: 6px 0px;
+
+  div{
+    font-weight: normal;
+    font-size: 1.2em;
+    color: $white;
+    display: inline-block;
+    width: 120px;
+    text-align: center;
+    &:last-child{
+      width: 144px;
+  } 
+  }
+}
+
+.statement-record {
+  border-bottom: 1px solid $footerGray;
+  div{
+    display: inline-block;
+    text-align: center;
+    width: 120px;
+    font-size: 1.2em;
+    padding: 10px 0px;
+    border-right: 1px solid $footerGray;
+    &.amount-content {
       color: $cashGreen;
+    }
+    &:last-child{
+      border-right: 0px;
+      width: 141px;
     }
   }
 }

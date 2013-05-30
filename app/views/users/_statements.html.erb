@@ -1,18 +1,6 @@
-<%= render 'table_header' %>
-<div class="accordion" id="accordion-statements">
-  <% @statements.each do |statement| %>
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-statements"
-          data-target="#collapse<%=statement.id%>">
-          Statement for <%= "#{statement.quarter}, #{statement.year}" %>
-        </a>
-      </div>
-      <div id="collapse<%=statement.id%>" class="accordion-body collapse">
-        <div class="accordion-inner">
-          <%=render 'statement_detail' %>
-        </div>
-      </div>
-    </div>
-  <% end %>
+<div class="statements-body">
+  <div class="statements">
+    <%= render 'table_header' %>
+    <%= render 'statement_detail' %>
+  </div>
 </div>
