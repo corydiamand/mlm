@@ -30,14 +30,6 @@ describe 'Statements' do
 
   it { should be_valid }
 
-  context "accessible attributes" do
-    it "should not allow access to user_id" do
-      expect do
-        Statement.new(user_id: user.id)
-      end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
-    end
-  end
-
   describe "Validations" do
 
     context "user id" do
