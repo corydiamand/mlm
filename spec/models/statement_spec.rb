@@ -6,10 +6,11 @@
 #  user_id    :integer
 #  quarter    :string(255)
 #  year       :string(255)
-#  amount     :integer
+#  amount     :float
 #  filename   :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  date       :string(255)
 #
 
 require 'spec_helper'

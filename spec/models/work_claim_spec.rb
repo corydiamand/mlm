@@ -7,7 +7,7 @@
 #  work_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  mr_share   :integer
+#  mr_share   :float
 #
 
 require 'spec_helper'
