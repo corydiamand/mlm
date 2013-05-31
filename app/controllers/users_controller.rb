@@ -70,15 +70,15 @@ class UsersController < ApplicationController
     end
   end
 
-    def admin_user
-      redirect_to(root_path) unless current_user.admin?
-    end
+  def admin_user
+    redirect_to(root_path) unless current_user.admin?
+  end
 
-    def admin_view_statements
-      if current_user.admin?
-        @statements = User.find(params[:id]).statements
-      else  
-        @statements = current_user.statements
-      end
+  def admin_view_statements
+    if current_user.admin?
+      @statements = User.find(params[:id]).statements
+    else  
+      @statements = current_user.statements
     end
+  end
 end

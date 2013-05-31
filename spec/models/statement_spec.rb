@@ -26,6 +26,7 @@ describe 'Statements' do
   it { should respond_to(:year) }
   it { should respond_to(:amount) }
   it { should respond_to(:filename) }
+  it { should respond_to(:date) }
   its(:user) { should == user }
 
   it { should be_valid }
@@ -76,6 +77,24 @@ describe 'Statements' do
         statement.should_not be_valid
       end
     end
+
+    context "date" do
+      it "should not be valid when amount is not present" do
+        statement.date = nil
+        statement.should_not be_valid
+      end
+    end
   end
 
+  describe "Associations" do
+
+    context "User" do
+      let!(:newer_statement) { FactoryGirl.create(:statement, user: user, date: 1.day.ago) }
+      let!(:older_statement) { FactoryGirl.create(:statement, user: user, date: 1.year.ago) }
+
+      it "should display the statements in the right order" do
+        user.statements.should == [newer_statement, older_statement]
+      end
+    end
+  end
 end

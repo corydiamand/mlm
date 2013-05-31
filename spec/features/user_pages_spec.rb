@@ -55,9 +55,9 @@ describe "User Pages" do
     end
 
     it "should see his/her statements" do
-      page.should have_selector('div.table-header')
-      page.find(:xpath, "//td[@class='content amount' and contains(., '#{statement.amount}')]")
-      page.should have_selector('td', text: statement.quarter)
+      page.should have_selector('div.statement-table-header')
+      page.find(:xpath, "//div[@class='amount-content' and contains(., '#{statement.amount}')]")
+      page.should have_selector('div', text: statement.quarter)
     end
 
     it "should see message if no statement data is found" do

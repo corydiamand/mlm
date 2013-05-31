@@ -151,9 +151,7 @@ aside {
 }
 
 /* signin */
-h1 {
-  margin-left: 400 px;
-}
+
 
 /* users list */
 
@@ -224,10 +222,10 @@ ul.users {
     font-size: 1.2em;
     color: $white;
     display: inline-block;
-    width: 120px;
+    width: 110px;
     text-align: center;
     &:last-child{
-      width: 144px;
+      width: 140px;
   } 
   }
 }
@@ -237,7 +235,7 @@ ul.users {
   div{
     display: inline-block;
     text-align: center;
-    width: 120px;
+    width: 110px;
     font-size: 1.2em;
     padding: 10px 0px;
     border-right: 1px solid $footerGray;
@@ -246,7 +244,7 @@ ul.users {
     }
     &:last-child{
       border-right: 0px;
-      width: 141px;
+      width: 136px;
     }
   }
 }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130520172644) do
+ActiveRecord::Schema.define(:version => 20130531202301) do
 
   create_table "audio_products", :force => true do |t|
     t.integer  "work_id"
@@ -36,10 +36,11 @@ ActiveRecord::Schema.define(:version => 20130520172644) do
     t.integer  "user_id"
     t.string   "quarter"
     t.string   "year"
-    t.decimal  "amount",     :precision => 10, :scale => 0
+    t.float    "amount"
     t.string   "filename"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.date     "date"
   end
 
   add_index "statements", ["user_id"], :name => "index_statements_on_user_id"
