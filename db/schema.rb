@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130531205757) do
+ActiveRecord::Schema.define(:version => 20130603184111) do
 
   create_table "audio_products", :force => true do |t|
     t.integer  "work_id"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20130531205757) do
     t.string   "filename"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "date"
+    t.date     "date"
   end
 
   add_index "statements", ["user_id"], :name => "index_statements_on_user_id"

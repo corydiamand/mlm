@@ -10,7 +10,7 @@
 #  filename   :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  date       :string(255)
+#  date       :date
 #
 
 class Statement < ActiveRecord::Base
@@ -25,11 +25,11 @@ class Statement < ActiveRecord::Base
   validates :amount, presence: true
   validates :date, presence: true
 
-  before_save { convert_string_to_date }
+  before_save { convert_string_to_date if date.is_a? String }
 
   private
 
     def convert_string_to_date
-      self.date = Date.strptime(self.date, "%m/%d/%Y")
+      self.date = Date.strptime("#{self.date}", "%m/%d/%Y")
     end
 end
