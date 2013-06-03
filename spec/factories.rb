@@ -17,7 +17,7 @@ FactoryGirl.define do
     sequence(:amount) { |n| "100#{n}" }
     filename 'Test.pdf'
     user
-    date '01/01/2000' 
+    date_string '01/01/2000' 
   end
 
   factory :work do

@@ -17,7 +17,7 @@ def name_columns
             'claims.csv'=> "\"user_id\",\"work_id\",\"mr_share\"" ,
             'works.csv'=> "\"title\",\"duration\",\"copyright_date\"" ,
             'audio_products.csv' => "\"work_id\",\"artist\",\"album\",\"label\",\"catalog_number\"" ,
-            'statements.csv' => "\"user_id\",\"quarter\",\"year\",\"amount\",\"filename\",\"date\"" }
+            'statements.csv' => "\"user_id\",\"quarter\",\"year\",\"amount\",\"filename\",\"date_string\"" }
 
 
   filenames.each do |path, columns|

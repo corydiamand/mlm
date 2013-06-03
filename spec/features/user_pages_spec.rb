@@ -56,7 +56,7 @@ describe "User Pages" do
 
     it "should see his/her statements" do
       page.should have_selector('div.statement-table-header')
-      page.find(:xpath, "//div[@class='amount-content' and contains(., '#{statement.amount}')]")
+      page.find(:xpath, "//div[@id='#{statement.id}']")
       page.should have_selector('div', text: statement.quarter)
     end
 
@@ -64,6 +64,10 @@ describe "User Pages" do
       statement.destroy
       visit user_path user
       page.should have_content 'No statement data available'
+    end
+
+    it "should see the statement month" do
+      page.should have_content(statement.date.strftime('%b %d'))
     end 
 
     it "should be able to edit his/her information" do
@@ -122,7 +126,7 @@ describe "User Pages" do
     it "should be able to visit a users page and see his statements" do
       visit user_path user
       page.should have_selector('h2', user.first_name)
-      page.should have_content(statement.amount)
+      page.should have_selector('div', statement.id)
     end
 
     it "should be able to sign out" do

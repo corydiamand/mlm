@@ -15,7 +15,8 @@
 
 class Statement < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :user_id, :amount, :filename, :quarter, :year, :date
+  attr_accessor :date_string
+  attr_accessible :user_id, :amount, :filename, :quarter, :year, :date_string
   default_scope order('date DESC')
 
   validates :user_id, presence: true
@@ -23,13 +24,13 @@ class Statement < ActiveRecord::Base
   validates :quarter, presence: true
   validates :year, presence: true
   validates :amount, presence: true
-  validates :date, presence: true
+  validates :date_string, presence: true
 
-  before_save { convert_string_to_date if date.is_a? String }
+  before_save { convert_string_to_date }
 
   private
 
     def convert_string_to_date
-      self.date = Date.strptime("#{self.date}", "%m/%d/%Y")
+      self.date = Date.strptime("#{self.date_string}", "%m/%d/%Y")
     end
 end

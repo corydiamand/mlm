@@ -28,6 +28,7 @@ describe 'Statements' do
   it { should respond_to(:amount) }
   it { should respond_to(:filename) }
   it { should respond_to(:date) }
+  it { should respond_to(:date_string) }
   its(:user) { should == user }
 
   it { should be_valid }
@@ -79,18 +80,19 @@ describe 'Statements' do
       end
     end
 
-    context "date" do
+    context "date_string" do
       it "should not be valid when amount is not present" do
-        statement.date = nil
+        statement.date_string = nil
         statement.should_not be_valid
       end
     end
   end
 
   describe "Callbacks" do
-    before { statement.update_attributes(date: '9/27/2013') }
+    before { statement.update_attributes(date_string: '9/27/2013') }
 
     it "should convert the statement date string to a date" do
+      statement.date.should_not be nil
       statement.reload.date.class.should be Date
     end
   end
@@ -98,8 +100,8 @@ describe 'Statements' do
   describe "Associations" do
 
     context "User" do
-      let!(:newer_statement) { FactoryGirl.create(:statement, user: user, date: '01/01/2000') }
-      let!(:older_statement) { FactoryGirl.create(:statement, user: user, date: '06/01/1999') }
+      let!(:older_statement) { FactoryGirl.create(:statement, user: user, date_string: '06/01/1999') }
+      let!(:newer_statement) { FactoryGirl.create(:statement, user: user, date_string: '01/01/2000') }
 
       it "should display the statements in the right order" do
         user.statements.should == [newer_statement, older_statement]
