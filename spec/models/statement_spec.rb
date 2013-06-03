@@ -87,11 +87,19 @@ describe 'Statements' do
     end
   end
 
+  describe "Callbacks" do
+    before { statement.update_attributes(date: '9/27/2013') }
+
+    it "should convert the statement date string to a date" do
+      statement.reload.date.class.should be Date
+    end
+  end
+
   describe "Associations" do
 
     context "User" do
-      let!(:newer_statement) { FactoryGirl.create(:statement, user: user, date: 1.day.ago) }
-      let!(:older_statement) { FactoryGirl.create(:statement, user: user, date: 1.year.ago) }
+      let!(:newer_statement) { FactoryGirl.create(:statement, user: user, date: '01/01/2000') }
+      let!(:older_statement) { FactoryGirl.create(:statement, user: user, date: '06/01/1999') }
 
       it "should display the statements in the right order" do
         user.statements.should == [newer_statement, older_statement]

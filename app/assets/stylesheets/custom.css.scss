@@ -155,10 +155,6 @@ aside {
 
 /* users list */
 
-ul.users {
-  margin-top: 1em;
-}
-
 .users li {
   list-style: none;
 }
@@ -228,7 +224,7 @@ ul.users {
       width: 140px;
   } 
   }
-}
+} 
 
 .statement-record {
   border-bottom: 1px solid $footerGray;

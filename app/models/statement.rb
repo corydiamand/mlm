@@ -24,4 +24,12 @@ class Statement < ActiveRecord::Base
   validates :year, presence: true
   validates :amount, presence: true
   validates :date, presence: true
+
+  before_save { convert_string_to_date }
+
+  private
+
+    def convert_string_to_date
+      self.date = Date.strptime(self.date, "%m/%d/%Y")
+    end
 end
