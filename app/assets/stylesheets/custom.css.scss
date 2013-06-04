@@ -201,6 +201,16 @@ aside {
   text-align: center;
 }
 
+#view-toggle {
+  text-align: right;
+}
+
+#statements-chart{
+  height: 220px;
+  display: auto;
+  width: 600px;
+}
+
 .statements-body{
   padding: 40px 10px 30px;
   border: 1px solid $sidebarGray;

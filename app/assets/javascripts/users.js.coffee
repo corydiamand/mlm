@@ -12,4 +12,18 @@ jQuery ->
       $('#user_search_name').val ui.item.label
       $('#user_search_name_id').val ui.item.id
   })
+
   $('.statement-record:odd').css("background-color", "#eaeaea")
+  $('#view-toggle').append("View graph")
+  $('#statements-chart').hide()
+
+  $('#view-toggle').click ->
+    $('#statements-chart').toggle()
+    $('.statements').toggle()
+
+  Morris.Line
+    element: 'statements-chart'
+    data: $('#statements-chart').data('statements')
+    xkey: 'date'
+    ykeys: ['amount']
+    labels: ['Amount']

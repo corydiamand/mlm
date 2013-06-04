@@ -67,7 +67,11 @@ describe "User Pages" do
 
     it "should see the statement month" do
       page.should have_content(statement.date.strftime('%b %d'))
-    end 
+    end
+
+    it "should be able to view statements in graph form" do
+      page.should have_selector('div', 'View graph')
+    end
 
     it "should be able to edit his/her information" do
       visit edit_user_path(user)
