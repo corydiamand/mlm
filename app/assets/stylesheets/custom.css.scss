@@ -202,21 +202,24 @@ aside {
 }
 
 #view-toggle {
-  text-align: right;
+  margin-bottom: 15px;
+  float: right;
 }
 
 #statements-chart{
-  height: 220px;
-  display: auto;
-  width: 600px;
+  clear:both;
 }
 
 .statements-body{
-  padding: 40px 10px 30px;
+  padding: 30px 10px 30px;
   border: 1px solid $sidebarGray;
   .statements{
     border: 1px solid $footerGray;
   }
+}
+
+.statements{
+  clear:both;
 }
 
 .statement-table-header{

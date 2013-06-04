@@ -112,6 +112,8 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.23)
+    morrisjs-rails (0.4.3)
+      railties (> 3.1, < 5)
     multi_json (1.7.3)
     mysql2 (0.3.11)
     net-scp (1.1.1)
@@ -154,6 +156,7 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.0.4)
+    raphael-rails (2.1.1)
     rb-fsevent (0.9.1)
     rdoc (3.12.2)
       json (~> 1.4)
@@ -220,11 +223,13 @@ DEPENDENCIES
   guard-spork (= 1.4.1)
   jquery-rails
   launchy
+  morrisjs-rails
   mysql2
   poltergeist
   pry-rails
   quiet_assets
   rails (= 3.2.13)
+  raphael-rails
   rb-fsevent (= 0.9.1)
   rspec-rails (~> 2.12.0)
   sass-rails (~> 3.2.3)

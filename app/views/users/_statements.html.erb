@@ -1,6 +1,6 @@
-<div id="view-toggle" class="btn btn-custom" ></div>
-<%= content_tag :div, "", id: "statements-chart", data: {statements: @statements} %>
 <div class="statements-body">
+  <div id="view-toggle" class="btn btn-custom" ></div>
+  <%= content_tag :div, "", id: "statements-chart", data: {statements: @statements} %>
   <div class="statements">
     <%= render 'table_header' %>
     <%= render 'statement_detail' %>
