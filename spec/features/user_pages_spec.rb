@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'spec_helper' 
 
 describe "User Pages" do
     let(:user) { FactoryGirl.create(:user) }
@@ -69,8 +69,17 @@ describe "User Pages" do
       page.should have_content(statement.date.strftime('%b %d'))
     end
 
-    it "should be able to view statements in graph form" do
-      page.should have_selector('div', 'View graph')
+    it "should be able to view statements in graph form", js: true do
+      find(:css, '.statements').should be_visible
+      page.should have_selector('div', text: 'View graph')
+      page.find('div#view-toggle').click
+      find(:css, '#statements-chart').should be_visible
+      page.should have_selector('div#view-toggle', text: 'View list')
+      page.should have_selector('div#chart-head', text: 'Income detail')
+      page.find('div#view-toggle').click
+      find(:css, '.statements').should be_visible
+      page.should have_selector('div#view-toggle', text: 'View graph')
+      page.should have_selector('div#chart-head', text: 'Statement detail')
     end
 
     it "should be able to edit his/her information" do

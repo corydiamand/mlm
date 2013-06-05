@@ -1,12 +1,21 @@
 @import "bootstrap";
 
+
+/* mixins, variables, etc. */
+
 $grayMediumLight: #eaeaea;
 $sidebarGray: #999999;
 $cashGreen: #4AA02C;
 $footerGray: #C0C0C0;
 $missingLink: hsl(246, 79%, 15%);
 
-/* mixins, variables, etc. */
+@mixin h3_style {
+  font-size: 1.6em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  font-weight: normal;
+  color: $grayLight;
+}
 
 /* universal */
 
@@ -57,11 +66,7 @@ h2 {
 }
 
 h3 {
-  font-size: 1.6em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  font-weight: normal;
-  color: $grayLight;
+  @include h3_style;
 }
 
 p {
@@ -204,6 +209,12 @@ aside {
 #view-toggle {
   margin-bottom: 15px;
   float: right;
+  width: 100px;
+}
+
+#chart-head{
+  @include h3_style;
+  text-align: center;
 }
 
 #statements-chart{
