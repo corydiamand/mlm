@@ -4,7 +4,7 @@ module WorksHelper
     if wc.user == self.current_user
       wc.mr_share
    elsif self.current_user.admin?
-      wc.mr_share if wc.user == User.find(params[:id])
+      wc.mr_share if wc.user == User.find(params[:user_id])
     end
   end
 
