@@ -9,6 +9,6 @@ module WorksHelper
   end
 
   def build_claim(f)
-    f.object.work_claims.build
+    f.object.work_claims.build if f.object.work_claims.empty?
   end
 end
