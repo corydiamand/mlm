@@ -63,7 +63,7 @@ describe 'Works Pages' do
       it "should not create a work without mr-share" do
         page.fill_in "Title",  with: 'INVALID WORK'
         click_button 'Submit new work'
-        page.should have_content 'error'
+        page.should have_content 'Your share cannot be blank'
       end
 
       it "should not create an audio product if not specified", js: true do

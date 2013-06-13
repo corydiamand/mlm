@@ -20,5 +20,12 @@ class Work < ActiveRecord::Base
 
   validates :title, presence: true
   before_save { title.upcase! }
+  after_validation { mr_share_errors if errors.include?(:"work_claims.mr_share") }
 
+  private
+
+    def mr_share_errors
+      errors.delete(:"work_claims.mr_share")
+      errors.add(:your_share, "cannot be blank")
+    end
 end

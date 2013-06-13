@@ -16,5 +16,4 @@ class WorkClaim < ActiveRecord::Base
   attr_accessible :user_id, :work_id, :mr_share
 
   validates_presence_of :user, :work, :mr_share
-
 end
