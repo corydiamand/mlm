@@ -21,6 +21,7 @@ describe Work do
   it { should respond_to(:title) }
   it { should respond_to(:duration) }
   it { should respond_to(:copyright_date) }
+  it { should respond_to(:copyright_date_string)}
   
   it { should be_valid }
 
@@ -30,6 +31,12 @@ describe Work do
       work.title = 'lowercase'
       work.save
       work.title.should be == 'LOWERCASE'
+    end
+
+    it "should convert the copyright date string to a date" do
+      work.update_attributes!(copyright_date_string: '9/27/2013')
+      work.copyright_date.should_not be nil
+      work.reload.copyright_date.class.should be Date
     end
   end
 end

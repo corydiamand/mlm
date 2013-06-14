@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130603184111) do
+ActiveRecord::Schema.define(:version => 20130614211547) do
 
   create_table "audio_products", :force => true do |t|
     t.integer  "work_id"
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20130603184111) do
   create_table "works", :force => true do |t|
     t.string   "title"
     t.string   "duration"
-    t.string   "copyright_date"
+    t.date     "copyright_date"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end

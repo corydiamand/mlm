@@ -15,7 +15,7 @@ def name_columns
 
   filenames = { 'users.csv' => "\"first_name\",\"last_name\"", 
             'claims.csv'=> "\"user_id\",\"work_id\",\"mr_share\"" ,
-            'works.csv'=> "\"title\",\"duration\",\"copyright_date\"" ,
+            'works.csv'=> "\"title\",\"duration\",\"copyright_date_string\"" ,
             'audio_products.csv' => "\"work_id\",\"artist\",\"album\",\"label\",\"catalog_number\"" ,
             'statements.csv' => "\"user_id\",\"quarter\",\"year\",\"amount\",\"filename\",\"date_string\"" }
 

@@ -31,6 +31,6 @@ class Statement < ActiveRecord::Base
   private
 
     def convert_string_to_date
-      self.date = Date.strptime("#{self.date_string}", "%m/%d/%Y")
+      self.date = Date.strptime("#{date_string}", "%m/%d/%Y")
     end
 end
