@@ -15,7 +15,7 @@
     <%= f.label :copyright_date %>
     <%= f.text_field :copyright_date %>
   </div>
-  <%= f.fields_for :work_claims, build_claim(f) do |builder| %>
+  <%= f.fields_for :work_claims, @current_claim do |builder| %>
     <div class="field">
       <%= builder.label "Your share" %>
       <%= builder.text_field :mr_share %>

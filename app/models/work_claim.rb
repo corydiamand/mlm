@@ -16,4 +16,6 @@ class WorkClaim < ActiveRecord::Base
   attr_accessible :user_id, :work_id, :mr_share
 
   validates_presence_of :user, :work, :mr_share
+  validates :mr_share, numericality: { greater_than: 0, less_than_or_equal_to: 100 }
+
 end

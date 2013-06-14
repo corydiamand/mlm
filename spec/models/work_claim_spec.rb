@@ -50,5 +50,21 @@ describe WorkClaim do
         claim.should_not be_valid 
       end
     end
+
+    context "mr_share" do
+      it "should not be valid when mr_share is not present" do
+        claim.mr_share = nil
+        claim.should_not be_valid
+      end
+
+      it "should not be valid when mr_share is not within the right range" do
+        claim.mr_share = 101
+        claim.should_not be_valid
+        claim.mr_share = 0
+        claim.should_not be_valid
+        claim.mr_share = 'invalid'
+        claim.should_not be_valid
+      end
+    end
   end
 end

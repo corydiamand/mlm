@@ -9,6 +9,7 @@ class WorksController < ApplicationController
 
   def new
     @work = Work.new
+    @current_claim = @work.work_claims.build
   end
 
   def create
@@ -29,6 +30,15 @@ def admin_view_works
     @works = current_user.works.order('title ASC')
   end
 end
+
+
+
+
+
+
+
+
+
 
 
 
