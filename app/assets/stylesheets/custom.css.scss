@@ -306,3 +306,20 @@ aside {
     content:"%";
   }
 }
+
+#submit_work{
+  margin-top: 10px;
+}
+/* audio product */
+
+.audio-product-fields{
+  margin-top: 10px;
+  border-top: 1px solid $sidebarGray;
+  .audio-product-row{
+    display: inline-block;
+    margin-right: 20px;
+  }
+  .audio-product-count{
+    font-style: h4
+  }
+}

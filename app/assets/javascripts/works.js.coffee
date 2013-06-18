@@ -7,4 +7,9 @@ jQuery ->
     time = new Date().getTime()
     regexp = new RegExp($(this).data('id'), 'g')
     $(this).before($(this).data('fields').replace(regexp, time))
+    $(".audio-product-count:last").text("Audio product " + $(".audio-product-fields").length)
     event.preventDefault()
+
+  $(document).ready ->
+    $('.audio-product-count').each((index) ->
+      $(this).text("Audio product " + (index + 1)))

@@ -53,6 +53,7 @@ describe 'Works Pages' do
         page.fill_in share_id,      with: '99'
         page.click_link "Add Audio Product"
         page.fill_in "Album",           with: 'NEW ALBUM'
+        page.should have_content 'Audio product 1'
         click_button 'Submit new work'
         page.should have_content "Successfully submitted work"
         page.should have_content 'NEW WORK'
