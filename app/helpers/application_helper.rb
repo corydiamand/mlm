@@ -12,6 +12,11 @@ module ApplicationHelper
     fields = f.fields_for(association, new_object, child_index: id) do |builder|
       render(association.to_s.singularize + "_fields", f: builder)
     end
-    link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
+    link_to(add_image_to_name(name), '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
+  end
+
+  def add_image_to_name(name)   # This makes the plus icon part of the link
+    plus = image_tag "/assets/glyphicons_190_circle_plus.png"
+    return plus + " " + name
   end
 end

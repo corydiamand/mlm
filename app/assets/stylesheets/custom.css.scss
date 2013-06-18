@@ -17,6 +17,15 @@ $missingLink: hsl(246, 79%, 15%);
   color: $grayLight;
 }
 
+@mixin sidebar_style{
+  color: $sidebarGray;
+  &:hover {
+    color: black;
+    text-decoration:none;
+  }
+}
+
+
 /* universal */
 
 html {
@@ -119,16 +128,13 @@ footer {
 
 aside {
   section {
+    a{
+      @include sidebar_style;
+    }
     padding: 10px 0;
     border-top: 1px solid $grayLighter;
     overflow-y: visible;
-    a {
-      color: $sidebarGray;
-      &:hover {
-        color: black;
-        text-decoration:none;
-      }
-    }
+
     ul.dropdown-menu{
       left: 24%;
     }
@@ -307,10 +313,14 @@ aside {
   }
 }
 
-#submit_work{
-  margin-top: 10px;
-}
 /* audio product */
+
+.add_fields{
+  display: block;
+  font-size: 1.3em;
+  margin: 15px 0px 20px;
+  @include sidebar_style;
+}
 
 .audio-product-fields{
   margin-top: 10px;

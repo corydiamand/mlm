@@ -1,9 +1,14 @@
 <% privacy_policy_link = "http://www.missinglinkmusic.com/privacy-policy/" %>
 <% terms_conditions_link = "http://www.missinglinkmusic.com/terms-and-conditions/" %>
+<% glyphicons = "http://glyphicons.com/" %>
+<% cc_link = "http://creativecommons.org/licenses/by/3.0/deed.en" %>
 
 
 <footer class="footer">
   <div>Copyright © <%=Time.now.year%> Missing Link Music company. All rights reserved.</div>
   <div><%=link_to 'Privacy Policy', privacy_policy_link, target: 'blank' %> | 
   <%=link_to 'Terms & Conditions', terms_conditions_link, target: 'blank' %></div>
+  <div>
+    Some content provided by <%=link_to 'Glyphicons', 
+    glyphicons, target: 'blank'%> under a <%=link_to 'Creative Commons Attribution 3.0 Unported License', cc_link, target: 'blank'%></div>
 </footer>
