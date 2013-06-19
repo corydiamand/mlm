@@ -50,7 +50,7 @@ end
 gem 'jquery-rails'
 
 group :production do
-  ruby '2.0.0'
+  ruby '1.9.3'
 end
 
 # To use ActiveModel has_secure_password
