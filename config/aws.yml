@@ -1,0 +1,6 @@
+development:
+   access_key_id: 'AKIAJXKNFSW3MI23UVZQ'
+   secret_access_key: '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'
+test:
+   access_key_id: 'AKIAJXKNFSW3MI23UVZQ'
+   secret_access_key: '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'
