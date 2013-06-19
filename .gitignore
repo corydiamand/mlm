@@ -15,4 +15,4 @@
 /tmp
 
 # Ignore the lib assets directory
-/lib/assets
+# /lib/assets
