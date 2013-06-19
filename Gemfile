@@ -50,7 +50,7 @@ end
 gem 'jquery-rails'
 
 group :production do
-  gem 'rb-readline'
+  gem 'pg'
   ruby '1.9.3'
 end
 

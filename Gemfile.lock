@@ -120,6 +120,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (2.6.7)
     nokogiri (1.5.9)
+    pg (0.15.1)
     poltergeist (1.1.2)
       capybara (~> 2.0.1)
       faye-websocket (~> 0.4.4)
@@ -158,7 +159,6 @@ GEM
     rake (10.0.4)
     raphael-rails (2.1.1)
     rb-fsevent (0.9.1)
-    rb-readline (0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
     rspec-core (2.12.2)
@@ -226,13 +226,13 @@ DEPENDENCIES
   launchy
   morrisjs-rails
   mysql2
+  pg
   poltergeist
   pry-rails
   quiet_assets
   rails (= 3.2.13)
   raphael-rails
   rb-fsevent (= 0.9.1)
-  rb-readline
   rspec-rails (~> 2.12.0)
   sass-rails (~> 3.2.3)
   spork (= 0.9.2)
