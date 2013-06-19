@@ -10,6 +10,8 @@ gem 'will_paginate', '3.0.3'
 gem 'mysql2'
 gem "fog"
 gem 'aws-sdk'
+gem 'jquery-rails', '~> 2.3.0'
+
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.12.0'
@@ -23,7 +25,7 @@ group :development do
 end
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets, :development do
+group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'bootstrap-sass'
@@ -36,6 +38,8 @@ group :assets, :development do
   gem 'uglifier', '>= 1.0.3'
 end
 
+
+
 group :test do
   gem 'capybara', '2.0.2'
   gem 'rb-fsevent', '0.9.1', :require => false
@@ -47,11 +51,8 @@ group :test do
   gem 'launchy'
 end
 
-gem 'jquery-rails'
-
 group :production do
   gem 'pg'
-  ruby '1.9.3'
 end
 
 # To use ActiveModel has_secure_password
