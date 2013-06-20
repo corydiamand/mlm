@@ -39,4 +39,15 @@ describe Work do
       work.reload.copyright_date.class.should be Date
     end
   end
+
+  context "Validations" do
+
+    it "should be invalid with invalid duration" do
+      invalid_durations = %w{ 300 :30 3.00 3:00:00 3:61 3:3  3:300 seconds }
+      invalid_durations.each do |dur|
+        work.duration = dur
+        work.should be_invalid
+      end
+    end
+  end
 end

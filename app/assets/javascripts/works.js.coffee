@@ -13,3 +13,8 @@ jQuery ->
   $(document).ready ->
     $('.audio-product-count').each((index) ->
       $(this).text("Audio product " + (index + 1)))
+
+  error_fields = $(".field_with_errors")
+  error_fields.each( ->
+    if $(this).parent().hasClass("input-append")
+      $(this).append $(".add-on"))

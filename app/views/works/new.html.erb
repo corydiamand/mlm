@@ -8,19 +8,15 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :duration %>
+    <%= f.label "Duration (mm:ss)" %>
     <%= f.text_field :duration %>
   </div>
   <div class="field">
     <%= f.label :copyright_date %>
-    <%= f.text_field :copyright_date_string %>
+    <%= f.date_select :copyright_date, start_year: 1900 %>
   </div>
   <%= f.fields_for :work_claims, @current_claim do |builder| %>
-    <div class="field">
-      <%= builder.label "Your share" %>
-      <%= builder.text_field :mr_share %>
-      <%= builder.hidden_field :user_id, value: current_user.id %>
-    </div>
+    <%= render 'work_claim_field', builder: builder %>
   <% end %>
   <%= f.fields_for :audio_products do |builder| %>
     <%= render 'audio_product_fields', f: builder %>
