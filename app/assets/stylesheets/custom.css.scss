@@ -152,10 +152,12 @@ aside {
     }
     h3 {
       text-align: center;
+      margin-bottom: 25px;
+      margin-top: 25px;
     }
     &:first-child {
       border: 0;
-      padding-top: 50px;
+      padding-top: 15px;
     }
   }
   border-right: 1px solid $grayMediumLight;
@@ -316,6 +318,12 @@ aside {
 .new_work{
   select{
     width: 120px;
+  }
+  .with-tooltip{
+    margin-bottom: 5px;
+    label{
+      display: inline;
+    }
   }
 }
 

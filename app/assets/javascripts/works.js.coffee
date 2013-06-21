@@ -18,3 +18,5 @@ jQuery ->
   error_fields.each( ->
     if $(this).parent().hasClass("input-append")
       $(this).append $(".add-on"))
+
+  $('.js-tooltip').tooltip()

@@ -8,11 +8,17 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label "Duration (mm:ss)" %>
+    <div class="with-tooltip">
+      <%= f.label "Duration" %>
+      <%= tooltip_for :duration %>
+    </div>
     <%= f.text_field :duration %>
   </div>
   <div class="field">
-    <%= f.label :copyright_date %>
+    <div class="with-tooltip">
+      <%= f.label :copyright_date %>
+      <%= tooltip_for :copyright_date %>
+    </div>
     <%= f.date_select :copyright_date, start_year: 1900 %>
   </div>
   <%= f.fields_for :work_claims, @current_claim do |builder| %>
