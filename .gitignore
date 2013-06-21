@@ -16,3 +16,6 @@
 
 # Ignore the lib assets directory
 # /lib/assets
+
+# Ignore the env file
+.env
