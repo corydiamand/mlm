@@ -17,8 +17,9 @@ class Work < ActiveRecord::Base
   accepts_nested_attributes_for :work_claims
   accepts_nested_attributes_for :audio_products, reject_if: lambda { |a| a[:album].blank? }
   attr_accessible :title, :duration, :copyright_date_string, :work_claims_attributes, 
-                  :audio_products_attributes, :copyright_date
+                  :audio_products_attributes, :copyright_date, :attachment
   attr_accessor :copyright_date_string
+  mount_uploader :attachment, WorkAttachmentUploader 
 
   VALID_DURATION_REGEX = /^(\d+):([0-5]\d)$/
 

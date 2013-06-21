@@ -33,3 +33,8 @@
   </div>  
 <% end %>
 
+<%= direct_upload_form_for @uploader do |f| %>
+  <p><%= f.file_field :attachment %></p>
+  <p><%= f.submit "Upload Attachment" %></p>
+<% end %>
+

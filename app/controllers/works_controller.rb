@@ -10,6 +10,8 @@ class WorksController < ApplicationController
   def new
     @work = Work.new
     @current_claim = @work.work_claims.build
+    @uploader = @work.attachment
+    @uploader.success_action_redirect = new_user_work_path
   end
 
   def create

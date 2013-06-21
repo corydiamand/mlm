@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130614211547) do
+ActiveRecord::Schema.define(:version => 20130621212429) do
 
   create_table "audio_products", :force => true do |t|
     t.integer  "work_id"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20130614211547) do
     t.date     "copyright_date"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.string   "attachment"
   end
 
 end
