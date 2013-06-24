@@ -22,6 +22,7 @@ describe Work do
   it { should respond_to(:duration) }
   it { should respond_to(:copyright_date) }
   it { should respond_to(:copyright_date_string)}
+  it { should respond_to(:pending) }
   
   it { should be_valid }
 
@@ -48,6 +49,14 @@ describe Work do
         work.duration = dur
         work.should be_invalid
       end
+    end
+  end
+
+
+  context "pending" do
+
+    it "should not be pending by default" do
+      work.should_not be_pending
     end
   end
 end

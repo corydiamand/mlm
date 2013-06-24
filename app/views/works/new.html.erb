@@ -3,38 +3,23 @@
 
 <%= form_for(@work, url: { action: :create }) do |f|  %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <div class="with-tooltip">
-      <%= f.label "Duration" %>
-      <%= tooltip_for :duration %>
-    </div>
-    <%= f.text_field :duration %>
-  </div>
-  <div class="field">
-    <div class="with-tooltip">
-      <%= f.label :copyright_date %>
-      <%= tooltip_for :copyright_date %>
-    </div>
-    <%= f.date_select :copyright_date, start_year: 1900 %>
-  </div>
+  <%= render 'work_fields', f: f %>
   <%= f.fields_for :work_claims, @current_claim do |builder| %>
-    <%= render 'work_claim_field', builder: builder %>
+    <%= render 'work_claim_fields', builder: builder %>
   <% end %>
   <%= f.fields_for :audio_products do |builder| %>
     <%= render 'audio_product_fields', f: builder %>
   <% end %>
   <%= link_to_add_fields "Add Audio Product", f, :audio_products %>
+  <%= f.hidden_field :key %>
+  <%= f.hidden_field :pending, value: true %>
   <div class="actions">
     <%= submit_tag "Submit new work", class: "btn btn-large btn-custom" %>
   </div>  
 <% end %>
 
-<%= direct_upload_form_for @uploader do |f| %>
-  <p><%= f.file_field :attachment %></p>
-  <p><%= f.submit "Upload Attachment" %></p>
-<% end %>
+
+
+
+
 
