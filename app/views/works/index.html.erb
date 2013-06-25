@@ -9,6 +9,7 @@
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-works"
           data-target="#collapse<%=work.id%>"><%= work.title %>
         </a>
+        <%= status(work) %>
       </div>
       <div id="collapse<%=work.id%>" class="accordion-body collapse">
         <div class="accordion-inner">

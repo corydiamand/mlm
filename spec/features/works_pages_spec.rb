@@ -12,6 +12,7 @@ describe 'Works Pages' do
   describe "as a user" do 
 
     before { sign_in_through_ui user }
+    let(:share_id) { "work_work_claims_attributes_0_mr_share" }
 
     context "index action" do
 
@@ -33,6 +34,10 @@ describe 'Works Pages' do
         page.should have_selector('div', text: "#{claim.mr_share}")
         page.find(:xpath, "//div[@class='mr-share' and contains(., '#{claim.mr_share}')]")
       end
+
+      it "should link to the edit page" do
+        page.find(:xpath, "//a[@href = '#{edit_user_work_path(user, work)}']")
+      end
     end
 
     context "new action" do
@@ -41,7 +46,6 @@ describe 'Works Pages' do
         visit new_user_work_path user
         other_work.destroy  #This is to avoid duplication of a work with no audio product
       end
-      let(:share_id) { "work_work_claims_attributes_0_mr_share" }
       let(:no_audio_product) { "No audio product information available" }
 
       it "should render the forms" do
@@ -87,6 +91,31 @@ describe 'Works Pages' do
         click_button "Submit new work"
         page.should have_content "Successfully submitted work"
         page.find(:xpath, "//div[@class='no-works-found']")
+      end
+    end
+
+    context "edit action" do
+      before { visit edit_user_work_path(user, work) }
+
+      it "should render the forms" do
+        page.should have_selector('h2', "Edit work")
+        page.should have_button "Update work"
+      end
+
+      it "should update a work with valid information" do
+        page.fill_in "Title",           with: 'UPDATED TITLE'
+        page.fill_in share_id,          with: '25'
+        click_button "Update work"
+        page.should have_content "Work updated"
+        page.should have_content "UPDATED TITLE"
+      end
+
+      it "should not create a work with invalid information" do
+        page.fill_in "Title",      with:  ""
+        page.fill_in share_id,     with:  ""
+        click_button "Update work"
+        page.should have_content "Title can't be blank"
+        page.should have_content "Your share can't be blank"
       end
     end
   end

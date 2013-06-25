@@ -1,7 +1,8 @@
 module ApplicationHelper
 
   TOOLTIPS = { copyright_date: 'Usually the date of the first commercial release of this work',
-               duration: "Please enter as mm:ss (for example: 03:30)" }
+               duration: "Please enter as mm:ss (for example: 03:30)",
+               pending: "The changes made to this work are being processed" }
 
   def logo_link(path)
     link_to path do

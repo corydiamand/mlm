@@ -5,7 +5,8 @@ describe "Authentication Requests" do
     let(:user) { FactoryGirl.create(:user) }
     let(:other_user) { FactoryGirl.create(:user) }
     let!(:statement) { FactoryGirl.create(:statement, user_id: user.id) }
-  
+    let(:other_user_work) { FactoryGirl.create(:work) }
+    let!(:claim) { FactoryGirl.create(:work_claim, user: other_user, work: other_user_work) }
 
   context "as a guest user" do
     
@@ -65,6 +66,16 @@ describe "Authentication Requests" do
 
     it "should not be able to view another user's catalog" do
       get user_works_path(other_user)
+      response.should redirect_to(root_url)
+    end
+
+    it "should not be able to edit another user's catalog" do
+      get edit_user_work_path(other_user, other_user_work)
+      response.should redirect_to(root_url)
+    end
+
+    it "should not be able to update another user's catalog" do
+      put user_work_path(other_user, other_user_work)
       response.should redirect_to(root_url)
     end
 

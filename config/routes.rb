@@ -4,7 +4,7 @@ FirstPass::Application.routes.draw do
   
   resources :users, except: [:new, :destroy] do
     resources :hosted_files, only: [:show]
-    resources :works, only: [:index, :show, :new, :create]
+    resources :works, except: :destroy
     resources :audio_products, only: :create
     collection do
       get 'search'

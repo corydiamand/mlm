@@ -7,6 +7,7 @@ $grayMediumLight: #eaeaea;
 $sidebarGray: #999999;
 $cashGreen: #4AA02C;
 $footerGray: #C0C0C0;
+$pending: #CC1508;
 $missingLink: hsl(246, 79%, 15%);
 
 @mixin h3_style {
@@ -22,6 +23,18 @@ $missingLink: hsl(246, 79%, 15%);
   &:hover {
     color: black;
     text-decoration:none;
+  }
+}
+
+@mixin work_form_style{
+  select{
+    width: 120px;
+  }
+  .with-tooltip{
+    margin-bottom: 5px;
+    label{
+      display: inline;
+    }
   }
 }
 
@@ -277,11 +290,20 @@ aside {
   }
 }
 
-/* works */
+/* works index */
 .accordion-group{
   border: 0px; border-radius: 0px;
-  border-bottom: 1px solid $grayMediumLight
+  border-bottom: 1px solid $grayMediumLight;
+  .accordion-toggle{
+    display: inline-block;
+  }
+  .work-status{
+    display: inline-block;
+    font-style: italic;
+    color: $pending;
+  }
 }
+
 
 .audio-product{
   margin-bottom: 30px;
@@ -310,21 +332,23 @@ aside {
   color: $cashGreen;
   text-align: right;
   font-weight: bold;
-  &:after{
-    content:"%";
-  }
+  clear:both;
 }
 
+.edit-work{
+  text-align: right;
+  a {
+  @include sidebar_style;
+  }
+}
+/* works new */
+
 .new_work{
-  select{
-    width: 120px;
-  }
-  .with-tooltip{
-    margin-bottom: 5px;
-    label{
-      display: inline;
-    }
-  }
+  @include work_form_style;
+}
+
+.edit_work{
+  @include work_form_style;
 }
 
 .file-field{
@@ -356,8 +380,6 @@ aside {
 #submit-new-work{
   margin-top: 20px;
 }
-
-
 
 /* audio product */
 

@@ -2,17 +2,8 @@
 <h2>Submit new work</h2>
 
 <%= form_for(@work, url: { action: :create }) do |f|  %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <%= render 'work_fields', f: f %>
-  <%= f.fields_for :work_claims, @current_claim do |builder| %>
-    <%= render 'work_claim_fields', builder: builder %>
-  <% end %>
-  <%= f.fields_for :audio_products do |builder| %>
-    <%= render 'audio_product_fields', f: builder %>
-  <% end %>
-  <%= link_to_add_fields "Add Audio Product", f, :audio_products %>
+  <%= render 'work_form', f: f %>
   <%= render 'work_attachment_fields', f: f %>
-  <%= f.hidden_field :pending, value: true %>
   <div id="submit-new-work" class="actions">
     <%= submit_tag "Submit new work", class: "btn btn-large btn-custom" %>
   </div>  

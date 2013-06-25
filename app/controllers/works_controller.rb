@@ -1,8 +1,9 @@
 class WorksController < ApplicationController
   include WorksHelper
-  before_filter :signed_in_user, only: :index
-  before_filter :correct_user, only: :index
+  before_filter :signed_in_user, only: [:index, :edit, :update]
+  before_filter :correct_user, only: [:index, :edit, :update]
   before_filter :admin_view_works, only: :index
+  before_filter :set_current_work, only: [:edit, :update]
 
   def index
   end
@@ -18,18 +19,36 @@ class WorksController < ApplicationController
       flash[:success] = "Successfully submitted work"
       redirect_to user_works_path current_user
     else
-      render action: 'new'
+      render 'new'
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @work.update_attributes(params[:work])
+      flash[:success] = "Work updated"
+      redirect_to user_works_path current_user
+    else
+      render 'edit'
     end
   end
 end
 
-def admin_view_works
-  if current_user.admin?
-    @works = User.find(params[:user_id]).works.order('title ASC')
-  else  
-    @works = current_user.works.order('title ASC')
+private
+
+  def set_current_work
+    @work = Work.find(params[:id])
   end
-end
+
+  def admin_view_works
+    if current_user.admin?
+      @works = User.find(params[:user_id]).works.order('title ASC')
+    else  
+      @works = current_user.works.order('title ASC')
+    end
+  end
 
 
 

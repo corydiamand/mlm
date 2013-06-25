@@ -6,6 +6,10 @@
   </div>
 <% end %>
 
+<div class="edit-work">
+  <%= link_to "Edit this work", edit_user_work_path(current_user, work) %>
+</div>
+
 <% if work.audio_products.any? %>
   <% work.audio_products.each do |ap| %>
     <div class="audio-product">  
@@ -18,3 +22,4 @@
 <% else %>
   <div class="no-works-found">No audio product information available</div>
 <% end %>
+
