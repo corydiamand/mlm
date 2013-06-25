@@ -10,6 +10,9 @@ jQuery ->
     $(".audio-product-count:last").text("Audio product " + $(".audio-product-fields").length)
     event.preventDefault()
 
+  $('#work_attachment').change ->
+    $('#current-file').empty().append($(this).val().replace('C:\\fakepath\\', ''))
+
   $(document).ready ->
     $('.audio-product-count').each((index) ->
       $(this).text("Audio product " + (index + 1)))

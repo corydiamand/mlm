@@ -28,4 +28,8 @@ module ApplicationHelper
       content_tag :i, "", class: "icon-question-sign" # question mark image
     end
   end
+
+  def link_to_add_attachment(name)
+    content_tag :div, add_image_to_name(name), class: "add_fields"
+  end
 end

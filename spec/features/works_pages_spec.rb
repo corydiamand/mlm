@@ -89,7 +89,6 @@ describe 'Works Pages' do
         page.find(:xpath, "//div[@class='no-works-found']")
       end
     end
-
   end
 
   describe "as an admin" do

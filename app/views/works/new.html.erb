@@ -11,9 +11,9 @@
     <%= render 'audio_product_fields', f: builder %>
   <% end %>
   <%= link_to_add_fields "Add Audio Product", f, :audio_products %>
-  <%= f.hidden_field :key %>
+  <%= render 'work_attachment_fields', f: f %>
   <%= f.hidden_field :pending, value: true %>
-  <div class="actions">
+  <div id="submit-new-work" class="actions">
     <%= submit_tag "Submit new work", class: "btn btn-large btn-custom" %>
   </div>  
 <% end %>

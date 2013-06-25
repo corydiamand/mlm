@@ -12,8 +12,6 @@ gem "fog"
 gem 'aws-sdk'
 gem 'jquery-rails', '~> 2.3.0'
 gem 'carrierwave'
-gem 'carrierwave_direct'
-gem 'sidekiq'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.12.0'

@@ -327,6 +327,35 @@ aside {
   }
 }
 
+.file-field{
+  position: relative;
+  .add_fields{
+    display: block;
+    z-index: 1;
+    margin: 0px;
+    width: 175px;
+  }
+  input{
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+    padding: 10px;  
+    &:hover{
+      ~div{
+        color: black;
+      }
+    }
+  }
+}
+
+#current-file{
+  margin-top: 10px;
+}
+
+#submit-new-work{
+  margin-top: 20px;
+}
 
 
 

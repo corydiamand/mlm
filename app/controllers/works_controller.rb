@@ -15,7 +15,6 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(params[:work])
     if @work.save
-      binding.pry
       flash[:success] = "Successfully submitted work"
       redirect_to user_works_path current_user
     else
