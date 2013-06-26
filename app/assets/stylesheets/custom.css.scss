@@ -357,14 +357,16 @@ aside {
     display: block;
     z-index: 1;
     margin: 0px;
-    width: 175px;
+    width: 250px;
   }
   input{
     opacity: 0;
     cursor: pointer;
+    width: 400px;
+    height: 14px;
     position: absolute;
     z-index: 2;
-    padding: 15px;  
+    padding: 15px 15px 0px;  
     &:hover{
       ~div{
         color: black;
@@ -380,6 +382,17 @@ aside {
 #submit-new-work{
   margin-top: 20px;
 }
+
+/* works edit */
+
+.split-sheet{
+  font-size: 1.3em;
+  margin: 15px 0px 20px;
+  a {
+    @include sidebar_style;
+  }
+}
+
 
 /* audio product */
 

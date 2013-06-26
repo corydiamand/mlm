@@ -29,6 +29,11 @@ describe "Authentication Requests" do
       get user_hosted_file_path(user, statement)
       response.should redirect_to(root_url)
     end
+
+    it "should not be able to edit a user's catalog" do
+      get edit_user_work_path(other_user, other_user_work)
+      response.should redirect_to(root_url)
+    end
   end
 
   context "as a non-admin wrong user" do
@@ -72,10 +77,14 @@ describe "Authentication Requests" do
     it "should not be able to edit another user's catalog" do
       get edit_user_work_path(other_user, other_user_work)
       response.should redirect_to(root_url)
+      get edit_user_work_path(user, other_user_work)
+      response.should redirect_to(root_url)
     end
 
     it "should not be able to update another user's catalog" do
       put user_work_path(other_user, other_user_work)
+      response.should redirect_to(root_url)
+      put user_work_path(user, other_user_work)
       response.should redirect_to(root_url)
     end
 

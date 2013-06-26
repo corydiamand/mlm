@@ -3,7 +3,7 @@
 
 <%= form_for(@work, url: { action: :create }) do |f|  %>
   <%= render 'work_form', f: f %>
-  <%= render 'work_attachment_fields', f: f %>
+  <%= render 'work_attachment', f: f %>
   <div id="submit-new-work" class="actions">
     <%= submit_tag "Submit new work", class: "btn btn-large btn-custom" %>
   </div>  

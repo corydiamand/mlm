@@ -1,7 +1,8 @@
 class WorksController < ApplicationController
   include WorksHelper
   before_filter :signed_in_user, only: [:index, :edit, :update]
-  before_filter :correct_user, only: [:index, :edit, :update]
+  before_filter :correct_user, only: [:index]
+  before_filter :correct_claim, only: [:edit, :update]
   before_filter :admin_view_works, only: :index
   before_filter :set_current_work, only: [:edit, :update]
 
@@ -37,6 +38,11 @@ class WorksController < ApplicationController
 end
 
 private
+  
+  def correct_claim
+    @claim_users = Work.find(params[:id]).users
+    redirect_to(root_path) unless @claim_users.include?(current_user) || current_user.admin?
+  end
 
   def set_current_work
     @work = Work.find(params[:id])
