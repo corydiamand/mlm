@@ -3,8 +3,9 @@ FirstPass::Application.routes.draw do
   root to: "static_pages#home"
   
   resources :users, except: [:new, :destroy] do
-    resources :hosted_files, only: [:show]
+    resources :hosted_files, only: :show
     resources :works, except: :destroy
+    resources :statements, only: :index
     resources :audio_products, only: :create
     collection do
       get 'search'

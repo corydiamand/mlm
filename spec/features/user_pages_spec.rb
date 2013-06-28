@@ -43,7 +43,7 @@ describe "User Pages" do
       page.should have_selector('h2', text: user.first_name)
       page.should have_link 'Sign out'
       page.should have_link('My Account', href: edit_user_path(user))
-      page.should have_link('My Royalties', href: user_path(user))
+      page.should have_link('My Royalties', href: user_statements_path(user))
       page.should have_link('My Catalog', href: user_works_path(user))
       page.should have_link('Submit New Work', href: new_user_work_path(user))
     end
@@ -61,7 +61,7 @@ describe "User Pages" do
 
     it "should see message if no statement data is found" do
       statement.destroy
-      visit user_path user
+      visit user_statements_path user
       page.should have_content 'No statement data available'
     end
 
@@ -136,7 +136,7 @@ describe "User Pages" do
     # end
 
     it "should be able to visit a users page and see his statements" do
-      visit user_path user
+      visit user_statements_path user
       page.should have_selector('h2', user.first_name)
       page.should have_selector('div', statement.id)
     end
@@ -159,19 +159,19 @@ describe "User Pages" do
 
       it "should go to a user's page upon search" do
         fill_in "Search name",       with: user_string
-        click_button 'Go to user page'
+        click_button 'View user statements'
         page.should have_selector('h2', text: user_string)
       end
 
       it "should go to another user's page upon re-search" do
         fill_in "Search name",       with: other_user_string
-        click_button 'Go to user page'
+        click_button 'View user statements'
         page.should have_selector('h2', text: other_user_string)
       end
 
       it "should render a flash if search returns nil" do
         fill_in "Search name",       with: "invalid, invalid"
-        click_button 'Go to user page'
+        click_button 'View user statements'
         page.should have_content("No users found")
       end
     end

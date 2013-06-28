@@ -8,6 +8,7 @@ describe "Authentication Requests" do
     let(:other_user_work) { FactoryGirl.create(:work) }
     let!(:claim) { FactoryGirl.create(:work_claim, user: other_user, work: other_user_work) }
 
+
   context "as a guest user" do
     
     it "should not see a user's page" do

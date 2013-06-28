@@ -1,7 +1,7 @@
 <aside class="span3">
 	<%if signed_in? %>
 		<section>
-			<h3><%=link_to "My Royalties",  user_path(current_user) %></h3>
+			<h3><%=link_to "My Royalties",  user_statements_path(current_user) %></h3>
 		</section>
 		<section>
 			<h3><%=link_to "My Account", edit_user_path(current_user) %></h3>
