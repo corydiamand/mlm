@@ -7,10 +7,15 @@ FirstPass::Application.routes.draw do
     resources :works, except: :destroy
     resources :statements, only: :index
     resources :audio_products, only: :create
-    collection do
-      get 'search'
-    end
+    get 'search', on: :collection
   end
+
+  namespace :admin do
+    get :users_pending, controller: :users_pending, action: :index
+    put :users_pending, controller: :users_pending, action: :update
+    get :works_pending, controller: :works_pending, action: :index
+    put :works_pending, controller: :works_pending, action: :update
+  end 
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets

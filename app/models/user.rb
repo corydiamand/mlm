@@ -23,6 +23,7 @@
 #  password_reset_token   :string(255)
 #  password_reset_sent_at :datetime
 #  password_digest        :string(255)
+#  pending                :boolean          default(FALSE)
 #
 
 require 'digest'
@@ -34,7 +35,8 @@ class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :email, :area_code, :phone_number,
                   :apartment_number, :address_number, :street_name, :city,
                   :state, :zip_code, :password, :password_confirmation, :search_name,
-                  :search_name_id
+                  :search_name_id, :pending
+  scope :pending, where(pending: true)
 	validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

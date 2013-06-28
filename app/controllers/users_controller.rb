@@ -68,8 +68,4 @@ class UsersController < ApplicationController
       @user = User.find_by_last_name_and_first_name(names[0],names[1])
     end
   end
-
-  def admin_user
-    redirect_to(root_path) unless current_user.admin?
-  end
 end

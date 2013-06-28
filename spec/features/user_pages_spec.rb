@@ -95,6 +95,7 @@ describe "User Pages" do
       page.should have_selector('div.alert.alert-success')
       user.reload.first_name.should == "NEW NAME"
       user.reload.email.should == "new@example.com"
+      user.reload.pending.should be_true
     end
 
     it "should not be able to edit information without credentials" do

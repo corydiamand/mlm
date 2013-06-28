@@ -5,9 +5,11 @@
 #  id             :integer          not null, primary key
 #  title          :string(255)
 #  duration       :string(255)
-#  copyright_date :string(255)
+#  copyright_date :date
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  attachment     :string(255)
+#  pending        :boolean          default(FALSE)
 #
 
 class Work < ActiveRecord::Base
@@ -21,6 +23,7 @@ class Work < ActiveRecord::Base
                   :pending
   attr_accessor :copyright_date_string
   mount_uploader :attachment, WorkAttachmentUploader 
+  scope :pending, where(pending: true)
 
   VALID_DURATION_REGEX = /^(\d+):([0-5]\d)$/
 

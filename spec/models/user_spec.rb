@@ -23,6 +23,7 @@
 #  password_reset_token   :string(255)
 #  password_reset_sent_at :datetime
 #  password_digest        :string(255)
+#  pending                :boolean          default(FALSE)
 #
 
 require 'spec_helper'
@@ -43,6 +44,7 @@ describe 'Users' do
   it { should respond_to(:remember_token) }
   it { should respond_to(:password_reset_token) }
   it { should respond_to(:password_reset_sent_at) }
+  it { should respond_to(:pending) }
 
   it { should be_valid }
 
@@ -180,6 +182,11 @@ describe 'Users' do
         user.save!
         user.toggle(:admin)
         user.should be_admin 
+      end
+
+      it "should not be pending by default" do
+        user.pending.should be_false
+        user.pending.should_not be_nil
       end
     end
   end

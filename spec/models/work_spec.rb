@@ -5,9 +5,11 @@
 #  id             :integer          not null, primary key
 #  title          :string(255)
 #  duration       :string(255)
-#  copyright_date :string(255)
+#  copyright_date :date
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  attachment     :string(255)
+#  pending        :boolean          default(FALSE)
 #
 
 require 'spec_helper'

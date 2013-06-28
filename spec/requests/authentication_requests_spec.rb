@@ -16,6 +16,11 @@ describe "Authentication Requests" do
       response.should redirect_to(root_url)
     end
 
+    it "should not see a user's statement index page" do
+      get user_statements_path(user)
+      response.should redirect_to(root_url)
+    end
+
     it "should not see a user's edit page" do
       get edit_user_path(user)
       response.should redirect_to(root_url)
@@ -45,6 +50,11 @@ describe "Authentication Requests" do
       response.should redirect_to(root_url)
     end
 
+    it "should not see a user's statement index page" do
+      get user_statements_path(other_user)
+      response.should redirect_to(root_url)
+    end
+
     it "should not see another user's edit page" do
       get edit_user_path(other_user)
       response.should redirect_to(root_url)
@@ -57,6 +67,16 @@ describe "Authentication Requests" do
 
     it "should not see the users index" do
       get users_path
+      response.should redirect_to(root_url)
+    end
+
+    it "should not see the users pending page" do
+      get admin_users_pending_path
+      response.should redirect_to(root_url)
+    end
+
+    it "should not see the works pending page" do
+      get admin_works_pending_path
       response.should redirect_to(root_url)
     end
 

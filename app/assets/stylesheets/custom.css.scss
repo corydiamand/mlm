@@ -295,19 +295,20 @@ aside {
 }
 
 /* works index */
-.accordion-group{
-  border: 0px; border-radius: 0px;
-  border-bottom: 1px solid $grayMediumLight;
-  .accordion-toggle{
-    display: inline-block;
-  }
-  .work-status{
-    display: inline-block;
-    font-style: italic;
-    color: $pending;
+#accordion-works{
+  .accordion-group{
+    border: 0px; border-radius: 0px;
+    border-bottom: 1px solid $grayMediumLight;
+    .accordion-toggle{
+      display: inline-block;
+    }
+    .work-status{
+      display: inline-block;
+      font-style: italic;
+      color: $pending;
+    }
   }
 }
-
 
 .audio-product{
   margin-bottom: 30px;
@@ -416,5 +417,22 @@ aside {
   }
   .audio-product-count{
     font-style: h4
+  }
+}
+
+/* admin/pending */
+
+#accordion-users-pending{
+  .accordion-heading{
+    font-size: 1.3em;
+    a{
+      color: $pending
+    }
+  }
+  form{
+    margin: 0px;
+  }
+  .pending-checkbox{
+    float: right;
   }
 }
