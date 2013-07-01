@@ -122,6 +122,7 @@ nav {
 
 /* footer */
 footer {
+  clear: both;
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
@@ -422,17 +423,29 @@ aside {
 
 /* admin/pending */
 
-#accordion-users-pending{
+
+#accordion-pending{
+
   .accordion-heading{
     font-size: 1.3em;
     a{
       color: $pending
     }
   }
-  form{
-    margin: 0px;
-  }
+
   .pending-checkbox{
     float: right;
   }
+
+  #update-pending{
+    margin: 10px 0px 10px;
+  }
+}
+
+.not-provided{
+  font-style: italic;
+}
+
+#update-pending{
+  float: right;
 }
