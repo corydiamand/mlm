@@ -2,19 +2,21 @@ FirstPass::Application.routes.draw do
 
   root to: "static_pages#home"
   
-  resources :users, except: [:new, :destroy] do
+  resources :users, except: [:new, :destroy, :index] do
     resources :hosted_files, only: :show
     resources :works, except: :destroy
     resources :statements, only: :index
     resources :audio_products, only: :create
-    get 'search', on: :collection
   end
 
   namespace :admin do
-    get :users_pending, controller: :users_pending, action: :index
+    get :users_pending, controller: :users_pending, action: :index  # This is verbose in order to have admin_users_pending over admin_users_pending_index
     put :users_pending, controller: :users_pending, action: :update
     get :works_pending, controller: :works_pending, action: :index
     put :works_pending, controller: :works_pending, action: :update
+    resources :users, only: [:index] do
+      get 'search', on: :collection
+    end
   end 
 
   resources :sessions, only: [:new, :create, :destroy]

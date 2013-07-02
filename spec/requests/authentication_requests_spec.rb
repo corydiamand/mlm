@@ -66,7 +66,7 @@ describe "Authentication Requests" do
     end
 
     it "should not see the users index" do
-      get users_path
+      get admin_users_path
       response.should redirect_to(root_url)
     end
 

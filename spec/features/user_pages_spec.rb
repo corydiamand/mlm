@@ -107,7 +107,7 @@ describe "User Pages" do
     end
 
     it "should not be able to view the users list" do
-      visit users_path
+      visit admin_users_path
       page.should have_selector('h2', text: 'Missing Link Music Client Portal')
     end
 
@@ -149,7 +149,7 @@ describe "User Pages" do
     end
 
     context "search function" do
-      before { visit users_path }
+      before { visit admin_users_path }
       let(:user_string) { "#{user.last_name}, #{user.first_name}" }
       let(:other_user_string) { "#{other_user.last_name}, #{other_user.first_name}" }
 

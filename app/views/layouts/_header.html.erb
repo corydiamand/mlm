@@ -5,7 +5,7 @@
 	<div class="navbar-inner">
 		<div class="container">
 			<% if signed_in? %>
-				<%= current_user.admin? ? logo_link(users_path) : 
+				<%= current_user.admin? ? logo_link(admin_users_path) : 
 																	logo_link(user_statements_path(current_user)) %>
 			<% else %>
 				<%= logo_link root_path %>
