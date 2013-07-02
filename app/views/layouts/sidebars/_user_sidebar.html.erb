@@ -1,0 +1,12 @@
+<section>
+  <h3><%=link_to "My Royalties",  user_statements_path(current_user) %></h3>
+</section>
+<section>
+  <h3><%=link_to "My Account", edit_user_path(current_user) %></h3>
+</section>
+<section>
+  <h3><%=link_to "My Catalog", user_works_path(current_user) %></h3>
+</section>
+<section>
+<h3><%=link_to "Submit New Work", new_user_work_path(current_user) %></h3>
+</section>

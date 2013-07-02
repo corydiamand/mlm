@@ -1,0 +1,8 @@
+<div class="field">
+  <%= builder.label "Your share" %>
+  <div class="input-append">
+    <%= builder.text_field :mr_share, class: "input-mini" %> 
+    <span class="add-on">%</span>
+  </div>
+  <%= builder.hidden_field :user_id, value: current_user.id %>
+</div>

@@ -1,0 +1,10 @@
+<% provide(:title, "#{current_user.first_name} #{current_user.last_name}") %>
+<h2>Edit work</h2>
+
+<%= form_for(@work, url: { action: :update }) do |f|  %>
+  <%= render 'work_form', f: f %>
+  <%= render 'work_attachment', f: f %>
+  <div id="submit-new-work" class="actions">
+    <%= submit_tag "Update work", class: "btn btn-large btn-custom" %>
+  </div>  
+<% end %>

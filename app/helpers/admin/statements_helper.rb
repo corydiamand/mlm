@@ -1,0 +1,2 @@
+module Admin::StatementsHelper
+end

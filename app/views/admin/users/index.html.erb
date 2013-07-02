@@ -1,0 +1,22 @@
+<%= will_paginate %>
+
+<%= form_for(current_user, url: 'users/search', method: 'get') do |f| %>
+  <div class="field">
+    <%=f.label :search_name %>
+    <%=f.text_field :search_name, data: { autocomplete_source: search_admin_users_path } %>
+    <%=f.hidden_field :search_name_id, value: :search_admin_users_path  %>
+  </div>
+  <div class="field">
+    <%=f.submit "View user statements", class: 'btn btn-small btn-success'%>
+  </div>
+<% end %>
+
+<ul class="users">
+	<% @users.each do |user| %>
+		<li>
+			<%= link_to "#{user.last_name}, #{user.first_name}", admin_user_statements_path(user) %>
+		</li>
+	<% end %>
+</ul>
+
+<%= will_paginate %>

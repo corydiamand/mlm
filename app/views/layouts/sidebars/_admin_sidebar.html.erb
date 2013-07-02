@@ -1,0 +1,19 @@
+<section>
+  <h3><%=link_to "Pending Users",  admin_users_pending_path %>
+  <div class="badge badge-important"><%= @user_notifications %></div></h3>
+</section>
+<section>
+  <h3><%=link_to "Pending Works", admin_works_pending_path %>
+   <div class="badge badge-important"><%= @work_notifications %></div></h3>
+</section>
+<section>
+  <h3><%=link_to "User Index", admin_users_path %></h3>
+</section>
+<section>
+  <h3><%=link_to "My Admin Account", edit_user_path(current_user) %></h3>
+</section>
+<% if @user && !@user.admin? %>
+  <section>
+    <h3><%=link_to "View User Catalog", admin_user_works_path(@user) %></h3>
+  </section>
+<% end %>

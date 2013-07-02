@@ -1,0 +1,29 @@
+<% provide(:title, "#{current_user.first_name} #{current_user.last_name}") %>
+<h2>Pending user updates</h2>
+
+
+<% if @users_pending.any? %>
+  <div class="accordion" id="accordion-pending">
+    <%= form_tag(admin_users_pending_path, method: :put) do %>
+      <% @users_pending.each do |user| %>
+        <div class="accordion-group">
+          <span class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-pending"
+              data-target="#collapse<%=user.id%>"><%= render 'user_pending_header', user: user %>
+            </a>
+          </span>
+          <div id="collapse<%=user.id%>" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <%= render 'user_pending_detail', user: user %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="actions">
+        <%= submit_tag "Update pending users", id: "update-pending", class: "btn btn-medium btn-custom" %>
+      </div> 
+    <% end %>
+  </div>
+<% else %>
+  <div class="no-data-available">No Pending User Updates</div>
+<% end %>

@@ -1,0 +1,12 @@
+<h4>NAME</h4>
+<div><%= "#{user.first_name} #{user.last_name}" %></div>
+<h4>EMAIL</h4>
+  <div><%= user.email %></div>
+<h4>PHONE</h4>
+  <div><%= "(#{user.area_code}) #{user.phone_number}" %></div>
+<h4>ADDRESS</h4>
+  <div><%= "#{user.address_number} #{user.street_name}"%></div>
+  <div><%= "Apartment: #{user.apartment_number}" if user.apartment_number?%></div>
+  <div><%= "#{user.city}, #{user.state}, #{user.zip_code}"%></div>
+
+

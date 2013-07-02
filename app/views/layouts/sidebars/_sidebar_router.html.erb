@@ -1,0 +1,9 @@
+<aside class="span3">
+	<% if signed_in? && current_user.admin? %>
+		<%= render 'layouts/sidebars/admin_sidebar' %>
+	<% elsif signed_in? %>
+		<%= render 'layouts/sidebars/user_sidebar' %>
+	<% else %>
+		<%= render 'layouts/sidebars/guest_sidebar' %>
+	<% end %>
+</aside>

@@ -1,0 +1,29 @@
+<% provide(:title, "#{current_user.first_name} #{current_user.last_name}") %>
+<h2>Pending work updates</h2>
+
+
+<% if @works_pending.any? %>
+  <div class="accordion" id="accordion-pending">
+    <%= form_tag(admin_works_pending_path, method: :put) do %>
+      <% @works_pending.each do |work| %>
+        <div class="accordion-group">
+          <span class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-pending"
+              data-target="#collapse<%=work.id%>"><%= render 'work_pending_header', work: work %>
+            </a>
+          </span>
+          <div id="collapse<%=work.id%>" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <%= render 'admin/works/admin_view_work', work: work %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="actions">
+        <%= submit_tag "Update pending works", id: "update-pending", class: "btn btn-medium btn-custom" %>
+      </div> 
+    <% end %>
+  </div>
+<% else %>
+  <div class="no-data-available">No Pending Work Updates</div>
+<% end %>

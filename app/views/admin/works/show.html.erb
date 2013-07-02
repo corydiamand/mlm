@@ -1,0 +1,8 @@
+<% provide(:title, "#{@work.title}") %>
+<h2><%= @work.title %></h2>
+
+<% if @work.pending? %>
+  <div class="pending-alert">This work is pending.  Please review and update changes <%= 
+    link_to "here", admin_works_pending_path %></div>
+<% end %>
+<%= render 'admin/works/admin_view_work', work: @work %>

@@ -1,0 +1,28 @@
+<h4>TITLE</h4>
+<div><%= "#{work.title}" %></div>
+<h4>DURATION</h4>
+  <div><%= work.duration.blank? ? not_provided : work.duration %></div>
+<h4>COPYRIGHT DATE</h4>
+  <div><%= work.copyright_date.blank? ? not_provided : work.copyright_date  %></div>
+<h4>CLAIMS</h4>
+  <% work.work_claims.each do |wc| %>
+    <div><%= "#{wc.user.first_name} #{wc.user.last_name}: #{wc.mr_share}%" %></div>
+  <% end %>
+<h4>AUDIO PRODUCTS</h4>
+  <% if work.audio_products.empty? %>
+    <%= not_provided %>
+  <% else %>
+    <% work.audio_products.each do |ap| %>
+      <div>Album: <%= "#{ap.album}" %></div>
+      <div>Artist: <%= "#{ap.artist}" %></div>
+      <div>Label: <%= "#{ap.label}" %></div>
+      <div>Catalog Number: <%= "#{ap.catalog_number}" %></div>
+    <% end %>
+  <% end %>
+<% unless work.attachment.blank? %>
+
+  <div class="admin-split-sheet"><%= link_to "SPLIT SHEET", work.attachment.url, target: :blank %></div>
+<% end %>
+
+
+
