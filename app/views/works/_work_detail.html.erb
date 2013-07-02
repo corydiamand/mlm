@@ -7,7 +7,8 @@
 <% end %>
 
 <div class="edit-work">
-  <%= link_to "View/Edit this work", edit_user_work_path(current_user, work) %>
+  <%= link_to "View/Edit this work", 
+    current_user.admin? ? admin_work_path(work) : edit_user_work_path(current_user, work) %>
 </div>
 
 <% if work.audio_products.any? %>

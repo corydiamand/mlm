@@ -224,7 +224,7 @@ aside {
 
 /* statements */
 
-#no_statement {
+.no-data-available {
   margin-top: 120px;
   margin-bottom: 150px;
   color: $sidebarGray;
@@ -449,3 +449,20 @@ aside {
 #update-pending{
   float: right;
 }
+
+.admin-split-sheet{
+  font-size: 1.3em;
+  margin: 15px 0px 15px;
+  font-weight: bold;
+}
+
+.pending-alert{
+  color: $pending;
+  font-style: italic;
+}
+
+.badge{
+  position: absolute;
+  margin-left: 5px;
+}
+

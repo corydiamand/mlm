@@ -119,16 +119,4 @@ describe 'Works Pages' do
       end
     end
   end
-
-  describe "as an admin" do
-
-    before do 
-      sign_in_through_ui admin
-      visit user_works_path user
-    end
-
-    it "should display the mr share" do
-      page.should have_selector('div', text: "#{claim.mr_share}")
-    end
-  end
 end
