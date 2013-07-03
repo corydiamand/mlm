@@ -24,4 +24,11 @@ class ApplicationController < ActionController::Base
       redirect_to(root_path) unless current_user.admin?
     end
 
+    def pending_count
+      if current_user.admin?
+        @user_notifications ||= User.pending.count
+        @work_notifications ||= Work.pending.count
+      end
+    end
+    
 end

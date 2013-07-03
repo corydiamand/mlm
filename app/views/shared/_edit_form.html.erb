@@ -35,7 +35,7 @@
 				<%= f.password_field :password_confirmation, class: "input-medium" %>
 			</div>
 		</div>
-		<%= f.hidden_field :pending, value: true %>
+		<%= f.hidden_field :pending, value: true unless current_user.admin? %>
 		<div class="row_form">
 			<%= f.submit "Save changes", class: "btn btn-large btn-custom" %>
 		</div>

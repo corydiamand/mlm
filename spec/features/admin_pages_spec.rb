@@ -147,7 +147,7 @@ describe 'Admin Pages' do
     end
   end
 
-  context "View Work" do
+  context "View work" do
     before { visit admin_work_path(work) }
 
     it "should display the work detail" do
@@ -158,5 +158,16 @@ describe 'Admin Pages' do
     it "should be pending" do
       page.should have_content "This work is pending"
     end
+  end
+
+  context "Edit self" do
+    before { visit edit_user_path admin }
+
+    it "admin should not be pending upon edit" do
+      page.fill_in "Password",                with: admin.password
+      page.fill_in "Confirm password",        with: admin.password
+      click_button "Save changes"
+      admin.reload.should_not be_pending
+    end 
   end
 end

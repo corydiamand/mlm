@@ -5,11 +5,6 @@ class Admin::ApplicationController < ApplicationController
 
   private
 
-  def pending_count
-    @user_notifications ||= User.pending.count
-    @work_notifications ||= Work.pending.count
-  end
-
   def admin_current_user
     @user ||= User.find(params[:user_id])
   end
