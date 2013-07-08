@@ -62,7 +62,9 @@ describe 'Admin Pages' do
       click_button "Update pending users"
       page.should have_content('User status updated')
       user.reload.should_not be_pending
+      page.should_not have_css(".badge-important", text: "0")
     end
+
 
     it "should render the page if no users are selected" do
       click_button "Update pending users"
