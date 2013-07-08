@@ -10,6 +10,6 @@
  *
  *= require_self
  *= require morris
- *= require jquery_ui
+ *= require jquery-ui
  *= require_tree .
  */
