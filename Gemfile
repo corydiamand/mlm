@@ -10,9 +10,10 @@ gem 'will_paginate', '3.0.3'
 gem 'mysql2'
 gem "fog"
 gem 'aws-sdk'
-gem 'jquery-rails'
 gem 'carrierwave'
-gem 'dotenv-rails' 
+gem 'dotenv-rails'
+gem 'jquery-rails'
+gem 'jquery-ui-rails' 
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.12.0'
@@ -32,8 +33,7 @@ group :assets do
   gem 'bootstrap-sass'
   gem 'morrisjs-rails'
   gem 'raphael-rails'
-  gem 'jquery-ui-rails'
-  
+
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
