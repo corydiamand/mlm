@@ -31,7 +31,7 @@ class Admin::UsersController < Admin::ApplicationController
       @found_users = User.order(:last_name, :first_name).where(
         "CONCAT(last_name, ' ' ,first_name) like ? OR 
          CONCAT(first_name, ' ', last_name) like ?", 
-         "%#{params[:term]}%", "%#{params[:term]}%")
+         "%#{params[:term]}.upcase%", "%#{params[:term]}.upcase%")
     end
 
     def find_user

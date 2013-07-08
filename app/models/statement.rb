@@ -12,6 +12,10 @@
 #  updated_at :datetime         not null
 #  date       :date
 #
+# Indexes
+#
+#  index_statements_on_user_id  (user_id)
+#
 
 class Statement < ActiveRecord::Base
   belongs_to :user

@@ -11,6 +11,10 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
+# Indexes
+#
+#  index_audio_products_on_work_id  (work_id)
+#
 
 require 'spec_helper'
 

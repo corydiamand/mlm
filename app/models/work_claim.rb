@@ -9,6 +9,11 @@
 #  updated_at :datetime         not null
 #  mr_share   :float
 #
+# Indexes
+#
+#  index_work_claims_on_user_id  (user_id)
+#  index_work_claims_on_work_id  (work_id)
+#
 
 class WorkClaim < ActiveRecord::Base
   belongs_to :user, inverse_of: :work_claims
