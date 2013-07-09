@@ -3,7 +3,11 @@
 <h4>EMAIL</h4>
   <div><%= user.email %></div>
 <h4>PHONE</h4>
-  <div><%= "(#{user.area_code}) #{user.phone_number}" %></div>
+  <% if user.area_code.blank? || user.phone_number.blank? # needs to be implimented similarly for address below %>
+    <%= not_provided %>
+  <% else %>
+    <div><%= "(#{user.area_code}) #{user.phone_number}" %></div>
+  <% end %>
 <h4>ADDRESS</h4>
   <div><%= "#{user.address_number} #{user.street_name}"%></div>
   <div><%= "Apartment: #{user.apartment_number}" if user.apartment_number?%></div>

@@ -25,6 +25,7 @@ class WorksController < ApplicationController
   end
 
   def edit
+    @current_claim = @work.work_claims.select { |claim| claim.user == current_user }
   end
 
   def update
@@ -40,7 +41,8 @@ class WorksController < ApplicationController
   private
   
   def correct_claim
-    @claim_users = Work.find(params[:id]).users
+    @work = Work.find(params[:id])
+    @claim_users = @work.users
     redirect_to(root_path) unless @claim_users.include?(current_user)
   end
 
