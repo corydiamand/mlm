@@ -1,7 +1,7 @@
 <div class="statements-body">
   <div id="view-toggle" class="btn btn-custom" >View graph</div>
   <div id="chart-head">Statement detail</div>
-  <%= content_tag :div, "", id: "statements-chart", data: {statements: @statements} %>
+  <%= content_tag :div, "", id: "statements-chart", data: {statements: stringifyAmount(@statements)} %>
   <div class="statements">
     <%= render 'statements/table_header' %>
     <%= render 'statements/statement_detail' %>

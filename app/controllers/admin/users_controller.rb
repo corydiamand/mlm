@@ -40,7 +40,7 @@ class Admin::UsersController < Admin::ApplicationController
         flash[:warning] = 'No users found'
         redirect_to admin_users_path
       else
-        redirect_to user_statements_path(@user)
+        redirect_to admin_user_statements_path(@user)
       end
     end
 
