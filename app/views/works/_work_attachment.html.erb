@@ -4,7 +4,7 @@
     <%= link_to_add_attachment("Add Split Sheet (optional)") %>
   <% else %>
     <div class="split-sheet">
-      <%= link_to add_image_to_name("View current split sheet", :search), f.object.attachment.url, target: :blank %>
+      <%= link_to add_image_to_name("View current split sheet", :search), f.object.attachment.url, target: 'blank' %>
     </div>
     <%= f.file_field :attachment %>
     <%= link_to_add_attachment("Change Split Sheet") %>
