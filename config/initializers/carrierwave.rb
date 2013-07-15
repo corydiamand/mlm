@@ -9,6 +9,7 @@ CarrierWave.configure do |config|
       aws_secret_access_key: ENV["S3_SECRET"]
     }
     config.fog_directory = ENV["S3_BUCKET"]
+    config.fog_directory = 'user_uploads'
     config.fog_public    = false
   end 
 end
