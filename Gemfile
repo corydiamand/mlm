@@ -13,7 +13,8 @@ gem 'aws-sdk'
 gem 'carrierwave'
 gem 'dotenv-rails'
 gem 'jquery-rails'
-gem 'jquery-ui-rails' 
+gem 'jquery-ui-rails'
+gem 'newrelic_rpm' 
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.12.0'
