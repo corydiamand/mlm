@@ -6,7 +6,7 @@ class WorksController < ApplicationController
   before_filter :set_current_work, only: [:edit, :update]
 
   def index
-    @works = current_user.works.order('title ASC')
+    @works = current_user.works.order('title ASC').includes(:audio_products, work_claims: :user)
   end
 
   def new

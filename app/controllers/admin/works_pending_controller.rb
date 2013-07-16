@@ -20,7 +20,7 @@ class Admin::WorksPendingController < Admin::ApplicationController
   private
 
   def pending_works
-    @works_pending = Work.pending
+    @works_pending = Work.pending.includes(:audio_products, work_claims: :user)
   end
 
 end
