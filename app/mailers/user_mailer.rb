@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "password_resets@missinglinkmusic.com"
+  default from: "no-reply@missinglinkmusic.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
