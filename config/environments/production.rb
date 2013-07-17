@@ -9,7 +9,7 @@ FirstPass::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -28,7 +28,7 @@ FirstPass::Application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = false
 
   # See everything in the log (default is :info)
   # config.log_level = :debug
@@ -66,7 +66,7 @@ FirstPass::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # ActionMailer Config
-  config.action_mailer.default_url_options = { :host => 'missinglinkmusic.com' }
+  config.action_mailer.default_url_options = { :host => 'clients.missinglinkmusic.com' }
   config.action_mailer.delivery_method = :smtp
   # change to true to allow email to be sent during development
   config.action_mailer.perform_deliveries = false
@@ -74,8 +74,10 @@ FirstPass::Application.configure do
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
     :address   => "smtp.mandrillapp.com",
-    :port      => 25,
+    :port      => 587,
+    :enable_starttls_auto => true,
     :user_name => ENV["MANDRILL_USERNAME"],
-    :password  => ENV["MANDRILL_API_KEY"]
+    :password  => ENV["MANDRILL_API_KEY"],
+    :authentication => 'login'
   }
 end
