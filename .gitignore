@@ -19,3 +19,6 @@
 
 # Ignore the env file
 .env
+
+#Ignore the ssl directory
+/ssl
