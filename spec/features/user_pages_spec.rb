@@ -46,6 +46,7 @@ describe "User Pages" do
       page.should have_link('My Royalties', href: user_statements_path(user))
       page.should have_link('My Catalog', href: user_works_path(user))
       page.should have_link('Submit New Work', href: new_user_work_path(user))
+      page.should have_content('Successfully signed in!')
     end
 
     it "should change the logo path" do

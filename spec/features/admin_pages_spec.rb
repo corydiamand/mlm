@@ -24,7 +24,8 @@ describe 'Admin Pages' do
 
   context "Layout" do
 
-    it "should render the sidebar" do
+    it "should render the sidebar and flash" do
+      page.should have_content('Successfully signed in!')
       page.should have_content "Pending Users"
       page.should have_content "Pending Works"
       page.should have_content "User Index"
