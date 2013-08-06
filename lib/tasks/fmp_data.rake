@@ -13,11 +13,11 @@ end
 
 def name_columns
 
-  filenames = { 'users.csv' => "\"first_name\",\"last_name\"", 
-            'claims.csv'=> "\"user_id\",\"work_id\",\"mr_share\"" ,
-            'works.csv'=> "\"title\",\"duration\",\"copyright_date_string\"" ,
-            'audio_products.csv' => "\"work_id\",\"artist\",\"album\",\"label\",\"catalog_number\"" ,
-            'statements.csv' => "\"user_id\",\"quarter\",\"year\",\"amount\",\"filename\",\"date_string\"" }
+  filenames = { 'users.csv' => %q{first_name,last_name,email,password,password_confirmation,apartment_number,address_number,street_name,city,state,zip_code,area_code,phone_number}, 
+            'claims.csv'=> %q{user_id,work_id,mr_share},
+            'works.csv'=> %q{title,duration,copyright_date_string},
+            'audio_products.csv' => %q{work_id,artist,album,label,catalog_number},
+            'statements.csv' => %q{user_id,quarter,year,amount,filename,date_string}}
 
 
   filenames.each do |path, columns|
@@ -34,8 +34,8 @@ end
 def make_users
   CSV.foreach('lib/assets/users.csv', :headers => true) do |row|
     user = User.new(row.to_hash)
-    user.email = 'temp@email.com'
-    user.save!(validate: false)
+    #user.email = 'temp@email.com'
+    user.save!
   end
 end
 
