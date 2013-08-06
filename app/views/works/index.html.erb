@@ -3,8 +3,12 @@
   Catalog detail for <%="#{@user.last_name}, #{@user.first_name}"%>*
 </div> 
 <p class="song-disclaimer">
-  *The songs below may not reflective of your entire registered catalog with Missing Link. If you would like to inform us of a commercial work not presented below, please 
-  <%= link_to 'submit a new work.', new_user_work_path(current_user) %>
+  *The songs below may not reflective of your entire registered catalog with Missing Link. If you would like to inform us of a commercial work not presented below, please
+  <% if current_user.admin? %>
+    submit a new work.
+  <% else %> 
+    <%= link_to 'submit a new work.', new_user_work_path(current_user) %>
+  <% end %>
 </p> 
 <div class="accordion" id="accordion-works">
   <% @works.each do |work| %>
