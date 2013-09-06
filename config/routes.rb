@@ -5,7 +5,7 @@ FirstPass::Application.routes.draw do
   resources :users, except: [:new, :destroy, :index] do
     resources :hosted_files, only: :show
     resources :works, except: :destroy
-    resources :statements, only: :index
+    resources :statements, only: [:index, :create]
     resources :audio_products, only: :create
   end
 
