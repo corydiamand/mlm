@@ -12,3 +12,5 @@ jQuery ->
       $('#user_search_name').val ui.item.label
       $('#user_search_name_id').val ui.item.id
   })
+
+  $("#user_search_name").focus()
