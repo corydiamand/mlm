@@ -52,6 +52,7 @@ group :test do
   gem 'factory_girl_rails', '4.1.0'
   gem 'poltergeist'
   gem 'launchy'
+  gem 'database_cleaner', :git => 'git://github.com/bmabey/database_cleaner.git'
 end
 
 group :production do
