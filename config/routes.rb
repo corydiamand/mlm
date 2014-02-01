@@ -15,6 +15,7 @@ FirstPass::Application.routes.draw do
     get :works_pending, controller: :works_pending, action: :index
     put :works_pending, controller: :works_pending, action: :update
     resources :works, only: [:show]
+    resources :statements
     resources :users, only: [:index] do
       get 'search', on: :collection
       resources :works, only: [:index]
