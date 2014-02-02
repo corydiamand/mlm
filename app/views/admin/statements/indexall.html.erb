@@ -1,0 +1,35 @@
+<%= will_paginate %>
+<div id ="admin-all-statements">
+	<div class="statement-table-header">
+	  <div id="date-header">Date</div>
+	  <div id="quarter-header">Quarter</div>
+	  <div id="year-header">Year</div>
+	  <div id="amount-header">Amount</div>
+	  <div id="download-header">Download</div>
+	  <div id="user-header">User</div>
+	</div>
+	<% @statements.each do |statement| %>
+	    <div id="<%= statement.id%>" class="statement-record">
+	      <div class="date-content">
+	        <%= statement.date.strftime('%b %d') %>
+	      </div>
+	      <div class="quarter-content">
+	        <%= statement.quarter %>
+	      </div>
+	      <div class="year-content">
+	        <%= statement.year %>
+	      </div>
+	      <div class="amount-content">
+	        <%= number_to_currency(statement.amount) %>
+	      </div>
+	      <div class="download-content">
+	        <%= link_to 'PDF', user_hosted_file_path(statement.user, statement.filename) %>
+	      </div>
+	      <div class="user-content">
+	        <%= link_to  "#{statement.user.last_name}, #{statement.user.first_name}", user_path(statement.user_id) %>
+	      </div>
+
+	    </div>
+	<% end %>
+
+</div>
