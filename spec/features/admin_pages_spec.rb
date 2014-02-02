@@ -151,8 +151,22 @@ describe 'Admin Pages' do
   end
 
   describe "All Statements" do
-    it "should display all statements ordered by date" do
-      
+    before { visit admin_allstatements_path}
+
+    it "should have a list of statements, atleast one, but less than 50" do
+      page.should have_content statement.date.strftime('%b %d')
+      if (Statement.count <= 50)
+        page.should have_css(".statement-record", :minimum => Statement.count)
+        page.should have_css(".statement-record", :maximum => 50)
+      else  
+        page.should have_css(".statement-record", :minimum => 1)
+        page.should have_css(".statement-record", :maximum => 50)
+      end
+    end
+
+
+    it "should have statements joined with user" do
+      page.should have_content statement.user.first_name
     end
   end
 
