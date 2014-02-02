@@ -150,6 +150,12 @@ describe 'Admin Pages' do
     end
   end
 
+  describe "All Statements" do
+    it "should display all statements ordered by date" do
+      
+    end
+  end
+
   context "View work" do
     before { visit admin_work_path(work) }
 
