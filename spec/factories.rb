@@ -11,6 +11,12 @@ FactoryGirl.define do
 		end
 	end
 
+  factory :session do
+    login Time.now
+    logout Time.now + (60*10) #10 minute long session
+    user_id 1
+  end
+
   factory :statement do
     quarter 'Q2'
     year '2013'

@@ -25,12 +25,6 @@
 #  password_digest        :string(255)
 #  pending                :boolean          default(FALSE)
 #
-# Indexes
-#
-#  index_users_on_email       (email)
-#  index_users_on_first_name  (first_name)
-#  index_users_on_last_name   (last_name)
-#
 
 require 'spec_helper'
 

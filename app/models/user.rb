@@ -25,12 +25,6 @@
 #  password_digest        :string(255)
 #  pending                :boolean          default(FALSE)
 #
-# Indexes
-#
-#  index_users_on_email       (email)
-#  index_users_on_first_name  (first_name)
-#  index_users_on_last_name   (last_name)
-#
 
 require 'digest'
 class User < ActiveRecord::Base
@@ -38,10 +32,11 @@ class User < ActiveRecord::Base
   has_many :statements
   has_many :work_claims, inverse_of: :user
   has_many :works, through: :work_claims
+  has_many :sessions
   attr_accessible :first_name, :last_name, :email, :area_code, :phone_number,
                   :apartment_number, :address_number, :street_name, :city,
                   :state, :zip_code, :password, :password_confirmation, :search_name,
-                  :search_name_id, :pending
+                  :search_name_id, :pending, :sessions
   scope :pending, where(pending: true)
 	validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
