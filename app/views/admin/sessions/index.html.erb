@@ -2,22 +2,22 @@
 <div id ="admin-all-sessions">
 	<div class="session-table-header">
 	  <div id="login-header">Login</div>
-	  <div id="quarter-header">Logout</div>
-	  <div id="year-header">Length</div>
+	  <div id="logout-header">Logout</div>
+	  <div id="length-header">Length</div>
 	  <div id="user-header">User</div>
 	</div>
 	<% @sessions.each do |session| %>
 	    <div id="<%= session.id%>" class="session-record">
-	      <div class="date-content">
+	      <div class="login-content">
 	        <%= session.login_to_est %>
 	      </div>
-	      <div class="quarter-content">
+	      <div class="logout-content">
 	        <%= session.logout_to_est %>
 	      </div>
-	      <div class="year-content">
+	      <div class="length-content">
 	        <%= "#{session.length} minutes" %>
 	      </div>
-	      <div class="amount-content">
+	      <div class="user-content">
 	        <%= "#{session.user.last_name}, #{session.user.first_name}" %>
 	      </div>
 	    </div>

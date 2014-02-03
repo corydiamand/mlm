@@ -25,6 +25,17 @@ describe Session do
 
 describe "Methods" do
 
+	it "should convert logout timestamp to EST and then string format" do 
+		session.login_to_est.should_not == session.login
+	end
+
+	it "should convert logout timestamp to EST and then string format" do 
+		session.logout_to_est.should_not == session.logout
+	end
+
+	it "should convert logout timestamp to EST" do 
+	end
+
 	it "should return a length" do
         session.length.should_not == nil
         session.length.should > 0

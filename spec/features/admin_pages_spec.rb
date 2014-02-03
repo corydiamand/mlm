@@ -164,8 +164,33 @@ describe 'Admin Pages' do
       end
     end
 
-
     it "should have statements joined with user" do
+      page.should have_content statement.user.first_name
+    end
+  end
+
+  describe "Sign-in Log" do
+    before { visit admin_sessions_path}
+
+    it "should have a list of sessions, atleast one, but less than 50" do
+      page.should have_css(".login-content")
+      page.should have_css(".logout-content")
+      page.should have_css(".length-content")
+      page.should have_css(".user-content")
+
+      page.should have_content("14'") #better changes this to 15' next year :p
+
+      if (Statement.count <= 50)
+        page.should have_css(".session-record", :minimum => Statement.count)
+        page.should have_css(".session-record", :maximum => 50)
+      else  
+        page.should have_css(".session-record", :minimum => 1)
+        page.should have_css(".session-record", :maximum => 50)
+      end
+
+    end
+
+    it "should have sessions joined with user" do
       page.should have_content statement.user.first_name
     end
   end
