@@ -304,6 +304,47 @@ aside {
   margin-top: 40px;
 }
 
+#admin-all-sessions{
+  width: 725px;
+  margin-top: 40px;
+}
+
+.session-table-header{
+  background-color: $missingLink;
+  padding: 6px 0px;
+
+  div{
+    font-weight: normal;
+    font-size: 1.2em;
+    color: $white;
+    display: inline-block;
+    width: 170px;
+    text-align: center;
+    &:last-child{
+      width: 140px;
+  } 
+  }
+} 
+
+.session-record {
+  border-bottom: 1px solid $footerGray;
+  div{
+    display: inline-block;
+    text-align: center;
+    width: 170px;
+    font-size: 1.2em;
+    padding: 10px 0px;
+    border-right: 1px solid $footerGray;
+    &.amount-content {
+      color: $cashGreen;
+    }
+    &:last-child{
+      border-right: 0px;
+      width: 136px;
+    }
+  }
+}
+
 /* works index */
 #accordion-works{
   .accordion-group{

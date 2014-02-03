@@ -1,0 +1,26 @@
+<%= will_paginate %>
+<div id ="admin-all-sessions">
+	<div class="session-table-header">
+	  <div id="login-header">Login</div>
+	  <div id="quarter-header">Logout</div>
+	  <div id="year-header">Length</div>
+	  <div id="user-header">User</div>
+	</div>
+	<% @sessions.each do |session| %>
+	    <div id="<%= session.id%>" class="session-record">
+	      <div class="date-content">
+	        <%= session.login_to_est %>
+	      </div>
+	      <div class="quarter-content">
+	        <%= session.logout_to_est %>
+	      </div>
+	      <div class="year-content">
+	        <%= "#{session.length} minutes" %>
+	      </div>
+	      <div class="amount-content">
+	        <%= "#{session.user.last_name}, #{session.user.first_name}" %>
+	      </div>
+	    </div>
+	<% end %>
+<%= will_paginate %>
+</div>

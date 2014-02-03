@@ -1,5 +1,6 @@
 class Admin::StatementsController < Admin::ApplicationController
   before_filter :admin_current_user, only: [:index]
+  before_filter :admin_user, only: [:indexall]
 
   def index
     @statements = @user.statements

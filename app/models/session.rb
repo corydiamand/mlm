@@ -14,7 +14,28 @@ class Session < ActiveRecord::Base
   belongs_to :user
   attr_accessible :login, :logout, :user_id
 
-  def length
-  	logout - login
+  def login_to_est
+  	if login != nil
+  		(login + Time.zone_offset('EST')).strftime("%b %e, %l:%M%p %y'")
+  	else
+  		"none"
+  	end
   end
+
+   def logout_to_est
+  	if logout != nil
+  		(logout + Time.zone_offset('EST')).strftime("%b %e, %l:%M%p %y'")
+  	else
+  		"Active"
+  	end
+  end
+
+  def length
+  	if login != nil && logout != nil
+  	(logout.to_i - login.to_i)/60
+  	else
+  		"?"
+  	end
+  end
+
 end
