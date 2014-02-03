@@ -12,7 +12,7 @@
 
 class Session < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :login, :logout
+  attr_accessible :login, :logout, :user_id
 
   def length
   	logout - login

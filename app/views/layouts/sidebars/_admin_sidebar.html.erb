@@ -13,6 +13,9 @@
 	<h3><%= link_to "All Statements", admin_allstatements_path() %></h3>
 </section>
 <section>
+  <h3><%= link_to "Sign-ins Log", admin_sessions_path() %></h3>
+</section>
+<section>
   <h3><%=link_to "My Admin Account", edit_user_path(current_user) %></h3>
 </section>
 <% if @user && !@user.admin? %>

@@ -17,6 +17,7 @@ FirstPass::Application.routes.draw do
     resources :works, only: [:show]
     get 'allstatements', to: "statements#indexall"
     resources :statements
+    resources :sessions
     resources :users, only: [:index] do
       get 'search', on: :collection
       resources :works, only: [:index]
