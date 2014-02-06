@@ -18,7 +18,7 @@ class Session < ActiveRecord::Base
   	if login != nil
   		(login + Time.zone_offset('EST')).strftime("%b %e, %l:%M%p %y'")
   	else
-  		"none"
+  		"None"
   	end
   end
 
@@ -26,7 +26,7 @@ class Session < ActiveRecord::Base
   	if logout != nil
   		(logout + Time.zone_offset('EST')).strftime("%b %e, %l:%M%p %y'")
   	else
-  		"Active"
+  		"Logout Not Captured"
   	end
   end
 
