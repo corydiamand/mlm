@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140202212531) do
+ActiveRecord::Schema.define(:version => 20140206100152) do
 
   create_table "audio_products", :force => true do |t|
     t.integer  "work_id"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(:version => 20140202212531) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "portal_updates", :force => true do |t|
+    t.datetime "date"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "portal_updates", ["user_id"], :name => "index_portal_updates_on_user_id"
 
   create_table "sessions", :force => true do |t|
     t.datetime "login"
