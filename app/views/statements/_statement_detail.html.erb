@@ -16,6 +16,9 @@
       <div class="download-content">
         <%= link_to 'PDF', user_hosted_file_path(statement.user, statement.filename) %>
       </div>
+      <div class="delete-content">
+        <%= button_to  "Delete", admin_statement_path(statement.id), method: :delete, :confirm => "Are you absolutely sure you want to delete this statement?" %>
+      </div>
     </div>
   <% end %>
 </div>

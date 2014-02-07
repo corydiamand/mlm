@@ -1,5 +1,4 @@
-module 
-
+module PortalUpdates
 
 	require 'net/http'
 	require 'net/https'
@@ -7,19 +6,17 @@ module
 	require 'json'
 
 	class String
-
 	  def to_fmquery
 	    "-" + URI.encode(self)
 	  end    
-
 	end
-	puts "past String class"
 
 	class Catalyst
 
 	  attr_accessor :base_uri, :db, :layout
 
-	  def initialize(base_uri = 'http://192.168.1.2/fmi/xml/fmresultset.xml/', db = "Catalyst 2.0")
+	  #def initialize(base_uri = 'http://192.168.1.2/fmi/xml/fmresultset.xml/', db = "Catalyst 2.0")
+	  def initialize(base_uri = 'http://100.1.53.23/fmi/xml/fmresultset.xml/', db = "Catalyst 2.0")
 	    @base_uri = URI(base_uri)
 	    @db = db
 	  end
@@ -55,7 +52,7 @@ module
 	    begin
 	      Net::HTTP.get_response(base_uri + query) 
 	    rescue
-	      raise "Big Problem detected!"
+	      raise "Unable to contact filemaker database."
 	    end
 	  end
 	  
@@ -175,7 +172,7 @@ module
 	  end
 
 	  def post_new_users
-	    url = "https://clients.missinglinkmusic.com/users"
+	    url = "localhost:3000/users"
 	    uri = URI.parse(url)
 	    users = get_new_users
 	    headers = {"Content-Type" => "application/json"}
@@ -189,7 +186,7 @@ module
 	  end
 
 	  def post_new_statements
-	    url = "https://clients.missinglinkmusic.com/users"
+	    url = "localhost:3000/users"
 	    uri = URI.parse(url)
 	    statements = get_new_statements
 	    headers = {"Content-Type" => "application/json"}
@@ -256,9 +253,11 @@ module
 
 	#make this less scripty?
 	######### Delete this whenever  ###########
-	database = Catalyst.new
-	database.post_new_users
-	database.post_new_statements
+	
+	#database = Catalyst.new
+	#database.post_new_users
+	#database.post_new_statements
+	
 
 	puts "past Catalyst where it posts to database"
 

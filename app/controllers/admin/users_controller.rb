@@ -1,12 +1,18 @@
 class Admin::UsersController < Admin::ApplicationController
   before_filter :admin_current_user, only: :edit
-
+  before_filter :admin_user, only: :destroy
   def index
     @users = User.order('last_name ASC').paginate(page: params[:page])
   end
 
   def edit
     render 'users/edit'
+  end
+
+  def destroy
+  User.destroy(params[:id])
+  redirect_to admin_users_path
+  flash[:success] = "Successfully deleted user."
   end
 
   def search

@@ -114,6 +114,14 @@ p {
   -webkit-font-smoothing: antialiased;
 }
 
+.container{
+  width: 1130px;
+}
+
+.span8{
+  width:740px;
+}
+
 /* header */
 nav {
   float: right;
@@ -300,7 +308,7 @@ aside {
 }
 
 #admin-all-statements{
-  width: 725px;
+  width: 830px;
   margin-top: 40px;
 }
 

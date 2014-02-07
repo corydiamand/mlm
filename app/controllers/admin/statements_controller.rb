@@ -8,7 +8,13 @@ class Admin::StatementsController < Admin::ApplicationController
   end
 
   def indexall
-  	@statements = Statement.includes(:user).find(:all, :order => "date").paginate(page: params[:page],:per_page => 50)
+  	@statements = Statement.includes(:user).find(:all, :order => "created_at").paginate(page: params[:page],:per_page => 50)
+  end
+
+  def destroy
+  	Statement.destroy(params[:id])
+  	redirect_to :back
+  	flash[:success] = "Successfully deleted statement."
   end
 
 end
