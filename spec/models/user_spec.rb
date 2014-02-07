@@ -155,7 +155,8 @@ describe 'Users' do
 
       it "should deliver an email to the user" do
         user.send_password_reset
-        last_email.to.should include(user.email)
+        ActionMailer::Base.deliveries[0]["To"].to_s.should include(user.email)
+        #last_email.to.should include(user.email)
       end
     end
   end

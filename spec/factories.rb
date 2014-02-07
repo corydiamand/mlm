@@ -11,6 +11,11 @@ FactoryGirl.define do
 		end
 	end
 
+  factory :portal_update do
+    date Time.now
+    user
+  end
+
   factory :session do
     login Time.now
     logout Time.now + (60*10) #10 minute long session

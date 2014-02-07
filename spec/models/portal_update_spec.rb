@@ -12,9 +12,9 @@
 require 'spec_helper'
 
 describe PortalUpdate do
-  	let(:PortalUpdate) { FactoryGirl.create(:PortalUpdate) }
+  	let(:portal_update) { FactoryGirl.create(:portal_update) }
 
-	subject { PortalUpdate}
+	subject { portal_update}
 
 	it { should respond_to(:id) }
 	it { should respond_to(:date) }
