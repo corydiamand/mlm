@@ -19,11 +19,11 @@ FirstPass::Application.routes.draw do
     resources :statements
     resources :sessions
     resources :portal_updates
-    resources :users, only: :destroy
-    resources :users, only: [:index] do
+    resources :users, only: [:index, :destroy] do
       get 'search', on: :collection
       resources :works, only: [:index]
       resources :statements, only: :index
+      resource :users, only: :destroy
     end
   end 
 
