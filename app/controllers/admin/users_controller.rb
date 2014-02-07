@@ -1,6 +1,6 @@
 class Admin::UsersController < Admin::ApplicationController
   before_filter :admin_current_user, only: :edit
-  before_filter :admin_user, only: :destroy
+  before_filter :admin_user, only: [:destroy, :index]
   
   def index
     @users = User.order('last_name ASC').paginate(page: params[:page])
