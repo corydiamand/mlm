@@ -16,7 +16,7 @@ module PortalUpdates
 	  attr_accessor :base_uri, :db, :layout
 
 	  #def initialize(base_uri = 'http://192.168.1.2/fmi/xml/fmresultset.xml/', db = "Catalyst 2.0")
-	  def initialize(base_uri = 'http://100.1.53.23/fmi/xml/fmresultset.xml/', db = "Catalyst 2.0")
+	  def initialize(base_uri = 'http://100.1.53.23:4120/fmi/xml/fmresultset.xml/', db = "Catalyst 2.0")
 	    @base_uri = URI(base_uri)
 	    @db = db
 	  end
@@ -172,33 +172,38 @@ module PortalUpdates
 	  end
 
 	  def post_new_users
-	    url = "localhost:3000/users"
+	    url = "http://localhost:3000/users"
 	    uri = URI.parse(url)
 	    users = get_new_users
 	    headers = {"Content-Type" => "application/json"}
 	    http = Net::HTTP.new(uri.host, uri.port)
-	    http.use_ssl = true
-	    users.each do |user|
-	      response = http.post(uri.path, user, headers)
-	      puts response.code
-	      puts response.body
+	    users.each do  |user|	    
+	    	
 	    end
+	    #http.use_ssl = true
+	    #users.each do |user|
+	      #response = http.post(uri.path, user, headers)
+	      #puts response.code
+	      #puts response.body
+	      #User.new(user)
+	    #end
 	  end
 
 	  def post_new_statements
-	    url = "localhost:3000/users"
+	    url = "http://localhost:3000/users"
 	    uri = URI.parse(url)
 	    statements = get_new_statements
 	    headers = {"Content-Type" => "application/json"}
 	    http = Net::HTTP.new(uri.host, uri.port)
-	    http.use_ssl = true
-	    statements.each do |statement|
-	      id = JSON.parse(statement)["statement"]["user_id"]
-	      path = uri.path + "/#{id}/statements"
-	      response = http.post(path, statement, headers)
-	      puts response.code
-	      puts response.body
-	    end
+	    puts statements.class
+	    #http.use_ssl = true
+	    #statements.each do |statement|
+	    #  id = JSON.parse(statement)["statement"]["user_id"]
+	    #  path = uri.path + "/#{id}/statements"
+	    #  response = http.post(path, statement, headers)
+	   #   puts response.code
+	   #   puts response.body
+	   # end
 	  end
 
 

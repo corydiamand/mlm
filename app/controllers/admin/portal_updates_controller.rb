@@ -15,9 +15,11 @@ class Admin::PortalUpdatesController < Admin::ApplicationController
 	def create
 		PortalUpdate.create(:date =>Time.now, :user_id => current_user.id)
 		begin
+			status = Timeout::timeout(20){
 			database = PortalUpdates::Catalyst.new
 			database.post_new_users
 			database.post_new_statements
+			}
 		rescue Exception => e
 			redirect_to :back
 			flash[:error] = "Update failed!  #{e}"

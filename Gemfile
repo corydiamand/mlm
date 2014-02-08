@@ -15,12 +15,12 @@ gem 'dotenv-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'newrelic_rpm' 
-#gem 'thin'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.12.0'
   gem 'guard-rspec', '1.2.1'
   gem 'pry-rails'
+  #gem 'thin'
 end
 
 group :development do

@@ -167,6 +167,15 @@ describe 'Admin Pages' do
     it "should have statements joined with user" do
       page.should have_content statement.user.first_name
     end
+
+    it "should have a delete button" do
+      page.should have_css(".delete-content .button_to")
+      first_count = Statement.count
+      first(".delete-content input").click
+
+      expect{ delete :destroy, id: @contact }.to change(Contact,:count).by(-1) 
+
+    end
   end
 
   describe "Sign-in Log" do
