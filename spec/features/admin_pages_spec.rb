@@ -3,6 +3,7 @@ require 'spec_helper'
 describe 'Admin Pages' do
   let!(:user) { FactoryGirl.create(:user) }
   let!(:statement) { FactoryGirl.create(:statement, user_id: user.id) }
+  let!(:other_statement) { FactoryGirl.create(:statement, user_id: other_user.id) }
   let(:other_user) { FactoryGirl.create(:user) }
   let(:admin) { FactoryGirl.create(:admin) }
   let(:work) { FactoryGirl.create(:work) }
@@ -172,9 +173,6 @@ describe 'Admin Pages' do
       page.should have_css(".delete-content .button_to")
       first_count = Statement.count
       first(".delete-content input").click
-
-      expect{ delete :destroy, id: @contact }.to change(Contact,:count).by(-1) 
-
     end
   end
 
