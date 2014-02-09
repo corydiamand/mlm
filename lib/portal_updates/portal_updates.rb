@@ -15,7 +15,6 @@ module PortalUpdates
 
 	  attr_accessor :base_uri, :db, :layout
 
-	  #def initialize(base_uri = 'http://192.168.1.2/fmi/xml/fmresultset.xml/', db = "Catalyst 2.0")
 	  def initialize(base_uri = 'http://100.1.53.23:4120/fmi/xml/fmresultset.xml/', db = "Catalyst 2.0")
 	    @base_uri = URI(base_uri)
 	    @db = db
@@ -138,7 +137,7 @@ module PortalUpdates
 	          password_confirmation: password
 	        }
 	      }
-	      users << new_user.to_json
+	      users << new_user
 	    end
 	    return users
 	  end
@@ -166,7 +165,7 @@ module PortalUpdates
 	          date_string: date_string
 	        }
 	      }
-	      statements << new_statement.to_json
+	      statements << new_statement
 	    end
 	    return statements
 	  end
@@ -178,15 +177,10 @@ module PortalUpdates
 	    headers = {"Content-Type" => "application/json"}
 	    http = Net::HTTP.new(uri.host, uri.port)
 	    users.each do  |user|	    
-	    	
+	    	new_user = ::User.new(user[:user])
+	    	new_user.save
+	    	puts "user saved!"
 	    end
-	    #http.use_ssl = true
-	    #users.each do |user|
-	      #response = http.post(uri.path, user, headers)
-	      #puts response.code
-	      #puts response.body
-	      #User.new(user)
-	    #end
 	  end
 
 	  def post_new_statements
@@ -195,15 +189,15 @@ module PortalUpdates
 	    statements = get_new_statements
 	    headers = {"Content-Type" => "application/json"}
 	    http = Net::HTTP.new(uri.host, uri.port)
-	    puts statements.class
-	    #http.use_ssl = true
-	    #statements.each do |statement|
-	    #  id = JSON.parse(statement)["statement"]["user_id"]
-	    #  path = uri.path + "/#{id}/statements"
-	    #  response = http.post(path, statement, headers)
-	   #   puts response.code
-	   #   puts response.body
-	   # end
+	    statements.each do  |statement|	    
+	    	new_statement = ::Statement.new(statement[:statement])
+	    	begin
+	    		new_statement.save
+	    		puts "Statement Saved!"
+	    	rescue Exception => e
+	    		puts e
+	    	end
+	    end
 	  end
 
 
