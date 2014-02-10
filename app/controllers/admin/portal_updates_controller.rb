@@ -25,7 +25,7 @@ class Admin::PortalUpdatesController < Admin::ApplicationController
 			flash[:error] = "Update failed!  #{e}"
 		else
 			redirect_to :back
-			flash[:success] = "Update in progress"		
+			flash[:success] = "Updated successfully"		
 		end
 	end
 
