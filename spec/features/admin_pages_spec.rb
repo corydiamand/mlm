@@ -109,6 +109,12 @@ describe 'Admin Pages' do
     it "should update the sidebar" do
       page.should have_content "View User Catalog"
     end
+
+    it "should have delete buttons for statements and users" do
+      page.should have_css(".delete-content .button_to")
+      first(".statements-body .delete-content input").click
+    end
+
   end
 
   context "User works" do
@@ -118,7 +124,13 @@ describe 'Admin Pages' do
       page.should have_selector('div', text: "#{claim.mr_share}")
     end
   end
-
+=begin
+  it "should have a delete button" do
+      page.should have_css(".delete-content .button_to")
+      first_count = Statement.count
+      first(".delete-content input").click
+    end
+=end
   describe "User Index" do
 
     context "Search function" do
@@ -199,6 +211,13 @@ describe 'Admin Pages' do
 
     it "should have sessions joined with user" do
       page.should have_content statement.user.first_name
+    end
+  end
+
+  context "Update Portal" do
+    before { visit admin_portal_updates_path(work) }
+    it "should have an update button" do
+      page.should have_css("form.button_to")
     end
   end
 

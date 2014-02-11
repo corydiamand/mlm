@@ -8,6 +8,10 @@ describe Admin::UsersController do
 		@user = FactoryGirl.create(:user)
 	end
 
+	after :all do 
+		Admin::UsersController.before_filter :signed_in_user, :admin_user, :pending_count
+	end
+
 	describe "Delete destroy" do
 
 		it "lowers the number of users by 1" do

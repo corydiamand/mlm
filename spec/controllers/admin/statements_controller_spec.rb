@@ -8,6 +8,11 @@ describe Admin::StatementsController do
 		@statement = FactoryGirl.create(:statement)
 	end
 
+	after :all do 
+		Admin::StatementsController.before_filter :signed_in_user, :admin_user, :pending_count
+	end
+
+
 	describe "Delete destroy" do
 
 		it "lowers the number of statements by 1" do
@@ -21,4 +26,5 @@ describe Admin::StatementsController do
 		it "redirects to all statement page" do 
 		end 
 	end 
+	#Admin::StatementsController.before_filter :signed_in_user, :admin_user, :pending_count
 end
