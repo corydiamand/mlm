@@ -8,6 +8,13 @@ class Admin::WorksController < Admin::ApplicationController
   end
 
   def show
+    #@work ||= Work.find(params[:id])
+  end
+
+  def destroy
+    Work.destroy(params[:id])
+    redirect_to admin_user_works_path(params[:format])
+    flash[:success] = "Successfully deleted work."
   end
 
 end

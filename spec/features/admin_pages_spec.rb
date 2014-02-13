@@ -118,19 +118,19 @@ describe 'Admin Pages' do
   end
 
   context "User works" do
-    before { visit admin_user_works_path(user) }
+    before { visit admin_work_path(work) }
 
     it "should display the mr share" do
       page.should have_selector('div', text: "#{claim.mr_share}")
     end
-  end
-=begin
-  it "should have a delete button" do
-      page.should have_css(".delete-content .button_to")
-      first_count = Statement.count
-      first(".delete-content input").click
+    it "should have a delete button" do
+      page.should have_css(".delete-work-button")
     end
-=end
+
+  end
+
+
+
   describe "User Index" do
 
     context "Search function" do

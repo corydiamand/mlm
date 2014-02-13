@@ -14,7 +14,7 @@ FirstPass::Application.routes.draw do
     put :users_pending, controller: :users_pending, action: :update
     get :works_pending, controller: :works_pending, action: :index
     put :works_pending, controller: :works_pending, action: :update
-    resources :works, only: [:show]
+    resources :works, only: [:show, :destroy]
     get 'allstatements', to: "statements#indexall"
     resources :statements
     resources :sessions

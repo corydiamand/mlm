@@ -190,13 +190,10 @@ module PortalUpdates
 	    headers = {"Content-Type" => "application/json"}
 	    http = Net::HTTP.new(uri.host, uri.port)
 	    statements.each do  |statement|	    
-	    	new_statement = ::Statement.new(statement[:statement])
-	    	begin
-	    		new_statement.save
+	    	new_statement = ::Statement.new(statement[:statement]) 	
+	    		new_statement.save!
+	    		puts statement.inspect
 	    		puts "Statement Saved!"
-	    	rescue Exception => e
-	    		puts e
-	    	end
 	    end
 	  end
 
