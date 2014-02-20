@@ -24,19 +24,20 @@
 #  password_reset_sent_at :datetime
 #  password_digest        :string(255)
 #  pending                :boolean          default(FALSE)
+#  web_id                 :integer
 #
 
 require 'digest'
 class User < ActiveRecord::Base
   has_secure_password
-  has_many :statements
+  #has_many :statements
   has_many :work_claims, inverse_of: :user
   has_many :works, through: :work_claims
   has_many :sessions
   attr_accessible :first_name, :last_name, :email, :area_code, :phone_number,
                   :apartment_number, :address_number, :street_name, :city,
                   :state, :zip_code, :password, :password_confirmation, :search_name,
-                  :search_name_id, :pending, :sessions
+                  :search_name_id, :pending, :sessions, :web_id
   scope :pending, where(pending: true)
 	validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
@@ -72,6 +73,10 @@ class User < ActiveRecord::Base
 
   def search_name_id(id)
     @search_name_id = id
+  end
+
+  def statements
+    Statement.where(:web_id => self.web_id)
   end
 
 

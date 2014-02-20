@@ -4,7 +4,7 @@ describe "Authentication Requests" do
 
     let(:user) { FactoryGirl.create(:user) }
     let(:other_user) { FactoryGirl.create(:user) }
-    let!(:statement) { FactoryGirl.create(:statement, user_id: user.id) }
+    let!(:statement) { FactoryGirl.create(:statement, web_id: user.web_id) }
     let(:other_user_work) { FactoryGirl.create(:work) }
     let!(:claim) { FactoryGirl.create(:work_claim, user: other_user, work: other_user_work) }
     let(:admin) { FactoryGirl.create(:admin) }

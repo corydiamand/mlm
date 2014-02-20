@@ -3,7 +3,6 @@
 # Table name: statements
 #
 #  id         :integer          not null, primary key
-#  user_id    :integer
 #  quarter    :string(255)
 #  year       :string(255)
 #  amount     :float
@@ -11,6 +10,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  date       :date
+#  web_id     :integer
 #
 
 require 'spec_helper'
@@ -18,23 +18,25 @@ require 'spec_helper'
 describe 'Statements' do
 
   let(:user) { FactoryGirl.create(:user) }
-  let(:statement) { FactoryGirl.create(:statement, user: user) }
+  let(:statement) { FactoryGirl.create(:statement, web_id: user.web_id) }
 
   subject { statement }
 
-  it { should respond_to(:user_id) }
+  #it { should respond_to(:user_id) }
   it { should respond_to(:quarter) }
   it { should respond_to(:year) }
   it { should respond_to(:amount) }
   it { should respond_to(:filename) }
   it { should respond_to(:date) }
   it { should respond_to(:date_string) }
+  it { should respond_to(:web_id) }
   its(:user) { should == user }
 
   it { should be_valid }
 
   describe "Validations" do
 
+=begin
     context "user id" do
 
       it "should not be valid when user_id is not present" do
@@ -43,6 +45,7 @@ describe 'Statements' do
       end
     end
 
+=end 
     context "filename" do
 
       it "should not be valid when filename is not present" do
@@ -100,8 +103,8 @@ describe 'Statements' do
   describe "Associations" do
 
     context "User" do
-      let!(:older_statement) { FactoryGirl.create(:statement, user: user, date_string: '06/01/1999') }
-      let!(:newer_statement) { FactoryGirl.create(:statement, user: user, date_string: '01/01/2000') }
+      let!(:older_statement) { FactoryGirl.create(:statement, web_id: 1, date_string: '06/01/1999') }
+      let!(:newer_statement) { FactoryGirl.create(:statement, web_id: 1, date_string: '01/01/2000') }
 
       it "should display the statements in the right order" do
         user.statements.should == [newer_statement, older_statement]

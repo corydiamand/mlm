@@ -26,7 +26,7 @@
 	        <%= link_to 'PDF', user_hosted_file_path(statement.user, statement.filename) %>
 	      </div>
 	      <div class="user-content">
-	        <%= link_to  "#{statement.user.last_name}, #{statement.user.first_name}", admin_user_statements_path(statement.user_id) %>
+	        <%= link_to  "#{statement.user.last_name}, #{statement.user.first_name}", admin_user_statements_path(statement.web_id) %>
 	      </div>
 	      <div class="delete-content">
 	        <%= button_to  "Delete", admin_statement_path(statement.id), method: :delete, :confirm => "Are you absolutely sure you want to delete this statement?" %>

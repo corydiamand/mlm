@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140206100152) do
+ActiveRecord::Schema.define(:version => 20140219230516) do
 
   create_table "audio_products", :force => true do |t|
     t.integer  "work_id"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(:version => 20140206100152) do
   add_index "sessions", ["user_id"], :name => "index_sessions_on_user_id"
 
   create_table "statements", :force => true do |t|
-    t.integer  "user_id"
     t.string   "quarter"
     t.string   "year"
     t.float    "amount"
@@ -60,9 +59,8 @@ ActiveRecord::Schema.define(:version => 20140206100152) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.date     "date"
+    t.integer  "web_id"
   end
-
-  add_index "statements", ["user_id"], :name => "index_statements_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
@@ -86,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20140206100152) do
     t.datetime "password_reset_sent_at"
     t.string   "password_digest"
     t.boolean  "pending",                :default => false
+    t.integer  "web_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

@@ -5,6 +5,7 @@ FactoryGirl.define do
 		sequence(:email)	{ |n| "person_#{n}@example.com" }
 		password 			          "foobar"
     password_confirmation   "foobar"
+    web_id 1
 
 		factory :admin do
 			admin true
@@ -27,7 +28,7 @@ FactoryGirl.define do
     year '2013'
     sequence(:amount) { |n| "100#{n}" }
     filename 'Test.pdf'
-    user
+    web_id 1
     date_string '01/01/2000' 
   end
 

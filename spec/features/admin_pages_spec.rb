@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe 'Admin Pages' do
   let!(:user) { FactoryGirl.create(:user) }
-  let!(:statement) { FactoryGirl.create(:statement, user_id: user.id) }
-  let!(:other_statement) { FactoryGirl.create(:statement, user_id: other_user.id) }
+  let!(:statement) { FactoryGirl.create(:statement, web_id: user.web_id) }
+  let!(:other_statement) { FactoryGirl.create(:statement, web_id: other_user.web_id) }
   let(:other_user) { FactoryGirl.create(:user) }
   let(:admin) { FactoryGirl.create(:admin) }
   let(:work) { FactoryGirl.create(:work) }
@@ -210,7 +210,7 @@ describe 'Admin Pages' do
     end
 
     it "should have sessions joined with user" do
-      page.should have_content statement.user.first_name
+      page.should have_content user.first_name
     end
   end
 

@@ -3,7 +3,6 @@
 # Table name: statements
 #
 #  id         :integer          not null, primary key
-#  user_id    :integer
 #  quarter    :string(255)
 #  year       :string(255)
 #  amount     :float
@@ -11,15 +10,15 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  date       :date
+#  web_id     :integer
 #
 
 class Statement < ActiveRecord::Base
-  belongs_to :user
+  #belongs_to :user
   attr_accessor :date_string
-  attr_accessible :user_id, :amount, :filename, :quarter, :year, :date_string
+  attr_accessible :user_id, :amount, :filename, :quarter, :year, :date_string, :web_id
   default_scope order('date DESC')
-
-  validates :user_id, presence: true
+  #validates :user_id, presence: true
   validates :filename, presence: true
   validates :quarter, presence: true
   validates :year, presence: true
@@ -27,6 +26,10 @@ class Statement < ActiveRecord::Base
   validates :date_string, presence: true
 
   before_save { convert_string_to_date }
+
+  def user 
+    User.where(:web_id => self.web_id).first
+  end
 
   private
 

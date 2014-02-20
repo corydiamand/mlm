@@ -1,5 +1,4 @@
-module PortalUpdates
-
+module PortalSync
 	require 'net/http'
 	require 'net/https'
 	require 'nokogiri'
@@ -104,7 +103,7 @@ module PortalUpdates
 	  def get_new_users
 	    self.layout = "Payees"
 	    users = []
-	    request = do_action(@base_uri, db, layout, "find", portal_tag: 1)
+	    request = do_action(@base_uri, db, layout, "find") #removed query string and now displays all users.
 	    body = Nokogiri::XML::Document.parse(request.body).remove_namespaces!
 	    payees = body.xpath("//resultset/record")
 	    payees.each do |user|
@@ -144,70 +143,67 @@ module PortalUpdates
 	    return users
 	  end
 
-	  def get_new_statements
-	    self.layout = "Statements"
-	    statements = []
-	    request = do_action(@base_uri, db, layout, "find", portal_tag: 1)
-	    body = Nokogiri::XML::Document.parse(request.body).remove_namespaces!
-	    fmstatements = body.xpath("//resultset/record")
-	    fmstatements.each do |statement|
-	      web_id = statement.xpath("field[@name='web_id']").text
-	      quarter = statement.xpath("field[@name='quarter']").text
-	      year = statement.xpath("field[@name='year']").text
-	      amount = statement.xpath("field[@name='amount']").text
-	      filename = statement.xpath("field[@name='filename']").text
-	      date_string = statement.xpath("field[@name='date']").text
-	      new_statement = {
-	        statement: {
-	          web_id: web_id,
-	          quarter: quarter,
-	          year: year,
-	          amount: amount,
-	          filename: filename,
-	          date_string: date_string
-	        }
-	      }
-	      statements << new_statement
-	    end
-	    return statements
-	  end
-
 	  def post_new_users
 	    url = "http://localhost:3000/users"
 	    uri = URI.parse(url)
 	    users = get_new_users
 	    headers = {"Content-Type" => "application/json"}
 	    http = Net::HTTP.new(uri.host, uri.port)
+	    nil_count = 0
+	    nil_email = []
 	    users.each do  |user|	    
-	    	new_user = ::User.new(user[:user])
-	    	new_user.save
-	    	puts "user saved!"
+	    	#new_user = ::User.new(user[:user])
+	    	#new_user.save
+	    	#site_user = ::User.where(:email => user[:user][:email].downcase.gsub(/\s+/, "").delete(" ")).last
+	    	site_user = ::User.where("email = lower(?)", user[:user][:email].downcase.gsub(/\s+/, "")).first
+	    	#puts site_user.inspect
+
+	    	
+	    	if site_user == nil
+	    		site_user = ::User.where(:first_name => user[:user][:first_name].upcase, :last_name => user[:user][:last_name].upcase ).first
+	    		if ::User.where(:first_name => user[:user][:first_name].upcase, :last_name => user[:user][:last_name].upcase ).length > 1
+	    			puts "DUPLICATES"
+	    		elsif site_user == nil
+		    		puts "no user associated with email address: #{user[:user][:email]} web_id: #{user[:user][:web_id]}"
+		    		nil_count += 1
+		    		nil_email.push(user[:user][:email])
+		    		nil_email.push(user[:user][:web_id])
+	    		else
+	    			if site_user.web_id.nil?
+	    			puts "Site user #{site_user.id}'s web id is being updated to #{user[:user][:web_id]} because first name and last name match"
+	    			site_user.web_id = user[:user][:web_id]
+	    			site_user.update_attribute(:web_id, user[:user][:web_id])
+	    			else
+	    				puts "user alread has web_id #{site_user.web_id}"
+	    			end
+	    		end
+	    	elsif site_user.web_id
+	    		puts "User already has web_id #{site_user.web_id}"
+	    		if user[:user][:web_id] == site_user.web_id.inspect
+	    			puts "Web_id's match"
+	    		else
+	    			puts "WARNING WEB_IDS DONT MATCH!!!!! remote web_id = #{user[:user][:web_id]} & local_id = #{site_user.web_id}"
+	    		end
+	    	else
+	    		puts "Site user #{site_user.id}'s web id is being updated to #{user[:user][:web_id]}"
+	    		site_user.web_id = user[:user][:web_id]
+	    		begin
+	    			site_user.update_attribute(:web_id, user[:user][:web_id])
+	    		rescue Exception => e
+	    			puts e
+	    			next
+	    		end
+	    	end
 	    end
+	    puts "Nil counts = #{nil_count}"
+	    puts nil_email.inspect
 	  end
 
-	  def post_new_statements
-	    url = "http://localhost:3000/users"
-	    uri = URI.parse(url)
-	    statements = get_new_statements
-	    headers = {"Content-Type" => "application/json"}
-	    http = Net::HTTP.new(uri.host, uri.port)
-	    statements.each do  |statement|	    
-	    	new_statement = ::Statement.new(statement[:statement]) 	
-	    		new_statement.save!
-	    		puts statement.inspect
-	    		puts "Statement Saved!"
-	    end
+	  ::Statement.where("user_id is not null").each do |statement|
+	  	statement.update_attribute(:web_id, statement.user_id)
 	  end
 
 
-	  #   new_users = get_new_users
-	  #   uri = URI("http://localhost:3000/users")
-	  #   res = Net::HTTP.start(uri.hostname, uri.port) do |http|
-	  #     req = Net::HTTP::Post.new(uri.to_s, initheader = {'Content-Type' =>'application/json'})
-	  #     req.set_form_data(JSON.parse(new_users[0]))
-	  #     http.request(req)
-	  #   end
-	  # end
 	end
 	puts "past Catalyst class"
 
@@ -252,40 +248,13 @@ module PortalUpdates
 	#make this less scripty?
 	######### Delete this whenever  ###########
 	
-	#database = Catalyst.new
-	#database.post_new_users
+	database = Catalyst.new
+	database.post_new_users
 	#database.post_new_statements
 	
 
 	puts "past Catalyst where it posts to database"
-
-
-
-	# class Result < Nokogiri::XML::Element
-
-	#   attr_accessor :element
-
-	#   def initialize(element)
-	#     self.element = element
-	#     super()
-	#   end
-
-	# end
-
-	# class ResultSet
-
-	#   attr_accessor :results
-
-	#   def initialize(body)
-	#     body.each do |element|
-	#       self.results << Result.new(element)
-	#     end
-	#   end
-
-	#   def each(&block)
-	#     results.each(&block)
-	#   end
-
-	# end
-
 end
+
+
+

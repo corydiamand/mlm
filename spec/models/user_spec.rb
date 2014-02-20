@@ -24,6 +24,7 @@
 #  password_reset_sent_at :datetime
 #  password_digest        :string(255)
 #  pending                :boolean          default(FALSE)
+#  web_id                 :integer
 #
 
 require 'spec_helper'

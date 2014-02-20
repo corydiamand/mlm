@@ -4,7 +4,7 @@ describe "User Pages" do
     let(:user) { FactoryGirl.create(:user) }
     let(:other_user) { FactoryGirl.create(:user) }
     let(:admin) { FactoryGirl.create(:admin) }
-    let!(:statement) { FactoryGirl.create(:statement, user_id: user.id) }
+    let!(:statement) { FactoryGirl.create(:statement, web_id: user.web_id) }
 
   context "as a guest user" do
     
