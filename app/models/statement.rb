@@ -16,7 +16,7 @@
 class Statement < ActiveRecord::Base
   #belongs_to :user
   attr_accessor :date_string
-  attr_accessible :user_id, :amount, :filename, :quarter, :year, :date_string, :web_id, :date
+  attr_accessible :user_id, :amount, :filename, :quarter, :year, :date_string, :web_id
   default_scope order('date DESC')
   #validates :user_id, presence: true
   validates :filename, presence: true

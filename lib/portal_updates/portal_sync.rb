@@ -200,7 +200,7 @@ module PortalSync
 	  end
 
 	  ::Statement.where("user_id is not null").each do |statement|
-	  	statement.update_attribute(:web_id, statement.user_id)
+	  	statement.update_column(:web_id, statement.user_id)
 	  end
 
 
