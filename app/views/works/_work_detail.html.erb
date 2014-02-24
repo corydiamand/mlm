@@ -7,7 +7,6 @@
 <% end %>
 
 <div class="edit-work">
-<%= params.inspect %>
   <%= link_to "View/Edit this work", 
     current_user.admin? ? admin_work_path(work, params[:user_id]) : edit_user_work_path(current_user, work) %>
 </div>
