@@ -5,7 +5,6 @@ class Admin::StatementsController < Admin::ApplicationController
   def index
     user = User.find(params[:user_id])
     @statements = Statement.where(:web_id => user.web_id)
-    render "statements/index"
   end
 
   def indexall
