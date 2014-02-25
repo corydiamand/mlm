@@ -9,6 +9,8 @@
 	  <div id="user-header">User</div>
 	</div>
 	<% @statements.each do |statement| %>
+
+	<% if !statement.user.nil? %>
 	    <div id="<%= statement.id%>" class="statement-record">
 	      <div class="date-content">
 	        <%= statement.date.strftime('%b %d') %>
@@ -33,6 +35,15 @@
 	      </div>
 
 	    </div>
+	<% else %>
+	<div id="<%= statement.id%>" class="statement-record">
+		<div class="date-content">
+	        <%= statement.date.strftime('%b %d') %>
+	    </div>
+	Issue with statement <%= statement.id %>. Problem with user connected to statement, or no user has web_id <%= statement.web_id %>
+	</div>
+	<% end %>
+
 	<% end %>
 <%= will_paginate %>
 </div>
