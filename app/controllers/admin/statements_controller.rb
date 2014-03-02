@@ -11,9 +11,9 @@ class Admin::StatementsController < Admin::ApplicationController
     flash[:notice] 
     if params[:direction] != nil && params[:sort] != nil
       if params[:sort] == "web_id" && params[:direction] == "asc"
-        @statements = Statement.includes(:user).reorder('"users"."last_name"').paginate(page: params[:page],:per_page => 100)
+        @statements = Statement.includes(:user).reorder('"users"."last_name",first_name').paginate(page: params[:page],:per_page => 100)
       elsif params[:sort] == "web_id" && params[:direction] == "desc"
-        @statements = Statement.includes(:user).reorder('"users"."last_name"').reverse.paginate(page: params[:page],:per_page => 100)
+        @statements = Statement.includes(:user).reorder('"users"."last_name",first_name').reverse.paginate(page: params[:page],:per_page => 100)
       elsif params[:direction] == "asc"
         @statements = Statement.reorder(params[:sort]).paginate(page: params[:page],:per_page => 100)
       elsif params[:direction] == "desc"
