@@ -1,12 +1,12 @@
 <%= will_paginate %>
 <div id ="admin-all-statements">
 	<div class="statement-table-header">
-	  <div id="date-header">Date</div>
+	  <div id="date-header"><%= sortable "created_at"%></div>
 	  <div id="quarter-header">Quarter</div>
 	  <div id="year-header">Year</div>
-	  <div id="amount-header">Amount</div>
+	  <div id="amount-header"><%= sortable "amount"%></div>
 	  <div id="download-header">Download</div>
-	  <div id="user-header">User</div>
+	  <div id="user-header"><%= sortable "web_id", "User"%></div>
 	</div>
 	<% @statements.each do |statement| %>
 

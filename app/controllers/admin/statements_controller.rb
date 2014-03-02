@@ -8,7 +8,15 @@ class Admin::StatementsController < Admin::ApplicationController
   end
 
   def indexall
-  	@statements = Statement.find(:all, :order => "created_at").paginate(page: params[:page],:per_page => 50)
+    if params[:direction] != nil && params[:sort] != nil
+      if params[:direction] == "asc"
+        @statements = Statement.reorder(params[:sort]).paginate(page: params[:page],:per_page => 100)
+      elsif params[:direction] == "desc"
+        @statements = Statement.reorder(params[:sort]).reverse.paginate(page: params[:page],:per_page => 100)
+      end
+    else
+      @statements = Statement.find(:all, :order => "created_at").paginate(page: params[:page],:per_page => 100)
+    end
   end
 
   def destroy

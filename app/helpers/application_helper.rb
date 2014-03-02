@@ -36,4 +36,10 @@ module ApplicationHelper
   def link_to_add_attachment(name)
     content_tag :div, add_image_to_name(name, :plus), class: "add_fields"
   end
+
+  def sortable(column, title = nil)
+    title ||= column.titleize
+    direction = column == params[:sort] && params[:direction] == "asc" ? "desc" : "asc"
+    link_to title, :sort => column, :direction => direction
+  end
 end
