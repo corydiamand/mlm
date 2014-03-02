@@ -8,8 +8,13 @@ class Admin::StatementsController < Admin::ApplicationController
   end
 
   def indexall
+    flash[:notice] 
     if params[:direction] != nil && params[:sort] != nil
-      if params[:direction] == "asc"
+      if params[:sort] == "web_id" && params[:direction] == "asc"
+        @statements = Statement.includes(:user).reorder('"users"."last_name"').paginate(page: params[:page],:per_page => 100)
+      elsif params[:sort] == "web_id" && params[:direction] == "desc"
+        @statements = Statement.includes(:user).reorder('"users"."last_name"').reverse.paginate(page: params[:page],:per_page => 100)
+      elsif params[:direction] == "asc"
         @statements = Statement.reorder(params[:sort]).paginate(page: params[:page],:per_page => 100)
       elsif params[:direction] == "desc"
         @statements = Statement.reorder(params[:sort]).reverse.paginate(page: params[:page],:per_page => 100)

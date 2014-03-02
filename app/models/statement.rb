@@ -14,7 +14,7 @@
 #
 
 class Statement < ActiveRecord::Base
-  #belongs_to :user
+  belongs_to :user, :foreign_key => "web_id", :primary_key => "web_id"
   attr_accessor :date_string
   attr_accessible :user_id, :amount, :filename, :quarter, :year, :date_string, :web_id
   default_scope order('date DESC')
