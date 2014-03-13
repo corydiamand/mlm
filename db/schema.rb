@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140219222953) do
+ActiveRecord::Schema.define(:version => 20140313035837) do
 
   create_table "audio_products", :force => true do |t|
     t.integer  "work_id"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20140219222953) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.float    "mr_share"
+    t.integer  "web_id"
   end
 
   add_index "work_claims", ["user_id"], :name => "index_work_claims_on_user_id"

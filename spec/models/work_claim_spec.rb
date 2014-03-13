@@ -8,6 +8,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  mr_share   :float
+#  web_id     :integer
 #
 
 require 'spec_helper'

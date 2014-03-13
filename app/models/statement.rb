@@ -11,6 +11,7 @@
 #  updated_at :datetime         not null
 #  date       :date
 #  web_id     :integer
+#  user_id    :integer
 #
 
 class Statement < ActiveRecord::Base
