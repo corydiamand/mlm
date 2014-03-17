@@ -7,7 +7,7 @@ describe 'Admin Pages' do
   let(:other_user) { FactoryGirl.create(:user) }
   let(:admin) { FactoryGirl.create(:admin) }
   let(:work) { FactoryGirl.create(:work) }
-  let!(:claim) { FactoryGirl.create(:work_claim, user: user, work: work) }
+  let!(:claim) { FactoryGirl.create(:work_claim, web_id: user.web_id, user: user, work: work) }
 
   before do
     sign_in_through_ui user

@@ -12,11 +12,11 @@
 #
 
 class WorkClaim < ActiveRecord::Base
-  belongs_to :user, inverse_of: :work_claims
+  belongs_to :user, :class_name => "User", :foreign_key => "web_id", inverse_of: :work_claims
   belongs_to :work, inverse_of: :work_claims
-  attr_accessible :user_id, :work_id, :mr_share
+  attr_accessible  :work_id, :mr_share, :web_id #,:user_id,
 
-  validates_presence_of :user, :work, :mr_share
+  validates_presence_of :work, :mr_share, :web_id
   validates :mr_share, numericality: { greater_than: 0, less_than_or_equal_to: 100 }
 
 end

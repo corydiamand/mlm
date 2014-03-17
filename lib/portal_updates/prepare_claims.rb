@@ -14,6 +14,7 @@ WorkClaim.find(:all).each do |claim|
 	if claim.user_id != nil && claim.web_id == nil
 		claim.web_id = claim.user_id
 		claim.save
+		puts claim.inspect
 	end
 
 end

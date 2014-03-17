@@ -95,10 +95,28 @@ module PortalUpdates
 	      title = song.xpath("field[@name='work_title']").text
 	      duration = song.xpath("field[@name='duration']").text
 	      copyright_date = song.xpath("field[@name='copyright_date']").text
-	      new_work = Work.new(title: title, duration: duration, copyright_date: copyright_date)
+	      claims = song.xpath("field[@name='claims']")
+	      new_work = ::Work.new(title: title, duration: duration, copyright_date: copyright_date)
+	      new_workclaim = ::WorkClaim.new(claims)
+	      works << new_workclaim
 	      works << new_work
 	    end
 	    return works
+	  end
+
+	  def get_claims_for_work(song_id)
+	  	self.layout = "Claims.home"
+	  	works=[]
+	  	request = do_action(@base_uri, db, layout, "find", fk_songID: song_id)
+	  	body = Nokogiri::XML::Document.parse(request.body).remove_namespaces!
+	    claims = body.xpath("//resultset/record")
+	    songs.each do |song|
+	      web_id = song.xpath("field[@name='work_title']").text
+	      work_id = song.xpath("field[@name='duration']").text
+	      mr_share = song.xpath("field[@name='copyright_date']").text
+	      new_work = ::Work.new(title: title, duration: duration, copyright_date: copyright_date)
+	      new_workclaim = ::WorkClaim.new(claims)
+	  	end
 	  end
 
 	  def get_new_users
@@ -193,10 +211,101 @@ module PortalUpdates
 	    http = Net::HTTP.new(uri.host, uri.port)
 	    statements.each do  |statement|	    
 	    	new_statement = ::Statement.new(statement[:statement]) 	
-	    		new_statement.save!
+	    		#new_statement.save!
 	    		puts statement.inspect
 	    		puts "Statement Saved!"
 	    end
+	  end
+
+	  def post_new_works
+	  	url = "http://localhost:3000/users"
+	    uri = URI.parse(url)
+	  	works = get_new_works 
+	  	headers = {"Content-Type" => "application/json"}
+	    http = Net::HTTP.new(uri.host, uri.port)
+	    works.each do  |work|	    
+	    		#new_work.save!
+	    		puts work.inspect
+	    		puts "Work Saved!"
+	    end
+	  end
+
+	def post_new_songs
+	  	self.layout = "Works Catalog"
+	    works = []
+	    #request = do_action(@base_uri, db, layout, "find", pk_songID: 4326)
+	    #request = do_action(@base_uri, db, layout, "find", pk_songID: 4765)
+	    request = do_action(@base_uri, db, layout, "find", portal_tag: 1)
+	    body = Nokogiri::XML::Document.parse(request.body).remove_namespaces!
+	    songs = body.xpath("//resultset/record")
+
+	    songs.each do |song|
+
+	    	new_song = ::Work.new
+	    	new_song.title = song.xpath("field[@name='work_title']").text
+	    	new_song.duration = song.xpath("field[@name='duration']").text
+	    	new_song.copyright_date = song.xpath("field[@name='copyright_date']").text
+	    	new_song.save(validate: false)
+	    	puts new_song.inspect
+
+	    	if new_song.persisted? == false
+	    		sleep(2.seconds)
+	    	end
+	    	
+	    	if new_song.persisted? && !song.xpath("relatedset[@table='t.AudioProducts'][1]/record").empty?
+				new_audioproduct = ::AudioProduct.new 
+		    	new_audioproduct.label = song.xpath("relatedset[@table='t.AudioProducts'][1]/record[1]/field[@name='t.AudioProducts::Label']").text
+			    new_audioproduct.album = song.xpath("relatedset[@table='t.AudioProducts'][1]/record[1]/field[@name='t.AudioProducts::Album']").text
+			    new_audioproduct.artist = song.xpath("relatedset[@table='t.AudioProducts'][1]/record[1]/field[@name='t.AudioProducts::Artist']").text
+			    new_audioproduct.catalog_number = song.xpath("relatedset[@table='t.AudioProducts'][1]/record[1]/field[@name='t.AudioProducts::Catalog Number']").text
+			    new_audioproduct.work_id = new_song.id
+			    new_audioproduct.save
+
+			    puts new_audioproduct.inspect
+			end
+
+		    x = 1
+		    while !song.xpath("relatedset[@table='t.Claims']/record[#{x}]").empty?
+			    new_work_claim = WorkClaim.new
+			    new_work_claim.mr_share =  song.xpath("relatedset[@table='t.Claims']/record[#{x}]/field[@name='t.Claims::MR Share']").text
+			    new_work_claim.web_id = song.xpath("relatedset[@table='t.Claims']/record[#{x}]/field[@name='t.Claims::web_user_id_lookup']").text
+			    new_work_claim.work_id = new_song.id
+			    new_work_claim.save
+			    puts new_work_claim.inspect
+			    x+=1
+		    end
+
+
+		    #puts body.xpath("//resultset/record")
+		    #work info
+=begin
+		    puts song.xpath("field[@name='work_title']").text
+		    puts song.xpath("field[@name='duration']").text
+		    puts song.xpath("field[@name='copyright_date']").text
+		    puts "^^^^^^^^^^^^^^^^^^^^^^"
+
+		    #audio project info (only need the first one)
+		    #puts body.xpath("//resultset/record/relatedset[@table='t.AudioProducts'][1]")
+		    puts song.xpath("relatedset[@table='t.AudioProducts'][1]/record[1]/field[@name='t.AudioProducts::Label']").text
+		    puts song.xpath("relatedset[@table='t.AudioProducts'][1]/record[1]/field[@name='t.AudioProducts::Album']").text
+		    puts song.xpath("relatedset[@table='t.AudioProducts'][1]/record[1]/field[@name='t.AudioProducts::Artist']").text
+		    puts song.xpath("relatedset[@table='t.AudioProducts'][1]/record[1]/field[@name='t.AudioProducts::Catalog Number']").text
+		    puts "%%%%%%%%%%%%%%%%%%%%%%"
+
+		    #each claim
+		    #puts body.xpath("//resultset/record/relatedset[@table='t.Claims']/record[#{x}]")
+		    x = 1
+		    while !song.xpath("relatedset[@table='t.Claims']/record[#{x}]").empty?
+		      puts song.xpath("field[@name='pk_SongID'][1]").text
+		      puts song.xpath("relatedset[@table='t.Claims']/record[#{x}]/field[@name='t.Claims::MR Share']").text
+		      puts song.xpath("relatedset[@table='t.Claims']/record[#{x}]/field[@name='t.Claims::web_user_id_lookup']").text
+		      puts "*********************"
+		      x+=1
+		    end
+=end
+		    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+		end
+		puts songs.count
 	  end
 
 
