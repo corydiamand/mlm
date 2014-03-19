@@ -9,4 +9,4 @@ preload_app true
 
 # Immediately restart any workers that
 # haven't responded within 30 seconds
-timeout 120
+timeout 240
