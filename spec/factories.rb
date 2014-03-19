@@ -5,7 +5,7 @@ FactoryGirl.define do
 		sequence(:email)	{ |n| "person_#{n}@example.com" }
 		password 			          "foobar"
     password_confirmation   "foobar"
-    web_id 1
+    sequence(:web_id) {|n| n}
 
 		factory :admin do
 			admin true

@@ -31,7 +31,7 @@ require 'digest'
 class User < ActiveRecord::Base
   has_secure_password
   has_many :statements, :foreign_key => "web_id", :primary_key => "web_id"
-  has_many :work_claims, inverse_of: :user
+  has_many :work_claims, inverse_of: :user, :foreign_key => "web_id", :primary_key => "web_id"
   has_many :works, through: :work_claims
   has_many :sessions
   attr_accessible :first_name, :last_name, :email, :area_code, :phone_number,

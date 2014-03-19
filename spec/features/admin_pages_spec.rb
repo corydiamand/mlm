@@ -4,7 +4,7 @@ describe 'Admin Pages' do
   let!(:user) { FactoryGirl.create(:user) }
   let!(:statement) { FactoryGirl.create(:statement, web_id: user.web_id) }
   let!(:other_statement) { FactoryGirl.create(:statement, web_id: other_user.web_id) }
-  let(:other_user) { FactoryGirl.create(:user) }
+  let!(:other_user) { FactoryGirl.create(:user) }
   let(:admin) { FactoryGirl.create(:admin) }
   let(:work) { FactoryGirl.create(:work) }
   let!(:claim) { FactoryGirl.create(:work_claim, web_id: user.web_id, user: user, work: work) }

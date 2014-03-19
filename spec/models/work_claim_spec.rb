@@ -16,11 +16,11 @@ require 'spec_helper'
 describe WorkClaim do
   let(:user) { FactoryGirl.create(:user) }
   let(:work) { FactoryGirl.create(:work) }
-  let!(:claim) { FactoryGirl.create(:work_claim, user: user, work: work) }
+  let!(:claim) { FactoryGirl.create(:work_claim, user: user, work: work, web_id: user.web_id) }
 
   subject { claim }
 
-  it { should respond_to(:user_id) }
+  it { should respond_to(:web_id) }
   it { should respond_to(:work_id) }
   it { should respond_to(:mr_share) }
   its(:user) { should be == user }
@@ -37,10 +37,9 @@ describe WorkClaim do
 
   describe "Validations" do
 
-    context "user id" do
-
+    context "web id" do
       it "should not be valid when user_id is not present" do
-        claim.user_id = nil 
+        claim.web_id = nil 
         claim.should_not be_valid 
       end
     end

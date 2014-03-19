@@ -7,6 +7,7 @@ class WorksController < ApplicationController
 
   def index
     @works = current_user.works.order('title ASC').includes(:audio_products, work_claims: :user)
+    @current_user = current_user
   end
 
   def new
@@ -15,6 +16,7 @@ class WorksController < ApplicationController
   end
 
   def create
+    #puts params[:work].inspect
     @work = Work.new(params[:work])
     if @work.save
       flash[:success] = "Successfully submitted work"
@@ -25,7 +27,7 @@ class WorksController < ApplicationController
   end
 
   def edit
-    @current_claim = @work.work_claims.select { |claim| claim.user == current_user }
+    @current_claim = @work.work_claims.select { |claim| claim.user == current_user}
   end
 
   def update

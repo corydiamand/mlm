@@ -104,8 +104,8 @@ describe 'Statements' do
   describe "Associations" do
 
     context "User" do
-      let!(:older_statement) { FactoryGirl.create(:statement, web_id: 1, date_string: '06/01/1999') }
-      let!(:newer_statement) { FactoryGirl.create(:statement, web_id: 1, date_string: '01/01/2000') }
+      let!(:older_statement) { FactoryGirl.create(:statement, user: user, web_id: 1, date_string: '06/01/1999') }
+      let!(:newer_statement) { FactoryGirl.create(:statement, user: user, web_id: 1, date_string: '01/01/2000') }
 
       it "should display the statements in the right order" do
         user.statements.should == [newer_statement, older_statement]

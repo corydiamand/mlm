@@ -5,8 +5,8 @@ describe 'Works Pages' do
   let(:admin) { FactoryGirl.create(:admin) }
   let(:work) { FactoryGirl.create(:work) }
   let(:other_work) { FactoryGirl.create(:work) }
-  let!(:claim) { FactoryGirl.create(:work_claim, user: user, work: work) }
-  let!(:other_claim) { FactoryGirl.create(:work_claim, user: user, work: other_work) }
+  let!(:claim) { FactoryGirl.create(:work_claim, web_id: user.web_id, user: user, work: work) }
+  let!(:other_claim) { FactoryGirl.create(:work_claim, web_id: user.web_id, user: user, work: other_work) }
   let!(:audio_product) { FactoryGirl.create(:audio_product, work: work) }
 
   describe "as a user" do 
