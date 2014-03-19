@@ -211,7 +211,7 @@ module PortalUpdates
 	    http = Net::HTTP.new(uri.host, uri.port)
 	    statements.each do  |statement|	    
 	    	new_statement = ::Statement.new(statement[:statement]) 	
-	    		#new_statement.save!
+	    		new_statement.save!
 	    		puts statement.inspect
 	    		puts "Statement Saved!"
 	    end
